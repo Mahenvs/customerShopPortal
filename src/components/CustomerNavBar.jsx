@@ -16,13 +16,14 @@ const CustomerNavBar = () => {
   
 
   useGetStore(storeDomain, () => setIsLoading(false));
-  const storeId = useSelector((store) => store.store.storeId);
+  const storeName = useSelector((store) => store.store.name);
   return <>
       {!isLoading ? (
         <div>Loading...</div>
       ) : <div className="flex h-20 border- b border-b-2  items-center">
         <section className="w-1/5 ml-40 mr-10 flex items-center">
-          <img src={shop} width="50px" />Image
+          <img src={shop} width="50px" />
+          <span className='px-3 font-medium text-lg'>{storeName}</span>
         </section>
         <section className="w-2/5  mx-14">
           <input type='text' className='w-full border px-3 py-2 bg-gray-100 rounded placeholder:font-normal text-lg' placeholder="Search for products"/>

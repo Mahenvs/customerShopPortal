@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { addToCart, removeFromCart } from "../store/storeSlice";
+import { addToCart, clearCart, removeFromCart } from "../store/storeSlice";
 
 const Cart = () => {
   const cartData = useSelector((store) => store.store.cart);
@@ -13,11 +13,17 @@ const Cart = () => {
       dispatch(removeFromCart(item));
     }
   };
+
+  const clearCartHandler = () => {
+    console.log(cartData.length);
+    if(cartData)
+      dispatch(clearCart())
+  }
   return (
     <div className="f lex p-2 ">
       <section className="flex justify-between">
         <h1 className="text-xl font-semibold">Cart</h1>
-        <button>Clear Cart</button>
+        <button className="underline" onClick={clearCartHandler}>Clear Cart</button>
       </section>
       {cartData.map((item, index) => {
         return (

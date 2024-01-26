@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import { Provider } from "react-redux";
 import appStore from "./store/appStore";
 import CustomerLayOut from "./components/CustomerLayOut";
+import ProductDetail from "./components/ProductDetail";
 
 const router = createBrowserRouter([
   // {
@@ -21,10 +22,10 @@ const router = createBrowserRouter([
         path: "/:storeDomain", // Combined path with the parent route
         element: <Home />, // This will render at '/Customer/shopping-cart'
       },
-      // {
-      //   path: 'shopping-cart', // Combined path with the parent route
-      //   element: <CheckOut />, // This will render at '/Customer/shopping-cart'
-      // }
+      {
+        path: '/:storeDomain/:product', // Combined path with the parent route
+        element: <ProductDetail />, // This will render at '/Customer/shopping-cart'
+      }
     ],
   },
 ]);

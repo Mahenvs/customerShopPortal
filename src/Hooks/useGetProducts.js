@@ -9,7 +9,6 @@ const useGetProducts = () => {
   const storeId = useSelector((store) => store.store.storeId);
     
   const fetchData = async () => {
-    // if (storeId) {
  
     const url = import.meta.env.VITE_API_GET_PRODUCTS+`${storeId}/products`;
     try {
@@ -23,7 +22,6 @@ const useGetProducts = () => {
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-  // } 
   };
 
   useEffect(() => {

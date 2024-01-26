@@ -4,20 +4,24 @@ import shop from "../assets/shop.jpg";
 
 const Shimmer = () => {
   return (
-    <div className="shadow-lg p-1 flex gap-4 bg-red-800">
+    <div className="shadow-lg p-1 flex gap-4 bg-gray-100">
             
-            <section className="w-1/4 p-1 border">
-              <img src={shop} alt="" width="100px" />
+            <section className="w-1/4 p-4 ">
+              {/* <img src={shop} alt="" width="100px" /> */}
             </section>
             <section className="w-2/4">
               <h1 className="text-lg text-gray-700 font-medium">
-                {"item?.productName"}
+                {/* {"item?.productName"} */}
               </h1>
-              <p>{"item.unit"}</p>
-              <p>${"item.productPrice"} </p>
+              <p>
+                {/* {"item.unit"} */}
+              </p>
+              <p>
+                {/* ${"item.productPrice"} */}
+              </p>
             </section>
             <section className="justify-end items-end self-end">
-              <Button title="Add" class="px-2 h-fit "></Button>
+              {/* <Button title="Add" class="px-2 h-fit "></Button> */}
             </section>
           </div>
   )
