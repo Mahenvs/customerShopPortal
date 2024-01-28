@@ -3,7 +3,7 @@ import Cart from "./Cart";
 import Categories from "./Categories";
 import CustomerViewProducts from "./CustomerViewProducts";
 import useGetProducts from "../Hooks/useGetProducts";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 export default function Home() {
   

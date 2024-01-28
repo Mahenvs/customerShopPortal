@@ -22,7 +22,7 @@ const CustomerViewProducts = () => {
       state: {
         productData: {
           productName: item.productName,
-          price: item.productPrice,
+          productPrice: item.productPrice,
           quantitiy: 1,
         },
       },
@@ -40,7 +40,7 @@ const CustomerViewProducts = () => {
                 className="w-1/4 p-1 border rounded"
                 onClick={() => navigateProductDetail(item?.productName, item)}
               >
-                <img src={shop} alt="" width="100px" />
+              <img src={item?.productImageUrl} alt="" width="100px" />
               </section>
               <section className="w-2/4" onClick={() => navigateProductDetail(item?.productName, item)}>
                 <h1 className="text-lg text-gray-700 font-medium">

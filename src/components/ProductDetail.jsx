@@ -1,15 +1,30 @@
-import React, { useEffect, useState } from "react";
-import { addToCart,  removeFromCart } from "../store/storeSlice";
+import { useEffect, useState } from "react";
+import {
+  addToCart,
+  removeFromCart,
+  setName,
+  setStoreId,
+} from "../store/storeSlice";
 import { useDispatch, useSelector } from "react-redux";
 import shop from "../assets/shop.jpg";
 import themes from "../Utilities/themes";
 import { setTheme } from "../store/appConfigSlice";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
+import useGetProducts from "../Hooks/useGetProducts";
 
 const ProductDetail = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
+  const result = useLoaderData();
+
+  dispatch(setStoreId(result.id));
+  dispatch(setName(result.name));
+
+  useGetProducts();
+
   const handleItemsFromCart = (item, flag) => {
-    console.log(item);
+    
     if (flag == "increase") {
       dispatch(addToCart(item));
     } else {
@@ -17,30 +32,25 @@ const ProductDetail = () => {
     }
   };
   const theme = useSelector((store) => store.appConfig.theme);
-  
-  const location = useLocation();
-  const item = location.state?.productData;
+  let item = location.state?.productData;
 
-  console.log(item);
-  const cart = useSelector((store)=> store.store.cart);
-  console.log(cart);
-  const [cnt,setCnt] = useState(1);
-  
-  
-  useEffect(()=>{
+  if (!item) {
+    item = result;
+  }
+  const cart = useSelector((store) => store.store.cart);
+  const [cnt, setCnt] = useState(1);
+
+  useEffect(() => {
     const count = cart.map((prod) => {
-      console.log(item.productname);
+      
       if (prod.productName == item.productName) {
         return prod.quantity;
       }
     });
-    if(count > 1)
-    setCnt(count);
+    if (count > 1) setCnt(count);
 
-    console.log(cnt);
-  },[]);
+  }, [cnt]);
 
-  // console.log(cnt);
   const onThemeSelect = (e) => {
     console.log(e.target.value);
     dispatch(setTheme(e.target.value));
@@ -58,7 +68,7 @@ const ProductDetail = () => {
       <div className=" items-start gap-4 flex flex-col">
         <p className="font-medium text-lg">{item?.productName}</p>
         <p className="font-small">{"per piece"}</p>
-        <p className="font-medium">${item?.price}</p>
+        <p className="font-medium">${item?.productPrice}</p>
 
         <span
           className={
