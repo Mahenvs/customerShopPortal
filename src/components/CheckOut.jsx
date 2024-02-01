@@ -1,5 +1,5 @@
 import Card from '../UI_Elements/Card';
-import './styles.css';
+// import './styles.css';
 
 export default function CheckOut() {
 

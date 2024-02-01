@@ -7,6 +7,8 @@ import appStore from "./store/appStore";
 import CustomerLayOut from "./components/CustomerLayOut";
 import ProductDetail from "./components/ProductDetail";
 import getData from "./Loaders/getData";
+import SignUp from "./components/SignUp";
+import UpdateProfile from "./components/UpdateProfile";
 
 const router = createBrowserRouter([
  
@@ -15,13 +17,24 @@ const router = createBrowserRouter([
     element: <CustomerLayOut />,
     children: [
       {
-        path: "/:storeDomain", // Combined path with the parent route
-        element: <Home />, // This will render at '/Customer/shopping-cart'
-        
+        path: "/",   
+        element: <SignUp />,  
       },
       {
-        path: '/:storeDomain/:product', // Combined path with the parent route
-        element: <ProductDetail />, // This will render at '/Customer/shopping-cart'
+        path: "/signup",   
+        element: <SignUp />,  
+      },
+      {
+        path: "/updateProfile",   
+        element: <UpdateProfile />,  
+      },
+      {
+        path: "/:storeDomain",   
+        element: <Home/>,
+      },
+      {
+        path: '/:storeDomain/:product',   
+        element: <ProductDetail />,  
         loader: getData,
       }
     ],

@@ -7,10 +7,11 @@ const useGetProducts = () => {
   const dispatch = useDispatch();
   
   const storeId = useSelector((store) => store.store.storeId);
-    
+  const categoryId = useSelector((store) => store.product.activeCategory);
+
   const fetchData = async () => {
  
-    const url = import.meta.env.VITE_API_GET_PRODUCTS+`${storeId}/products`;
+    const url = import.meta.env.VITE_API_STORE+`${storeId}/categories/${categoryId}/products`;
     try {
       const response = await fetch(url, getHeaders());
       if (!response.ok) {
@@ -25,8 +26,8 @@ const useGetProducts = () => {
   };
 
   useEffect(() => {
-    storeId && fetchData();
-  }, [storeId]);
+    storeId && categoryId && fetchData();
+  }, [storeId,categoryId]);
 };
 
 export default useGetProducts;

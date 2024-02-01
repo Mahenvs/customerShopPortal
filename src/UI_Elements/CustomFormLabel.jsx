@@ -2,7 +2,7 @@
 
 const CustomFormLabel = (props) =>{
     return <>
-        <span className="mt-1 mb-2  text-xl">
+        <span className=" mb-1  text-xl">
             {props.label}
         </span>
     </>

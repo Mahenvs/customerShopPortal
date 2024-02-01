@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { getHeaders } from "../Utilities/getHeaders";
-import { listOfCategories, listOfProducts } from "../store/ProductSlice";
+import { listOfCategories,  setActiveCategory } from "../store/ProductSlice";
 import { useDispatch,useSelector } from "react-redux";
 
 const useGetCategories = () => {
@@ -18,6 +18,8 @@ const useGetCategories = () => {
       const result = await response.json();
       console.log("categories ",result);
       dispatch(listOfCategories(result));
+      if(result)
+        dispatch(setActiveCategory(result[0]["categoryId"]))
     } catch (error) {
       console.error("Error fetching data:", error);
     }

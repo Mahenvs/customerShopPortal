@@ -1,7 +1,4 @@
-import { useEffect } from "react";
 import { getHeaders } from "../Utilities/getHeaders";
-import { listOfProducts } from "../store/ProductSlice";
-import { useDispatch,useSelector } from "react-redux";
 
 const getData = ({params}) => {
 

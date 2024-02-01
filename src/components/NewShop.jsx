@@ -29,13 +29,6 @@ const NewShop = () => {
     }));
 }
 
-  const handlerInput = (flag, value) => {
-    
-    setFormData(prevValues => ({
-        ...prevValues,
-        [flag]: value
-    }));
-}
 
   async function createShop() {
 

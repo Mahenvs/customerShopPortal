@@ -1,7 +1,3 @@
-import React from 'react'
-import Button from '../UI_Elements/Button'
-import shop from "../assets/shop.jpg";
-
 const Shimmer = () => {
   return (
     <div className="shadow-lg p-1 flex gap-4 bg-gray-100">
