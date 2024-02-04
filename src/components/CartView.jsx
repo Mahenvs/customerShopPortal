@@ -127,7 +127,7 @@ const CartView = () => {
               <h6 className="font-base font-mono text-lg">Delivery Fee </h6>
               <p
                 className={
-                  cartTotal > 500 ? "text-green-500" : " text-slate-300"
+                  cartTotal > 500 ? "text-green-500" : " text-red-400"
                 }
               >
                 {cartTotal < 500 ? `$50` : "FREE"}
@@ -136,7 +136,7 @@ const CartView = () => {
             <p className="border-b my-1"></p>
             <span className="flex justify-between">
               <h5 className="font-base font-mono text-lg">Grand total </h5>
-              <p className="font-medium">${cartTotal + 50}</p>
+              <p className="font-medium">$                {cartTotal < 500 ? cartTotal+50  : cartTotal}</p>
             </span>
             <p className="text-sm font-mono text-slate-400">
               {" "}

@@ -11,9 +11,8 @@ import UpdateProfile from "./components/UpdateProfile";
 import { RedirectHome } from "./components/RedirectHome";
 import SignUp from "./components/SignUp";
 import CategoriesView from "./components/CategoriesView";
-import CheckOut from "./components/CheckOut";
 import CartView from "./components/CartView";
-import Home1 from "./components/Home1";
+import OrderConfirmation from "./components/OrderConfirmation";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -33,11 +32,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/:storeDomain/",
-        element: <Home/>,
-        children: [
-          
-          
-        ]
+        element: <Home />,
+        children: [],
       },
       {
         path: "/:storeDomain/:product",
@@ -46,13 +42,16 @@ const router = createBrowserRouter([
       },
       {
         path: "categories",
-        element: <CategoriesView/>
-        
+        element: <CategoriesView />,
       },
       {
         path: "/cart",
-        element: <CartView/>
-      }
+        element: <CartView />,
+      },
+      {
+        path: "/orderConfirmed",
+        element: <OrderConfirmation />,
+      },
     ],
   },
 ]);
