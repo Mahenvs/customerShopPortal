@@ -13,11 +13,10 @@ const Categories = () => {
   const activeCategory = useSelector((store) => store.product.activeCategory);
   
   const handleActiveCategory = (id) =>{
-    dispatch(setActiveCategory(id))
-    
+    dispatch(setActiveCategory(id)) 
   }
   return (
-    <div className="sticky top-100 h-screen">
+    <div className="sticky top-100 h-s creen">
 
       {!categories ? (
         <Shimmer />

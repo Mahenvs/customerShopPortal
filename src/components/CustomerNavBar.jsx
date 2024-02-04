@@ -1,10 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
 import useGetStore from "../Hooks/useGetStore";
 import shop from "../assets/shop.jpg";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import Badge from "../UI_Elements/Badge";
 import ProductSearch from "./ProductSearch";
+import { setCustomerId } from "../store/storeSlice";
 
 const CustomerNavBar = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -14,7 +15,9 @@ const CustomerNavBar = () => {
   const pathArr = location.pathname.split("/");
 
   const storeDomain = pathArr[pathArr.length - 1];
-  
+  const dispatch = useDispatch();
+
+  console.log(location.pathname);
   useGetStore(storeDomain, () => setIsLoading(false));
   
   const storeName = useSelector((store) => store.store.name);
@@ -25,11 +28,12 @@ const CustomerNavBar = () => {
     storeDomainResource  = JSON.parse(localStorage.getItem('store'))?.storeDomain
   }
   useEffect(()=>{
-
+    const customer = localStorage.getItem('customerId')
+    dispatch(setCustomerId(customer));
   },[cartCnt])
   
   return (
-    <div className="r elative">
+    <div className="">
       {!isLoading ? (
         <div>Loading...</div>
       ) : (
@@ -43,12 +47,12 @@ const CustomerNavBar = () => {
             <ProductSearch/>
           </section>
           <section className="font-medium text-lg w-2/5 flex mx-14 gap-10 text-white-500">
-            <span className="cursor-pointer">Categories</span>
+            <Link to={"/categories"} className="cursor-pointer">Categories</Link>
 
-            <div className="flex cursor-pointer">
+            <Link to="/cart" className="flex cursor-pointer">
               {cartCnt != 0  ? <Badge value={cartCnt} /> : ""}
               <span className="z-10">Cart</span>
-            </div>
+            </Link>
             <span className="cursor-pointer">Account</span>
           </section>
         </div>

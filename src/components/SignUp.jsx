@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import CustomFormControl from "../UI_Elements/CustomFormControl";
 import CustomFormLabel from "../UI_Elements/CustomFormLabel";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setCustomerId } from "../store/storeSlice";
 
@@ -12,9 +12,7 @@ const InitialState = {
   cnfpassword: "",
 };
 
-const SignUp = () => {
-    
-
+const SignUp = ({onLogin}) => {    
   const storeData = JSON.parse(localStorage.getItem("store"));
     const dispatch =useDispatch();
   const storeDomain = storeData.storeDomain;
@@ -88,7 +86,6 @@ const SignUp = () => {
     
     if (data.status === 200) {
       setErrorMsg(null);
-      console.log(resp);
       dispatch(setCustomerId(resp.CustomerId));
       localStorage.setItem('customerId',resp.CustomerId)
       navigate(`/${storeDomain}`);
@@ -99,6 +96,9 @@ const SignUp = () => {
     }
   };
 
+  useEffect(()=>{
+    onLogin();
+  },[])
   return (
     <>
       <div className="mx-auto  w-1/3 py-10 flex justify-center ">

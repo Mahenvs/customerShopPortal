@@ -1,7 +1,7 @@
 import axios from "axios";
 import { headers } from "./getHeaders";
 
-export async function addToCart1(item, cartList, flag) {
+export async function addToCart1(item, cartList, flag, addQuantity) {
   const customer = localStorage.getItem("customerId");
   const storeId = JSON.parse(localStorage.getItem("store")).storeId;
   const cartUrl = import.meta.env.VITE_API_ADD_CART;
@@ -19,15 +19,24 @@ export async function addToCart1(item, cartList, flag) {
   let quantity = 1;
   if (flag == "add") {
     if (cnt.length != 0) {
-      quantity = cnt[0].productCartQuantity + 1;
+      if(addQuantity > -1){
+        quantity = addQuantity
+      }
+      else{
+        quantity = cnt[0].productCartQuantity + 1;
+      }
     }
   }
   if (flag == "remove") {
     if (cnt.length >= 1) {
-      quantity = cnt[0].productCartQuantity - 1;
+      if(addQuantity > -1){
+        quantity = addQuantity
+      }
+      else{
+        quantity = cnt[0].productCartQuantity - 1;
+      }
     }
   }
-
   if (quantity == 0) {
     const resp = await axios.delete(cartDeleteUrl, headers());
     
@@ -60,5 +69,5 @@ export async function addToCart1(item, cartList, flag) {
   }    
   }
 
-  // console.log(data);
+
 }

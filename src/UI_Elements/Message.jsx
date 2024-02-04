@@ -7,27 +7,23 @@ import { setMessage } from "../store/appConfigSlice";
 const Message = () => {
   
   const message1 = useSelector(store => store.appConfig.popUp);
-  console.log(message1);
+  
   const controls = useAnimation();
   const dispatch = useDispatch();
 
-  console.log(message1,status);
-  const [statuss,setStatus] = useState(status);
-
   let classes = " px-3 w-64  ";
   console.log("message ",message1);
-  if (message1?.type == 'info') {
+  if (message1?.type == 'warning') {
     classes += "bg-red-700 p-2 flex text-white text-xl font-medium justify-center rounded";
   }
-  else if(message1?.type == 'warning') {
-    classes += "bg-blue-300 p-2 flex text-slate-800 font-medium text-xl justify-center rounded";
+  else if(message1?.type == 'info') {
+    classes += "bg-blue-300 p-2 flex text-white font-medium text-xl justify-center rounded";
   }
   useEffect(() => {
     const timeout = setTimeout(() => {
       controls.start({ x: 100 }); 
       
       setTimeout(() => {
-        // setStatus(false)
         dispatch(setMessage({
           message: '',
           status: false,
@@ -40,22 +36,6 @@ const Message = () => {
   }, [message1]);
 
   return (
-    // <motion.div
-    // className={`flex flex-col absolute self-end z-50 mt-12 ${message1?.status === false ? 'hidden' : 'flex'}`}
-    // animate={controls}
-    //   transition={{ ease: "easeOut", duration: 3 }}
-    // >
-    //   <AnimatePresence>
-    //     <motion.span
-    //       initial={{ x: 100 }}
-    //       animate={{ x: 0 }}
-    //       transition={{ ease: "easeOut", duration: 3 }}
-    //       className={classes}
-    //     >
-    //       {message1?.message}
-    //     </motion.span>
-    //   </AnimatePresence>
-    // </motion.div>
     <div
     className={`flex flex-col absolute self-end z-50 mt-12 font-medium ${message1?.status === false ? 'hidden' : 'flex'}`}
     >

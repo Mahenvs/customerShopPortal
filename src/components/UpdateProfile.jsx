@@ -50,7 +50,6 @@ const UpdateProfile = () => {
     const response = await data.json();
 
     if (data.status === 201) {
-      // navigate("/"+storeDomain)
       dispatch(setCustomerId(response.CustomerId));
       localStorage.setItem('customerId',response.CustomerId)
       navigate("/"+storeDomain)

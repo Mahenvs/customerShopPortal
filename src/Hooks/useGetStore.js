@@ -3,28 +3,30 @@ import { getHeaders } from "../Utilities/getHeaders";
 // import { listOfProducts } from "../store/ProductSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { setName, setStoreDomain, setStoreId } from "../store/storeSlice";
+import {useLocation} from 'react-router-dom';
 
 const useGetStore = (storeDomain) => {
   const dispatch = useDispatch();
 
-  if(!storeDomain){
-    storeDomain  = JSON.parse(localStorage.getItem('store')).storeDomain
-  }
+  
+  const location = useLocation();
+  
+  const pathArr = location.pathname.split("/");
+
+ storeDomain = pathArr[pathArr.length - 1];
   
   const url = import.meta.env.VITE_API_GET_STORE_CUST + storeDomain;
-  console.log(url);
+  
   const fetchData = async () => {
     try {
       const response = await fetch(url, getHeaders());
-      console.log("response insss ");
       if (!response.ok) {
         throw new Error("Network response was not ok.");
       }
       const result = await response.json();
-      console.log(result.id,result.name,storeDomain);
       localStorage.setItem('store',JSON.stringify({
         storeDomain: storeDomain,
-        storeId: result.id,
+        storeId: result.id, 
         storeName:result.name
       }))
       dispatch(setStoreDomain(storeDomain))
@@ -38,9 +40,9 @@ const useGetStore = (storeDomain) => {
   };
 
   useEffect(() => {
-    const resp = fetchData();
-    console.log(resp);
-  }, []);
+    fetchData();
+    // console.log(resp);
+  }, [storeDomain]);
 };
 
 export default useGetStore;

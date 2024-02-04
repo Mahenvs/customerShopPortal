@@ -6,8 +6,13 @@ import { useDispatch,useSelector } from "react-redux";
 const useGetCategories = () => {
   const dispatch = useDispatch();
   
-  const storeId = useSelector((store) => store.store.storeId);
+  // let storeId = useSelector((store) => store.store.storeId);
+  // console.log(storeId);
+  // if(!storeId){
+    let storeData  = JSON.parse(localStorage.getItem('store'));
     
+    const storeId = storeData?.storeId
+  
   const fetchCategoriesData = async () => {
     const url = import.meta.env.VITE_PRODUCT_CATEGORIES+`${storeId}/categories`;
     try {

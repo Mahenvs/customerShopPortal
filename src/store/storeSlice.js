@@ -10,6 +10,7 @@ const storeSlice = createSlice({
     cart: [],
     cartList: [],
     noOfProducts: 0,
+    cartTotalPric:0
   },
   reducers: {
     setName: (state, action) => {
@@ -68,8 +69,10 @@ const storeSlice = createSlice({
     },
 
     cartList: (state, action) => {
-      state.cartList = action.payload.productReponseList;
+      state.cartList = action.payload.productReponseList
       state.noOfProducts = action.payload.noOfProducts;
+      // console.log(action.payload.cartTotalPrice);
+      state.cartTotalPric = action.payload.cartTotalPrice
     },
     addSingleItemToCart: (state, action) => {
       const product = action.payload;
@@ -78,26 +81,24 @@ const storeSlice = createSlice({
         productCartQuantity: product.quantity,
         productId: product.productId,
         productName: product.productName,
-        productStockQuantity: product.productStockQuantity
+        productStockQuantity: product.productStockQuantity,
       };
-      console.log(product1,product);
       
       state.noOfProducts = product.noOfProducts;
 
       state.cartList = state.cartList.map((item) => {
-        console.log(item.productStockQuantity <= product1.productCartQuantity,
-          item,item.productStockQuantity , product1.productCartQuantity);
+
         if (item.productId === product1.productId) {
           return {
             ...item,
             productCartPrice: product1.productCartPrice,
-            productCartQuantity: item.productCartQuantity + 1,
+            productCartQuantity: product1.productCartQuantity,
           };
         } else {
           return item;
         }
       });
-
+      state.cartTotalPric = product.cartTotalprice
       // If the product is not found, add it to the cart
       if (
         !state.cartList.some((item) => item.productId === product1.productId)
@@ -111,9 +112,10 @@ const storeSlice = createSlice({
         productCartPrice: product.productTotalPrice,
         productCartQuantity: product.quantity,
         productId: product.productId,
-        productName: product.productName,
+        productName: product.productName
       };
       state.noOfProducts = product.noOfProducts;
+      state.cartTotalPric = product.cartTotalprice
       state.cartList = state.cartList.map((item) => {
         if (item?.productId === product1.productId) {
           if (product1.productCartPrice > 1){

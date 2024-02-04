@@ -15,7 +15,6 @@ const appConfigSlice = createSlice({
             state.theme = action.payload
         },
         setMessage: (state,action) => {
-            console.log(action.payload);
             state.popUp.message = action.payload.message,
             state.popUp.status= action.payload.status
             state.popUp.type = action.payload.type

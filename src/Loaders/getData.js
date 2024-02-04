@@ -2,7 +2,7 @@ import { getHeaders } from "../Utilities/getHeaders";
 
 const getData = ({params}) => {
 
-    const url = import.meta.env.VITE_API_GET_STORE_CUST + params.storeDomain;
+  const url = import.meta.env.VITE_API_GET_STORE_CUST + params.storeDomain;
 
   const fetchProduct = async (storeId) => {
     const searchProdUrl  = import.meta.env.VITE_PRODUCT_SEARCH +storeId+'/products/search/'+params.product;

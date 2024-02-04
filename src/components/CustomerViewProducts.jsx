@@ -14,20 +14,25 @@ const CustomerViewProducts = () => {
   let productsList = useSelector((store) => store.product.products);
 
   const cartListData = useSelector((store) => store.store.cartList);
-  
+  const customer = useSelector((store) => store.store.customerId);
+
   const addToCartHandler = async (item) => {
-    const response = await addToCart1(item,cartListData,'add')
+    if (customer == null) {
+      navigate("/");
+      return;
+    }
+    const response = await addToCart1(item, cartListData, "add",-1);
     if (response?.message == "Request failed with status code 404") {
-      console.log("fghjklkjhgf");
       dispatch(
         setMessage({ message: "Out of Stock", status: true, type: "warning" })
       );
-    }
-    else
-    dispatch(addSingleItemToCart({...response,productName:item.productName}))
+    } else
+      dispatch(
+        addSingleItemToCart({ ...response, productName: item.productName })
+      );
   };
   const navigateProductDetail = (product, item) => {
-    console.log(item, " product ", product);
+    
     navigate(product, {
       state: {
         productId: item?.productId,
@@ -61,7 +66,7 @@ const CustomerViewProducts = () => {
                   {item?.productName}
                 </h1>
                 <p>{item.unit}</p>
-                <p>${item.productPrice.toFixed(2)} </p>
+                <p>${item?.productPrice.toFixed(2)} </p>
               </section>
               <section className="justify-end items-end self-end">
                 <Button

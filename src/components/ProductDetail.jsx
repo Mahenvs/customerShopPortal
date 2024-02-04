@@ -26,12 +26,9 @@ const ProductDetail = () => {
   useGetProducts();
 
   const handleItemsFromCart = async (item, flag) => {
-    console.log(list);
     if (flag == "increase") {
-      const response = await addToCart1(item, list, "add");
-      console.log(response);
+      const response = await addToCart1(item, list, "add",-1);
       if (response?.message == "Request failed with status code 404") {
-        console.log("fghjklkjhgf");
         dispatch(
           setMessage({ message: "Out of Stock", status: true, type: "warning" })
         );
@@ -41,7 +38,7 @@ const ProductDetail = () => {
         );
       }
     } else {
-      const response = await addToCart1(item, list, "remove");
+      const response = await addToCart1(item, list, "remove",-1);
       dispatch(
         removeSingleItemFromCart({ ...response, productName: item.productName })
       );

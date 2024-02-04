@@ -5,21 +5,18 @@ import CustomerViewProducts from "./CustomerViewProducts";
 import useGetProducts from "../Hooks/useGetProducts";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
-
+import useGetStore from "../Hooks/useGetStore";
+import { Outlet } from "react-router-dom";
 export default function Home() {
   
-  // useGetStore()
+  useGetStore()
   useGetProducts(); 
   
   let productsList = useSelector((store) => store.product.products);
-
-  useEffect(()=>{
-
-  },[]);
   
   return ( 
-    <div className="flex w-full">
-      <span className="border-r-[2px] w-1/4 h-full  border-gray-300  ml-40">
+    <div className="flex w-full flex-1">
+      <span className="border-r-[2px] w-1/4  border-gray-300  ml-40">
         <Categories /> 
       </span>
       <span className="w-2/4 border-r-2 mx-5">
