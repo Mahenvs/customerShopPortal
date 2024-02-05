@@ -50,8 +50,10 @@ const UpdateProfile = () => {
     const response = await data.json();
 
     if (data.status === 201) {
-      dispatch(setCustomerId(response.CustomerId));
-      localStorage.setItem('customerId',response.CustomerId)
+      
+      dispatch(setCustomerId(response.id));
+      localStorage.setItem('customerId',response.id)
+      
       navigate("/"+storeDomain)
     } else {
       // console.log(response.message);

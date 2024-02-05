@@ -8,7 +8,13 @@ import OutlineButton from "../UI_Elements/OutlineButton";
 import { useDispatch } from "react-redux";
 import { addToCart1 } from "../Utilities/addToCart";
 import { setMessage } from "../store/appConfigSlice";
-import { addSingleItemToCart, removeSingleItemFromCart } from "../store/storeSlice";
+import {
+  addSingleItemToCart,
+  removeSingleItemFromCart,
+} from "../store/storeSlice";
+import { checkOutCart } from "../Utilities/checkOut";
+import PaymentSelect from "./PaymentSelect";
+import { Modal } from "../UI_Elements/Modal";
 
 const CartView = () => {
   useGetCart();
@@ -23,7 +29,6 @@ const CartView = () => {
   );
 
   const handleQuantityChange = async (item, value) => {
-    
     const parsedValue = parseInt(value, 10); // Parse the value as an integer
 
     const response = await addToCart1(item, shoppingList, "add", parsedValue);
@@ -43,21 +48,37 @@ const CartView = () => {
     );
   };
 
-  const removeItemFromCart = async (item,value) =>{
-    const response = await addToCart1(item, shoppingList, "remove",0);
+  const removeItemFromCart = async (item, value) => {
+    const response = await addToCart1(item, shoppingList, "remove", 0);
     dispatch(
       removeSingleItemFromCart({ ...response, productName: item.productName })
     );
-  }
-  useEffect(() => {
-  }, [shoppingList]);
+  };
+  const paymentConfirmHandler = () => {
+    console.log("insd");
+    openModal();
+    // return 
+    // checkOutCart();
+  };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  useEffect(() => {}, [shoppingList]);
   return (
     <>
-      <div className="flex flex-row mx-56 gap-10 overflow-auto">
+      <div className={`flex flex-row mx-56 gap-10 overflow-auto ${isModalOpen ? 'backdrop-open' : 'backdrop'}`}>
+        
         <div className="f w-2/3 ">
           <div className="flex justify-between">
             <Heading>Shopping Cart</Heading>
-            <Heading>Total {cartTotal}</Heading>
+            <Heading>Total ${cartTotal}</Heading>
           </div>
 
           <div className="list-none py-1 text-base font-medium pl-1">
@@ -72,19 +93,14 @@ const CartView = () => {
                   </section>
                   <section className="w-2/4 gap-4 flex flex-col">
                     <h1 className="text-lg text-gray-700 font-medium">
-                      {item?.productName} 
-                      
+                      {item?.productName}
                     </h1>
-                    
+
                     <p>${item?.productCartPrice.toFixed(2)} </p>
                     <p className="my-1">
                       Qty:
                       <select
                         className="ml-2 p-1 w-14 outline-none border border-slate-300  focus:border-slate-400 rounded"
-                        // value={item.productCartQuantity}
-                        // onChange={(e) =>
-                        //   handleQuantityChange(item, e.target.value)
-                        // }
                         value={item.productCartQuantity}
                         onChange={(e) =>
                           handleQuantityChange(item, e.target.value)
@@ -102,7 +118,6 @@ const CartView = () => {
                     </p>
                   </section>
                   <section className="justify-start">
-                    
                     <OutlineButton
                       onClickButton={(e) =>
                         removeItemFromCart(item, e.target.value)
@@ -110,13 +125,16 @@ const CartView = () => {
                       class="text-slate-500 bg-white text-lg border py-[1px] px-2 h-fit "
                       title="Remove"
                     ></OutlineButton>
-                    <p className="text-sm font-light self-end mx-4">Avail. Stock: {item?.productStockQuantity}</p>  
+                    <p className="text-sm font-light self-end mx-4">
+                      Avail. Stock: {item?.productStockQuantity}
+                    </p>
                   </section>
                 </div>
               );
             })}
           </div>
         </div>
+        {cartTotal > 0 && 
         <div className="mt-10 gap-10 w-[100px] p-3 border flex-1 rounded h-fit">
           <section className="h-fit px-2">
             <span className="flex justify-between">
@@ -126,9 +144,7 @@ const CartView = () => {
             <span className="flex justify-between  my-3 mb-4">
               <h6 className="font-base font-mono text-lg">Delivery Fee </h6>
               <p
-                className={
-                  cartTotal > 500 ? "text-green-500" : " text-red-400"
-                }
+                className={cartTotal > 500 ? "text-green-500" : " text-red-400"}
               >
                 {cartTotal < 500 ? `$50` : "FREE"}
               </p>
@@ -136,7 +152,9 @@ const CartView = () => {
             <p className="border-b my-1"></p>
             <span className="flex justify-between">
               <h5 className="font-base font-mono text-lg">Grand total </h5>
-              <p className="font-medium">$                {cartTotal < 500 ? cartTotal+50  : cartTotal}</p>
+              <p className="font-medium">
+                $ {cartTotal < 500 ? cartTotal + 50 : cartTotal}
+              </p>
             </span>
             <p className="text-sm font-mono text-slate-400">
               {" "}
@@ -152,13 +170,19 @@ const CartView = () => {
             </span>
             <div className="flex justify-center my-4">
               <Button
+                onClickButton={paymentConfirmHandler}
                 class="px-14 py-2 rounded text-white w-full"
                 title={"Continue"}
               />
             </div>
           </section>
         </div>
+        }
       </div>
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <PaymentSelect/> 
+        </Modal>
+
     </>
   );
 };

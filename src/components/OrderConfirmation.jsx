@@ -3,8 +3,16 @@ import Card from "../UI_Elements/Card";
 import Button from "../UI_Elements/Button";
 import OutlineButton from "../UI_Elements/OutlineButton";
 import { motion, AnimatePresence } from "framer-motion";
+import {Link, useLocation,useNavigate } from "react-router-dom";
 
 const OrderConfirmation = () => {
+  const location = useLocation();
+  const receivedData = location.state;
+  const navigate = useNavigate();
+
+ const navigateTo = () =>{
+  navigate("/");
+ }
   return (
     <div className=" w-1/3 shadow-2xl p-6 mb-6 bg-white rounded-md shadow-slate-600 flex justify-center mx-auto align-middle items-center h-fit mt-10">
       <motion.div className="flex flex-col items-center gap-5">
@@ -27,16 +35,17 @@ const OrderConfirmation = () => {
             </motion.span>
           </motion.p>
         </AnimatePresence>
-        <h2 className="text-xl font-semibold"> Thank you for Ordering </h2>
+        <h2 className="text-xl font-semibold"> {receivedData?.message} </h2>
         <section>
-          <p className="font-medium text-slate-400">Order ID: 34213</p>
+          <p className="font-medium text-slate-400">Order ID: {receivedData?.orderId}</p>
         </section>
         <footer className="flex gap-4 items-center">
           <OutlineButton
             class="border border-slate-400 text-slate-600"
             title="View Order"
           ></OutlineButton>
-          <Button title="Continue Shopping"></Button>
+          <Button title="Continue Shopping" >
+          </Button>
         </footer>
       </motion.div>
     </div>

@@ -9,6 +9,7 @@ const storeSlice = createSlice({
     storeDomain: null,
     cart: [],
     cartList: [],
+    paymentMethods: [],
     noOfProducts: 0,
     cartTotalPric:0
   },
@@ -136,6 +137,9 @@ const storeSlice = createSlice({
       state.cartList = state.cartList.filter((product) => product !== null);
 
     },
+    availablePaymentMethods: (state,action) =>{
+      state.paymentMethods= action.payload;
+    },
     deleteItemFromCart: (state,cation) =>{
 
     }
@@ -153,5 +157,6 @@ export const {
   cartList,
   addSingleItemToCart,
   removeSingleItemFromCart,
+  availablePaymentMethods
 } = storeSlice.actions;
 export default storeSlice.reducer;

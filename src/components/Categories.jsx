@@ -30,7 +30,7 @@ const Categories = () => {
               <li className={activeCategory === item?.categoryId  ? "p-1 bg-gradient-to-r from-white to-blue-200 w-full" : "bg-white p-1"} 
               onClick={() => handleActiveCategory(item?.categoryId)}>
                 <NavLink to={"?categoryId="+item?.categoryId}>
-                  {item?.categoryName}({"2"}) 
+                  {item?.categoryName}({item?.productCount}) 
                 </NavLink>
               </li>
               {/* <li className="px-1 py-2 ">Electronics(1)</li> */}
