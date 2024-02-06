@@ -15,7 +15,8 @@ import {
 import { checkOutCart } from "../Utilities/checkOut";
 import PaymentSelect from "./PaymentSelect";
 import { Modal } from "../UI_Elements/Modal";
-
+import CustomFormControl from "../UI_Elements/CustomFormControl";
+import CustomFormLabel from "../UI_Elements/CustomFormLabel";
 const CartView = () => {
   useGetCart();
 
@@ -25,7 +26,7 @@ const CartView = () => {
   const dispatch = useDispatch();
 
   const [options, setOptions1] = useState(
-    [...Array(10).keys()].map((i) => ({ value: i + 1 }))
+    [...Array(100).keys()].map((i) => ({ value: i + 1 }))
   );
 
   const handleQuantityChange = async (item, value) => {
@@ -57,8 +58,6 @@ const CartView = () => {
   const paymentConfirmHandler = () => {
     console.log("insd");
     openModal();
-    // return 
-    // checkOutCart();
   };
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -69,6 +68,7 @@ const CartView = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
 
   useEffect(() => {}, [shoppingList]);
   return (
@@ -134,7 +134,7 @@ const CartView = () => {
             })}
           </div>
         </div>
-        {cartTotal > 0 && 
+        {cartTotal > 0 ? 
         <div className="mt-10 gap-10 w-[100px] p-3 border flex-1 rounded h-fit">
           <section className="h-fit px-2">
             <span className="flex justify-between">
@@ -171,12 +171,12 @@ const CartView = () => {
             <div className="flex justify-center my-4">
               <Button
                 onClickButton={paymentConfirmHandler}
-                class="px-14 py-2 rounded text-white w-full"
+                class="px-14 py-2 rounded w-full text-slate-50 bg-slate-500"
                 title={"Continue"}
               />
             </div>
           </section>
-        </div>
+        </div> : <Heading>No products in the cart</Heading>
         }
       </div>
       <Modal isOpen={isModalOpen} onClose={closeModal}>

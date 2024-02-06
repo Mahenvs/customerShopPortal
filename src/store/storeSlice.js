@@ -139,9 +139,6 @@ const storeSlice = createSlice({
     },
     availablePaymentMethods: (state,action) =>{
       state.paymentMethods= action.payload;
-    },
-    deleteItemFromCart: (state,cation) =>{
-
     }
   },
 });

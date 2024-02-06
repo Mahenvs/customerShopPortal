@@ -13,6 +13,8 @@ import SignUp from "./components/SignUp";
 import CategoriesView from "./components/CategoriesView";
 import CartView from "./components/CartView";
 import OrderConfirmation from "./components/OrderConfirmation";
+import ViewOrders from "./components/ViewOrders";
+import Orders from "./components/Orders";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -51,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "/orderConfirmed",
         element: <OrderConfirmation />,
+      },
+      {
+        path: "/orders",
+        element: <Orders />,
       },
     ],
   },

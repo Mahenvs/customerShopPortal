@@ -44,7 +44,7 @@ const Message = () => {
         initial={{y:-100}}
         animate={{y:10}}
         exit={{y: -200}}
-        transition={{ease:"backInOut",duration:4}}
+        transition={{ease:"backInOut",duration:4,repeat: Infinity}}
           className={classes}
         >
           {message1?.message}

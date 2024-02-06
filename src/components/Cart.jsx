@@ -104,7 +104,7 @@ const navigate = useNavigate();
           <div className="flex justify-center ">
             <Button
             onClickButton={goToCartHandler}
-              class="px-14 py-3 rounded text-white"
+              class="px-14 py-3 rounded text-slate-50 bg-slate-500"
               title={"Go to Cart"}
             />
           </div>

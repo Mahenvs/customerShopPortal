@@ -68,11 +68,11 @@ const CustomerViewProducts = () => {
                 <p>{item.unit}</p>
                 <p>${item?.productPrice.toFixed(2)} </p>
               </section>
-              <section className="justify-end items-end self-end">
+              <section className=" min-w-fit self-end">
                 <Button
                   onClickButton={() => addToCartHandler(item)}
-                  title="Add"
-                  class="px-2 h-fit "
+                  title={item?.productStockQuantity > 0? "Add" : "Out of stock"}
+                  class={`px-2 h-fit  ${item?.productStockQuantity > 0 ? "text-slate-50 bg-slate-500  " : "text-red-400 bg-white border border-red-200"}`}
                 ></Button>
               </section>
             </div>

@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import Button from "../UI_Elements/Button";
 import { checkOutCart } from "../Utilities/checkOut";
 import {useNavigate} from 'react-router-dom';
+import CustomFormLabel from "../UI_Elements/CustomFormLabel";
 
 const PaymentSelect = () => {
   useGetPaymentMethods();
@@ -32,10 +33,23 @@ const PaymentSelect = () => {
     }
     // navigate("/orderConfirmed");
   }
+  const handlerInput = (flag, value) => {
+    console.log(value);
+  };
   useEffect(() => {}, [paymentModes]);
   return (
     <div>
-      <h3 className="text-slate-700 text-xl  justify-start  mt-1 font-bold mb-2">
+      {/* <div className="mb-2">
+      <CustomFormLabel label="Address" class="text-slate-700 font-semibold" />
+        <input
+          type="text"
+            name="name"
+            className="flex w-[25rem] leading-8  border-b-2  text-stone-950 rounded text-xl  focus:outline-none focus:border-sky-900"
+            onChange={(event) => handlerInput("address", event.target.value)}>
+        </input>
+        </div> */}
+        
+      <h3 className="text-slate-700 text-xl  justify-start  mt-1 font-semibold mb-2">
         Select Payment Type{" "}
       </h3>
 
