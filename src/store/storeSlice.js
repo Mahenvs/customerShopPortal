@@ -6,6 +6,7 @@ const storeSlice = createSlice({
     name: null,
     customerId: null,
     storeId: null,
+    address: null,
     storeDomain: null,
     cart: [],
     cartList: [],
@@ -23,7 +24,9 @@ const storeSlice = createSlice({
     setCustomerId: (state, action) => {
       state.customerId = action.payload;
     },
-
+    setAddress: (state, action) => {
+      state.address = action.payload;
+    },
     setStoreDomain: (state, action) => {
       state.storeDomain = action.payload;
     },
@@ -150,6 +153,7 @@ export const {
   setName,
   setStoreId,
   setCustomerId,
+  setAddress,
   addToCart,
   removeFromCart,
   clearCartStore,

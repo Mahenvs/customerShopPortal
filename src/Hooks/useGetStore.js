@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { getHeaders } from "../Utilities/getHeaders";
 // import { listOfProducts } from "../store/ProductSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { setName, setStoreDomain, setStoreId } from "../store/storeSlice";
+import { setAddress, setName, setStoreDomain, setStoreId } from "../store/storeSlice";
 import {useLocation} from 'react-router-dom';
 
 const useGetStore = (storeDomain) => {
@@ -25,6 +25,7 @@ const useGetStore = (storeDomain) => {
         throw new Error("Network response was not ok.");
       }
       const result = await response.json();
+      console.log("result ",result)
       localStorage.setItem('store',JSON.stringify({
         storeDomain: storeDomain,
         storeId: result.id, 
@@ -33,6 +34,7 @@ const useGetStore = (storeDomain) => {
       dispatch(setStoreDomain(storeDomain))
       dispatch(setStoreId(result.id));
       dispatch(setName(result.name));
+      dispatch(setAddress(result.address))
       document.title = result.name;
 
     } catch (error) {
