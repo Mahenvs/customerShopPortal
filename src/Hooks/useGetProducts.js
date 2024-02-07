@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { getHeaders } from "../Utilities/getHeaders";
-import { listOfProducts } from "../store/ProductSlice";
+import { listOfProducts } from "../store/productSlice";
 import { useDispatch,useSelector } from "react-redux";
 
 const useGetProducts = () => {

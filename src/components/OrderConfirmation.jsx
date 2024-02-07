@@ -1,9 +1,7 @@
-import React from "react";
-import Card from "../UI_Elements/Card";
 import Button from "../UI_Elements/Button";
 import OutlineButton from "../UI_Elements/OutlineButton";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { clearCartStore } from "../store/storeSlice";
 import { useDispatch } from "react-redux";
 import successImg from "../../src/assets/tickSuccess2.jpg";

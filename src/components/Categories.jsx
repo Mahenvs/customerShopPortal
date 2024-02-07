@@ -2,8 +2,8 @@ import useGetCategories from "../Hooks/useGetCategories";
 import { useSelector } from "react-redux";
 import Shimmer from "./Shimmer";
 import { NavLink } from "react-router-dom";
-import { setActiveCategory } from "../store/ProductSlice";
 import {useDispatch} from 'react-redux';
+import { setActiveCategory } from "../store/productSlice";
 
 const Categories = () => {
   useGetCategories();

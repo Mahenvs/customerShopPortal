@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { getHeaders } from "../Utilities/getHeaders";
-// import { listOfProducts } from "../store/ProductSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { setAddress, setName, setStoreDomain, setStoreId } from "../store/storeSlice";
 import {useLocation} from 'react-router-dom';

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import useGetOrders from "../Hooks/useGetOrders";
 import { useSelector } from "react-redux";
 import ViewOrders from "./ViewOrders";

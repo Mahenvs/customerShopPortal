@@ -1,7 +1,6 @@
-import React, { useEffect, useMemo, useState } from "react";
+import  { useEffect, useState } from "react";
 import { Heading } from "../UI_Elements/Heading";
 import { useSelector } from "react-redux";
-import Card from "../UI_Elements/Card";
 import useGetCart from "../Hooks/useGetCart";
 import Button from "../UI_Elements/Button";
 import OutlineButton from "../UI_Elements/OutlineButton";
@@ -12,11 +11,8 @@ import {
   addSingleItemToCart,
   removeSingleItemFromCart,
 } from "../store/storeSlice";
-import { checkOutCart } from "../Utilities/checkOut";
 import PaymentSelect from "./PaymentSelect";
 import { Modal } from "../UI_Elements/Modal";
-import CustomFormControl from "../UI_Elements/CustomFormControl";
-import CustomFormLabel from "../UI_Elements/CustomFormLabel";
 const CartView = () => {
   useGetCart();
 

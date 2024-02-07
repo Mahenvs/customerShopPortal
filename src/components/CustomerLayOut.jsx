@@ -1,7 +1,6 @@
-import CustomerNavBar from './CustomerNavBar';
 import { Outlet } from "react-router-dom";
 import Footer from "./Footer"
-import Message from '../UI_Elements/message';
+import Message from '../UI_Elements/Message';
 const Layout = () => {
   return (
     <div className='flex flex-col h-screen shadow'>

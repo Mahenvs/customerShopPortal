@@ -1,9 +1,8 @@
-import { useEffect } from "react";
 import useGetCategories from "../Hooks/useGetCategories";
 import Card from "../UI_Elements/Card";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { setActiveCategory } from "../store/ProductSlice";
+import { setActiveCategory } from "../store/productSlice";
 import { Heading } from "../UI_Elements/Heading";
 
 const CategoriesView = () => {

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { getHeaders } from "../Utilities/getHeaders";
-import { listOfCategories,  setActiveCategory } from "../store/ProductSlice";
+import { listOfCategories,  setActiveCategory } from "../store/productSlice";
 import { useDispatch,useSelector } from "react-redux";
 
 const useGetCategories = () => {

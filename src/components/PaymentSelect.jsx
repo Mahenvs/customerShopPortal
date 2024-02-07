@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
-import Card from "../UI_Elements/Card";
+import { useEffect, useState } from "react";
 import CustomDropDown from "../UI_Elements/CustomDropDown";
 import { useGetPaymentMethods } from "../Hooks/useGetPaymentMethods";
 import { useSelector } from "react-redux";
 import Button from "../UI_Elements/Button";
 import { checkOutCart } from "../Utilities/checkOut";
 import {useNavigate} from 'react-router-dom';
-import CustomFormLabel from "../UI_Elements/CustomFormLabel";
 
 const PaymentSelect = () => {
   useGetPaymentMethods();

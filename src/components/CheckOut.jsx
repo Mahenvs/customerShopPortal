@@ -25,8 +25,8 @@ export default function CheckOut() {
                 <h3>Total </h3>
             </section>
             <main>
-                {cartItems.map(item => {
-                    return <li>
+                {cartItems.map((item,index) => {
+                    return <li key={index}>
                       <span>{item.name}</span>
                         <span>{item.price}</span>
                     </li>
