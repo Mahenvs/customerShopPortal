@@ -1,12 +1,14 @@
 import React from 'react'
 import { Outlet } from "react-router-dom";
+import CustomerNavBar from './CustomerNavBar';
 
-const Home1 = () => {
+const BodyRoute = () => {
   return (
     <div>
+        <CustomerNavBar />
         <Outlet/>
     </div>
   )
 }
 
-export default Home1
+export default BodyRoute

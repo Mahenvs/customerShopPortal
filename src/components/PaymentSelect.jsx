@@ -24,7 +24,7 @@ const PaymentSelect = () => {
     const data = await checkOutCart(paymentMode)
     console.log(data,data.status);
     if(data.status == 200){
-      navigate("/orderConfirmed",{
+      navigate("../orderConfirmed",{
         state:data.data
       });
     }

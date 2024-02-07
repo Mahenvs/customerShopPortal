@@ -5,6 +5,9 @@ import CustomFormLabel from "../UI_Elements/CustomFormLabel";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setCustomerId } from "../store/storeSlice";
+import { setLoggedIn } from "../store/appConfigSlice";
+import { validatingInputs } from "../Utilities/validatingFields";
+import { compareInputs } from "../Utilities/compareInputs";
 
 const InitialState = {
   email: "",
@@ -39,6 +42,10 @@ const SignUp = ({onLogin}) => {
       password: false,
       cnfpassword: false,
     });
+    if(!isLogin)
+      navigate("?signUp")
+    else
+    navigate("?signIn")
   };
 
   const handlerInput = (flag, value) => {
@@ -60,6 +67,15 @@ const SignUp = ({onLogin}) => {
   const navigate = useNavigate();
 
   async function Register() {
+    const errorIs = validatingInputs(formData);
+    setErrorMsg(errorIs);
+    if(errorIs.length >0){
+      return;
+    }
+    if (!compareInputs(formData.password, formData.cnfpassword)) {
+      setErrorMsg("Passwords not matching");
+      return ;
+    }
     navigate("/updateProfile", {
       state: formData,
     });
@@ -67,6 +83,11 @@ const SignUp = ({onLogin}) => {
 
   const Login = async () => {
     console.log("inside login");
+    const errorIs = validatingInputs(formData);
+    setErrorMsg(errorIs);
+    if(errorIs.length >0){
+      return;
+    }
     const basicAuthToken = btoa(
       `${import.meta.env.VITE_USER}:${import.meta.env.VITE_PASSWORD}`
     );
@@ -89,7 +110,7 @@ const SignUp = ({onLogin}) => {
       dispatch(setCustomerId(resp.CustomerId));
       localStorage.setItem('customerId',resp.CustomerId)
       navigate(`/${storeDomain}`);
-
+      dispatch(setLoggedIn(true))
     } else {
       setErrorMsg(response.message);
       throw new Error("Status is not 200");

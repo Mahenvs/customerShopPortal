@@ -18,7 +18,7 @@ const CategoriesView = () => {
   return (
     <div className="flex flex-col mx-60">
       <Heading>Categories</Heading>
-      <div className="list-none py-1 text-base font-medium w-full pl-1 flex flex-row">
+      <div className="list-none py-1 text-base font-medium w-full pl-1 flex flex-row flex-wrap">
         {categoriesList?.map((item, index) => {
           return (
             <Card

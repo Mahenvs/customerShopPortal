@@ -13,7 +13,8 @@ const useGetStore = (storeDomain) => {
   
   const pathArr = location.pathname.split("/");
 
- storeDomain = pathArr[pathArr.length - 1];
+//  storeDomain = pathArr[pathArr.length - 1];
+  storeDomain = pathArr[1];
   
   const url = import.meta.env.VITE_API_GET_STORE_CUST + storeDomain;
   

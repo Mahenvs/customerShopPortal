@@ -17,7 +17,7 @@ const OrderConfirmation = () => {
   const navigateTo = (flag) => {
     dispatch(clearCartStore());
     if (flag == "orders") {
-      navigate("/orders");
+      navigate("orders");
     } else {
       navigate("/");
     }

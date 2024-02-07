@@ -8,7 +8,8 @@ const appConfigSlice = createSlice({
             message: null,
             status: false,
             type: null
-        }
+        },
+        isLoggedIn: false
     },
     reducers:{
         setTheme: (state,action) => {
@@ -18,8 +19,16 @@ const appConfigSlice = createSlice({
             state.popUp.message = action.payload.message,
             state.popUp.status= action.payload.status
             state.popUp.type = action.payload.type
+        },
+        setLoggedIn: (state,action) => {
+            state.isLoggedIn = action.payload;
+        },
+        resetAppConfig: (state) =>{
+            state.popUp.message = null,
+            state.popUp.status= false
+            state.popUp.type = null
         }
     }
 })
-export const {setTheme,setMessage} = appConfigSlice.actions;
+export const {setTheme,setMessage,resetAppConfig,setLoggedIn} = appConfigSlice.actions;
 export default appConfigSlice.reducer;

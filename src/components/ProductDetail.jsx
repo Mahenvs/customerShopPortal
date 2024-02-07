@@ -18,7 +18,7 @@ const ProductDetail = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const result = useLoaderData();
-  const list = useSelector(store => store.store.cartList);
+  const list = useSelector(store => store.product.products);
 
   dispatch(setStoreId(result.id));
   dispatch(setName(result.name));
@@ -47,10 +47,12 @@ const ProductDetail = () => {
   const theme = useSelector((store) => store.appConfig.theme);
   let item = location.state?.productData;
   let prod = location.state?.productId;
-  const data1 = list.filter(product => product.prouctId == prod?.productId);
+  console.log(list," data ",prod);
+  const data1 = list?.filter(product => product.productId == prod?.productId);
   if (!item) {
     item = result;
   }
+  console.log(data1);
   const cart = useSelector((store) => store.store.cart);
   const [cnt, setCnt] = useState(1);
 

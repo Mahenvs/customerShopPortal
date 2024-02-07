@@ -3,24 +3,23 @@ import useGetOrders from "../Hooks/useGetOrders";
 import { useSelector } from "react-redux";
 import ViewOrders from "./ViewOrders";
 import { Heading } from "../UI_Elements/Heading";
+import SubHeading from "../UI_Elements/SubHeading";
 
 const Orders = () => {
   useGetOrders();
 
   const ordersList = useSelector((store) => store.cart.ordersData);
 
-  ordersList?.map((item) => {
-    console.log(item.orderStatus);
-  });
-
+  console.log(ordersList);
   useEffect(() => {}, [ordersList]);
   return (
     <div className={`flex flex-col mx-56 gap-10 `}>
 
-      <Heading>Your Orders:</Heading>
-      {ordersList?.map((item,index) => {
+      <Heading>Your Orders</Heading>
+      {ordersList?.length > 0 ? (ordersList?.map((item,index) => {
         return <ViewOrders item={item} key={item?.orderId}/>
-      })}
+      })) : <SubHeading
+       class="flex justify-center p-3">No Orders Found</SubHeading> }
     </div>
   );
 };

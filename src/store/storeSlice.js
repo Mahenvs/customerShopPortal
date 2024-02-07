@@ -88,7 +88,6 @@ const storeSlice = createSlice({
       state.noOfProducts = product.noOfProducts;
 
       state.cartList = state.cartList.map((item) => {
-
         if (item.productId === product1.productId) {
           return {
             ...item,
@@ -125,21 +124,25 @@ const storeSlice = createSlice({
               productCartPrice: product1.productCartPrice,
               productCartQuantity: item.productCartQuantity - 1,
             };
-          }
-          else
-            return null;
-        } 
-        else {
+          } else return null;
+        } else {
           return item;
         }
       });
 
       state.cartList = state.cartList.filter((product) => product !== null);
-
     },
-    availablePaymentMethods: (state,action) =>{
-      state.paymentMethods= action.payload;
-    }
+    availablePaymentMethods: (state, action) => {
+      state.paymentMethods = action.payload;
+    },
+    resetStore: (state) => {
+      state.customerId = null,
+        state.cart = [],
+        state.cartList = [],
+        state.paymentMethods = [],
+        state.cartTotalPric = 0;
+        state.noOfProducts = 0;
+    },
   },
 });
 
@@ -154,6 +157,7 @@ export const {
   cartList,
   addSingleItemToCart,
   removeSingleItemFromCart,
-  availablePaymentMethods
+  availablePaymentMethods,
+  resetStore
 } = storeSlice.actions;
 export default storeSlice.reducer;

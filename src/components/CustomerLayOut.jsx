@@ -6,7 +6,6 @@ const Layout = () => {
   return (
     <div className='flex flex-col h-screen shadow'>
       <Message/>
-      <CustomerNavBar />
       <div className="h -screen flex flex-col flex-1">
         <Outlet/>
       </div>

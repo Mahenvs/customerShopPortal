@@ -10,6 +10,7 @@ import { clearCart } from "../Utilities/clearCart";
 import { setMessage } from "../store/appConfigSlice";
 import Button from "../UI_Elements/Button";
 import {useNavigate} from "react-router-dom";
+import SubHeading from "../UI_Elements/SubHeading"
 
 const Cart = () => {
   useGetCart();
@@ -52,15 +53,15 @@ const navigate = useNavigate();
   };
 
   const goToCartHandler = () =>{
-    navigate("/cart")
+    navigate("cart")
   }
   return (
     <div className="f lex p-2 ">
       <section className="flex justify-between">
         <h1 className="text-xl font-semibold">Cart</h1>
-        <button className="underline" onClick={clearCartHandler}>
+        {list.length != 0 && (<button className="underline" onClick={clearCartHandler}>
           Clear Cart
-        </button>
+        </button>) }
       </section>
       <div
         className={` ${list.length != 0 ? `border-b border-b-slate-400` : ``}`}
@@ -94,7 +95,7 @@ const navigate = useNavigate();
           );
         })}
       </div>
-      {list.length != 0 && (
+      {list.length != 0 ? (
         <>
           <div className="flex items-center justify-between p-4 mx-2">
             <h4 className="font-medium text-lg">SubTotal</h4>
@@ -109,7 +110,8 @@ const navigate = useNavigate();
             />
           </div>
         </>
-      )}
+      ) : <SubHeading class="p-3.5 ">
+      No Products in the Cart..</SubHeading>}
     </div>
   );
 };

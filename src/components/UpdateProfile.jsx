@@ -1,36 +1,48 @@
 import { useState } from "react";
 import CustomFormLabel from "../UI_Elements/CustomFormLabel";
 import CustomFormControl from "../UI_Elements/CustomFormControl";
-import { useLocation,useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { setCustomerId } from "../store/storeSlice";
 import { useDispatch } from "react-redux";
+import { validatingInputs } from "../Utilities/validatingFields";
 
 const UpdateProfile = () => {
   // const storeId = useSelector((store) => store.store.storeId);
 
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
+    address: "",
+  });
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
-
+  const [errorMsg, setErrorMsg] = useState(null);
   const prevFormData = location.state;
-  const storeDomain = JSON.parse(localStorage.getItem('store')).storeDomain;
-  
+  const storeDomain = JSON.parse(localStorage.getItem("store")).storeDomain;
+
   const handlerInput = (flag, value) => {
     setFormData((prevValues) => ({
       ...prevValues,
       [flag]: value,
     }));
-
   };
 
   const signUp = async () => {
+    const errorIs = validatingInputs(formData);
+    console.log(errorIs);
+    setErrorMsg(errorIs);
+    if (errorIs.length > 0) {
+      console.log();
+      return;
+    }
     const basicAuthToken = btoa(
       `${import.meta.env.VITE_USER}:${import.meta.env.VITE_PASSWORD}`
     );
     const storeId = JSON.parse(localStorage.getItem("store")).storeId;
     const signUpUrl = import.meta.env.VITE_SIGNUP + "?storeId=" + storeId;
-    
+
     const data = await fetch(signUpUrl, {
       method: "POST",
       headers: {
@@ -43,18 +55,16 @@ const UpdateProfile = () => {
         phoneNumber: formData.phoneNumber,
         address: formData.address,
         email: prevFormData.email,
-      password: prevFormData.password,
-      
+        password: prevFormData.password,
       }),
     });
     const response = await data.json();
 
     if (data.status === 201) {
-      
       dispatch(setCustomerId(response.id));
-      localStorage.setItem('customerId',response.id)
-      
-      navigate("/"+storeDomain)
+      localStorage.setItem("customerId", response.id);
+
+      navigate("/" + storeDomain);
     } else {
       // console.log(response.message);
     }
@@ -101,6 +111,9 @@ const UpdateProfile = () => {
               handlerInput("phoneNumber", event.target.value)
             }
           />
+          {errorMsg != null && (
+            <p className="text-red-500 font-semibold -mt-3 mb-2">{errorMsg}</p>
+          )}
         </div>
         <div className="flex justify-end my-2">
           <button

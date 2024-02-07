@@ -33,7 +33,6 @@ const Categories = () => {
                   {item?.categoryName}({item?.productCount}) 
                 </NavLink>
               </li>
-              {/* <li className="px-1 py-2 ">Electronics(1)</li> */}
             </div>
           );
         })

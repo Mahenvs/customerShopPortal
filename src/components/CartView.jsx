@@ -82,7 +82,7 @@ const CartView = () => {
           </div>
 
           <div className="list-none py-1 text-base font-medium pl-1">
-            {shoppingList?.map((item, index) => {
+            {cartTotal > 0 ? shoppingList?.map((item, index) => {
               return (
                 <div
                   key={index}
@@ -131,7 +131,7 @@ const CartView = () => {
                   </section>
                 </div>
               );
-            })}
+            }) : <Heading class="p-5  flex justify-center ">No products in the Cart!!</Heading>}
           </div>
         </div>
         {cartTotal > 0 ? 
@@ -176,7 +176,7 @@ const CartView = () => {
               />
             </div>
           </section>
-        </div> : <Heading>No products in the cart</Heading>
+        </div> : <Heading/>
         }
       </div>
       <Modal isOpen={isModalOpen} onClose={closeModal}>

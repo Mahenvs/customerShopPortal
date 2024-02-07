@@ -33,16 +33,16 @@ const CustomerViewProducts = () => {
   };
   const navigateProductDetail = (product, item) => {
     
-    navigate(product, {
-      state: {
-        productId: item?.productId,
-        productData: {
-          productName: item?.productName,
-          productCartPrice: item?.productCartPrice,
-          productCartQuantity: item?.productCartQuantity,
-        },
-      },
-    });
+    // navigate(product, {
+    //   state: {
+    //     productId: item?.productId,
+    //     productData: {
+    //       productName: item?.productName,
+    //       productCartPrice: item?.productCartPrice,
+    //       productCartQuantity: item?.productCartQuantity,
+    //     },
+    //   },
+    // });
   };
   return (
     <>

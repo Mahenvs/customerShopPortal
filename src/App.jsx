@@ -15,6 +15,7 @@ import CartView from "./components/CartView";
 import OrderConfirmation from "./components/OrderConfirmation";
 import ViewOrders from "./components/ViewOrders";
 import Orders from "./components/Orders";
+import BodyRoute from "./components/BodyRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -24,40 +25,67 @@ const router = createBrowserRouter([
         path: "/",
         element: <RedirectHome />,
       },
-      {
-        path: "?signup",
-        element: <SignUp />,
-      },
+
       {
         path: "/updateProfile",
         element: <UpdateProfile />,
       },
       {
-        path: "/:storeDomain/",
-        element: <Home />,
-        children: [],
+        path: "/:storeDomain",
+        element: <BodyRoute />,
+        children: [
+          {
+            path: "",
+            element: <Home />,
+          },
+          {
+            path: ":product",
+            element: <ProductDetail />,
+            loader: getData,
+          },
+          {
+            path: "auth",
+            element: <RedirectHome />,
+          },
+          {
+            path: "categories",
+            element: <CategoriesView />,
+          },
+          {
+            path: "cart",
+            element: <CartView />,
+          },
+          {
+            path: "orderConfirmed",
+            element: <OrderConfirmation />,
+          },
+          {
+            path: "orders",
+            element: <Orders />,
+          },
+        ],
       },
-      {
-        path: "/:storeDomain/:product",
-        element: <ProductDetail />,
-        loader: getData,
-      },
-      {
-        path: "categories",
-        element: <CategoriesView />,
-      },
-      {
-        path: "/cart",
-        element: <CartView />,
-      },
-      {
-        path: "/orderConfirmed",
-        element: <OrderConfirmation />,
-      },
-      {
-        path: "/orders",
-        element: <Orders />,
-      },
+      // {
+      //   path: "/:storeDomain/:product",
+      //   element: <ProductDetail />,
+      //   loader: getData,
+      // },
+      // {
+      //   path: "categories",
+      //   element: <CategoriesView />,
+      // },
+      // {
+      //   path: "/cart",
+      //   element: <CartView />,
+      // },
+      // {
+      //   path: "/orderConfirmed",
+      //   element: <OrderConfirmation />,
+      // },
+      // {
+      //   path: "/orders",
+      //   element: <Orders />,
+      // },
     ],
   },
 ]);
