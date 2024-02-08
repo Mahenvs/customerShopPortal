@@ -9,6 +9,11 @@ const appConfigSlice = createSlice({
             status: false,
             type: null
         },
+        bottomPopUp: {
+            status: true,
+            type: null,
+            bottommessage:null
+        },
         isLoggedIn: false
     },
     reducers:{
@@ -20,6 +25,11 @@ const appConfigSlice = createSlice({
             state.popUp.status= action.payload.status
             state.popUp.type = action.payload.type
         },
+        setBottomMessage: (state,action) => {
+            state.bottomPopUp.bottommessage = action.payload.message,
+            state.bottomPopUp.status= action.payload.status
+            state.bottomPopUp.type = action.payload.type
+        },
         setLoggedIn: (state,action) => {
             state.isLoggedIn = action.payload;
         },
@@ -30,5 +40,5 @@ const appConfigSlice = createSlice({
         }
     }
 })
-export const {setTheme,setMessage,resetAppConfig,setLoggedIn} = appConfigSlice.actions;
+export const {setTheme,setMessage,resetAppConfig,setLoggedIn,setBottomMessage} = appConfigSlice.actions;
 export default appConfigSlice.reducer;

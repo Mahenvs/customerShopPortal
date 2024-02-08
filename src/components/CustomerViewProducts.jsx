@@ -5,7 +5,7 @@ import { addSingleItemToCart } from "../store/storeSlice";
 import { useNavigate } from "react-router-dom";
 
 import { addToCart1 } from "../Utilities/addToCart";
-import { setMessage } from "../store/appConfigSlice";
+import { setBottomMessage, setMessage } from "../store/appConfigSlice";
 
 const CustomerViewProducts = () => {
   const dispatch = useDispatch();
@@ -21,18 +21,21 @@ const CustomerViewProducts = () => {
       navigate("/");
       return;
     }
-    const response = await addToCart1(item, cartListData, "add",-1);
+    const response = await addToCart1(item, cartListData, "add", -1);
     if (response?.message == "Request failed with status code 404") {
       dispatch(
         setMessage({ message: "Out of Stock", status: true, type: "warning" })
       );
-    } else
-      dispatch(
-        addSingleItemToCart({ ...response, productName: item.productName })
-      );
+    } else{
+        dispatch(
+          addSingleItemToCart({ ...response, productName: item.productName })
+        );
+        dispatch(
+          setBottomMessage({ message: "Item added successfully!", status: true, type: "info" })
+        );
+      }
   };
   const navigateProductDetail = (product, item) => {
-    
     // navigate(product, {
     //   state: {
     //     productId: item?.productId,
@@ -71,8 +74,14 @@ const CustomerViewProducts = () => {
               <section className=" min-w-fit self-end">
                 <Button
                   onClickButton={() => addToCartHandler(item)}
-                  title={item?.productStockQuantity > 0? "Add" : "Out of stock"}
-                  class={`px-2 h-fit  ${item?.productStockQuantity > 0 ? "text-slate-50 bg-slate-500  " : "text-red-400 bg-white border border-red-200"}`}
+                  title={
+                    item?.productStockQuantity > 0 ? "Add" : "Out of stock"
+                  }
+                  class={`px-2 h-fit  ${
+                    item?.productStockQuantity > 0
+                      ? "text-slate-50 bg-slate-500  "
+                      : "text-red-400 bg-white border border-red-200"
+                  }`}
                 ></Button>
               </section>
             </div>

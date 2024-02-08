@@ -19,7 +19,7 @@ export default function Home() {
         <span className="border-r-[2px] w-1/4  border-gray-300  ml-40">
           <Categories />
         </span>
-        <span className="w-2/4 border-r-2 mx-5">
+        <span className="w-2/4 border-r-2 mx-5 mb-16">
           {productsList && <CustomerViewProducts />}
         </span>
         <span className="w-1/4  mx-2 mr-40">

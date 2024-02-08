@@ -67,6 +67,9 @@ const SignUp = ({onLogin}) => {
   const navigate = useNavigate();
 
   async function Register() {
+    if(mailError || pswdError){
+      return;
+    }
     const errorIs = validatingInputs(formData);
     setErrorMsg(errorIs);
     if(errorIs.length >0){
@@ -134,9 +137,10 @@ const SignUp = ({onLogin}) => {
           <CustomFormLabel label="Email" />
           <CustomFormControl
             class={mailError ? "error" : ""}
-            type="email"
+            type="text"
             name="email"
-            inputBlur={(event) => handlerInput("email", event.target.value)}
+            value={formData.email}
+            inputChange={(event) => handlerInput("email", event.target.value)}
           />
           {mailError && (
             <p className="text-red-500 font-semibold -mt-3 mb-2">
@@ -149,6 +153,7 @@ const SignUp = ({onLogin}) => {
             class={pswdError ? "error" : ""}
             type="password"
             name="pswd"
+            value={formData.password}
             inputChange={(event) =>
               handlerInput("password", event.target.value)
             }
@@ -167,6 +172,7 @@ const SignUp = ({onLogin}) => {
               <CustomFormLabel label="Confirm Password" />
               <CustomFormControl
                 type="password"
+                value={formData.cnfpassword}
                 inputChange={(event) =>
                   handlerInput("cnfpassword", event.target.value)
                 }

@@ -13,6 +13,7 @@ const CustomFormControl = forwardRef((props,ref) =>{
             <input className={classes} ref={ref}
             type={props.type} placeholder={props.title} id={props.id} 
             onChange={props.inputChange}
+            value={props.value}
             onBlur={props.inputBlur}/>
     </span>
 })

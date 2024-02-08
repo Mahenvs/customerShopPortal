@@ -6,15 +6,18 @@ import { setCustomerId } from "../store/storeSlice";
 import { useDispatch } from "react-redux";
 import { validatingInputs } from "../Utilities/validatingFields";
 
+const initialState = {
+  firstName: "",
+  lastName: "",
+  phoneNumber: "",
+  address: "",
+  email:"",
+  password:""
+}
 const UpdateProfile = () => {
   // const storeId = useSelector((store) => store.store.storeId);
 
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    phoneNumber: "",
-    address: "",
-  });
+  const [formData, setFormData] = useState(initialState);
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
@@ -85,21 +88,24 @@ const UpdateProfile = () => {
             // class={mailError ? "error" : ""}
             type="text"
             name="name"
-            inputBlur={(event) => handlerInput("firstName", event.target.value)}
+            value={formData.firstName}
+            inputChange={(event) => handlerInput("firstName", event.target.value)}
           />
           <CustomFormLabel label="Last Name" />
           <CustomFormControl
             // class={mailError ? "error" : ""}
             type="text"
             name="name"
-            inputBlur={(event) => handlerInput("lastName", event.target.value)}
+            value={formData.lastName}
+            inputChange={(event) => handlerInput("lastName", event.target.value)}
           />
           <CustomFormLabel label="Address" />
           <CustomFormControl
             // class={mailError ? "error" : ""}
             type="text"
             name="address"
-            inputBlur={(event) => handlerInput("address", event.target.value)}
+            value={formData.address}
+            inputChange={(event) => handlerInput("address", event.target.value)}
           />
 
           <CustomFormLabel label="Phone Number" />
@@ -107,7 +113,8 @@ const UpdateProfile = () => {
             // class={mailError ? "error" : ""}
             type="text"
             name="phone"
-            inputBlur={(event) =>
+            value={formData.phoneNumber}
+            inputChange={(event) =>
               handlerInput("phoneNumber", event.target.value)
             }
           />
