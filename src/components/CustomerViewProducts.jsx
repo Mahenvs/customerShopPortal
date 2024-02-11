@@ -1,6 +1,5 @@
 import Button from "../UI_Elements/Button";
 import { useSelector, useDispatch } from "react-redux";
-import Shimmer from "./Shimmer";
 import { addSingleItemToCart } from "../store/storeSlice";
 import { useNavigate } from "react-router-dom";
 import { addToCart1 } from "../Utilities/addToCart";
@@ -39,22 +38,25 @@ const CustomerViewProducts = () => {
       ) : (
         productsList.map((item, index) => {
           return (
-            <div key={index} className="shadow-lg p-1 py-2 flex gap-4 my-4">
+            <div key={index} className="shadow-lg py-2 flex gap-4 my-4 dark:border-darkBorder dark:shadow-zinc-600 dark:bg-gray-950 mx-4">
               <section
-                className="w-1/4 p-1 border rounded"
+                className="w-1/4 p-1 border rounded dark:border-none"
                 onClick={() => navigate(item?.productName)}
               >
-                <img src={item?.productImageUrl} alt="" width="100px" />
+                <img src={item?.productImageUrl} alt="" width="100px" className="rounded"/>
               </section>
               <section
                 className="w-2/4"
                 onClick={() => navigate(item?.productName)}
               >
-                <h1 className="text-lg text-gray-700 font-medium">
+                <h1 className="text-lg text-gray-700 font-medium dark:text-zinc-300">
                   {item?.productName}
                 </h1>
-                <p>{item.unit}</p>
-                <p>${item?.productPrice.toFixed(2)} </p>
+                <h2 className="text-base text-gray-600 font-base dark:text-zinc-400">
+                {item?.categoryName}
+                </h2>
+                <p className="dark:text-zinc-500">{item.unit}</p>
+                <p className="dark:text-zinc-300">${item?.productPrice.toFixed(2)} </p>
               </section>
               <section className=" min-w-fit self-end">
                 <Button

@@ -3,7 +3,7 @@ import {createSlice } from '@reduxjs/toolkit';
 const appConfigSlice = createSlice({
     name:'appConfig',
     initialState: {
-        theme: 'blue',
+        theme: 'light',
         popUp: {
             message: null,
             status: false,

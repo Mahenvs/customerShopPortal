@@ -68,11 +68,11 @@ const Cart = () => {
         </button>) }
       </section>
       <div
-        className={` ${list.length != 0 ? `border-b border-b-slate-400` : ``}`}
+        className={` ${list.length != 0 ? `border-b border-b-slate-400 dark:border-darkBorder` : ``}`}
       >
         {list?.map((item, index) => {
           return (
-            <div key={index} className="flex mt-5 justify-between  mb-5 ">
+            <div key={index} className="flex mt-5 justify-between mb-5 ">
               <section className="font-mono">
                 <p>{item?.productName}</p>
                 <p>${item?.productCartPrice?.toFixed(2)}</p>
@@ -84,7 +84,7 @@ const Cart = () => {
                 >
                   -
                 </button>
-                <button className=" h-fit bg-blue-100  px-2 border-r-2">
+                <button className=" h-fit bg-blue-100  px-2 border-r-2 dark:text-darkLightBlack dark:bg-darkWhite">
                   {" "}
                   {item?.productCartQuantity}
                 </button>
@@ -109,7 +109,7 @@ const Cart = () => {
           <div className="flex justify-center ">
             <Button
             onClickButton={goToCartHandler}
-              class="px-14 py-3 rounded text-slate-50 bg-slate-500"
+              class="px-14 py-3 rounded text-slate-50 bg-slate-500 "
               title={"Go to Cart"}
             />
           </div>

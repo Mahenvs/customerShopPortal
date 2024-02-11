@@ -15,9 +15,9 @@ const CategoriesView = () => {
     dispatch(setActiveCategory(id));
   };
   return (
-    <div className="flex flex-col mx-60">
+    <div className="flex flex-col mx-60 ">
       <Heading>Categories</Heading>
-      <div className="list-none py-1 text-base font-medium w-full pl-1 flex flex-row flex-wrap">
+      <div className="list-none py-1 text-base font-medium w-full pl-1 flex flex-row flex-wrap ">
         {categoriesList?.map((item, index) => {
           return (
             <Card
@@ -26,7 +26,7 @@ const CategoriesView = () => {
               onClick={() => handleActiveCategory(item?.categoryId)}
             >
               <NavLink to={"?categoryId=" + item?.categoryId} className="text-lg">
-                {item?.categoryName}({"2"})
+                {item?.categoryName}({item?.productCount})
               </NavLink>
             </Card>
           );

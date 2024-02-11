@@ -3,7 +3,7 @@ import CustomerNavBar from './CustomerNavBar';
 
 const BodyRoute = () => {
   return (
-    <div>
+    <div className="dark:bg-darkGray h-screen dark:text-darkWhite">
         <CustomerNavBar />
         <Outlet/>
     </div>

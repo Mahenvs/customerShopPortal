@@ -1,5 +1,5 @@
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
-import { Suspense, lazy } from 'react';
+import { Suspense } from "react";
 
 import Home from "./components/Home";
 import { Provider } from "react-redux";
@@ -25,7 +25,6 @@ const router = createBrowserRouter([
         path: "/",
         element: <RedirectHome />,
       },
-
       {
         path: "/updateProfile",
         element: <UpdateProfile />,

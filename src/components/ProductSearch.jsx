@@ -25,35 +25,38 @@ const ProductSearch = () => {
 
   const navigateToDetail = (productName, product) => {
     setSearched(null);
-    
     navigate(productName);
   };
   return (
     <div>
       <input
         type="text"
-        className="w-full border px-3 py-2 bg-gray-100 rounded placeholder:font-normal text-lg focus:outline-none focus:shadow focus:shadow-blue-400"
+        className="w-full border px-3 py-2 bg-gray-100 rounded placeholder:font-normal text-lg focus:outline-none focus:shadow focus:shadow-blue-400 dark:text-darkLightBlack"
         placeholder="Search for products"
         onChange={(e) => onSearchHandler(e.target.value)}
       />
-      <div
-        className={
-          `w-[436px]  rounded-b shadow border absolute z-30 bg-white border-slate-200` +
-          `${searchedProducts ? "" : "h-30"}`
-        }
-      >
-        {searchedProducts?.map((product) => {
-          return (
-            <li
-              key={product?.productId}
-              onClick={() => navigateToDetail(product?.productName, product)}
-              className="list-none p-2 cursor-pointer hover:bg-blue-100"
-            >
-              {product?.productName}
-            </li>
-          );
-        })}
-      </div>
+      {searchedProducts ? (
+        <div
+          className={
+            `w-[436px]  rounded-b shadow border absolute z-30 bg-white border-slate-200` +
+            `${searchedProducts ? "" : "h-30"}`
+          }
+        >
+          {searchedProducts?.map((product) => {
+            return (
+              <li
+                key={product?.productId}
+                onClick={() => navigateToDetail(product?.productName)}
+                className="list-none p-3 font-sans  cursor-pointer hover:bg-blue-100 dark:text-darkWhite dar dark:bg-darkLightBlack"
+              >
+                {product?.productName}
+              </li>
+            );
+          })}
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

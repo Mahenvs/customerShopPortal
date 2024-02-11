@@ -5,7 +5,7 @@ const Footer = () => {
   const address = useSelector((store) => store.store.address);
 
   return (
-    <div className="h-[4rem] w-full bg-slate-700 items-center flex bottom-0 fixed justify-center">
+    <div className="h-[4rem] w-full bg-slate-700 dark:bg-darkLightBlack items-center flex bottom-0 fixed justify-center">
       <span className="text-white text-xl font-medium mx-2 ">
         Store @{address}
       </span>

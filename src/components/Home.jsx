@@ -13,20 +13,20 @@ export default function Home() {
   let productsList = useSelector((store) => store.product.products);
 
   return (
-    <>
-      <div className="flex w-full flex-1">
-        <span className="border-r-2 w-1/4 border-gray-100  ml-40 h-s creen">
+    <div className="dark:bg-darkGray">
+      <div className="flex w-full flex-1 dark:bg-darkGray h-screen dark:text-darkWhite">
+        <span className="border-r-2 w-1/4 border-zinc-200  ml-40 h-s creen dark:border-darkBorder">
           <Categories />
         </span>
-        <span className="w-2/4 border-r-2 border-gray-100 mx-5 mb-16">
+        <span className="w-1/2 border-r-2 border-zinc-200 mx-auto mb-16 dark:border-darkBorder">
         {/* productsList &&  */}
         {<CustomerViewProducts />}
         </span>
-        <span className="w-1/4  mx-2 mr-40">
+        <span className="w-1/4  mx-4 mr-40">
           <Cart />
         </span>
       </div>
       <Outlet />
-    </>
+    </div>
   );
 }

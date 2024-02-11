@@ -81,21 +81,23 @@ const CartView = () => {
               return (
                 <div
                   key={index}
-                  className="drop-shadow rounded shadow-slate-400 p-2 py-2 flex gap-4 my-4 border -b "
+                  className="drop-shadow rounded shadow-slate-400 p-2 py-2 flex gap-4 my-4 border -b dark:border-darkBorder "
                 >
-                  <section className="w-1/4 p-1 border rounded">
+                  <section className="w-1/4 p-1 bo rder rounded dark:border-none">
                     <img src={item?.productImageUrl} alt="" width="100px" />
                   </section>
                   <section className="w-2/4 gap-4 flex flex-col">
-                    <h1 className="text-lg text-gray-700 font-medium">
+                    <h1 className="text-lg text-gray-700 font-medium dark:text-zinc-300">
                       {item?.productName}
                     </h1>
-
-                    <p>${item?.productCartPrice.toFixed(2)} </p>
+                    <h1 className="text-lg text-gray-700 font-medium dark:text-zinc-300">
+                      {/* {item?.product} */}
+                    </h1>
+                    <p className="dark:text-zinc-500">${item?.productCartPrice.toFixed(2)} </p>
                     <p className="my-1">
                       Qty:
                       <select
-                        className="ml-2 p-1 w-14 outline-none border border-slate-300  focus:border-slate-400 rounded"
+                        className="ml-2 p-1 w-14 outline-none border border-slate-300 dark:border-darkBorder  focus:border-slate-400 rounded dark:text-darkGray"
                         value={item.productCartQuantity}
                         onChange={(e) =>
                           handleQuantityChange(item, e.target.value)
@@ -144,7 +146,7 @@ const CartView = () => {
                 {cartTotal < 500 ? `$50` : "FREE"}
               </p>
             </span>
-            <p className="border-b my-1"></p>
+            <p className="border-b my-1 dark:border-darkBorder"></p>
             <span className="flex justify-between">
               <h5 className="font-base font-mono text-lg">Grand total </h5>
               <p className="font-medium">
