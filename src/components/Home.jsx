@@ -19,7 +19,8 @@ export default function Home() {
           <Categories />
         </span>
         <span className="w-2/4 border-r-2 border-gray-100 mx-5 mb-16">
-          {productsList && <CustomerViewProducts />}
+        {/* productsList &&  */}
+        {<CustomerViewProducts />}
         </span>
         <span className="w-1/4  mx-2 mr-40">
           <Cart />

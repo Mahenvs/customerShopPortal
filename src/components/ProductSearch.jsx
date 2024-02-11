@@ -36,18 +36,9 @@ const ProductSearch = () => {
         placeholder="Search for products"
         onChange={(e) => onSearchHandler(e.target.value)}
       />
-      {/* <div className="w-full  rounded-b shadow border ">
-        {searchedProducts != null ? (
-          searchedProducts?.map((product) => {
-            return (<li key={product?.productId}
-            className="list-none px-2 cursor-pointer">{product?.productName}</li>)
-          })
-        ) : <h2 className="p-1 px-2">No Results found</h2> }
-        
-      </div> */}
       <div
         className={
-          `w-[436px]  rounded-b shadow border absolute z-30 bg-white border-slate-200  ` +
+          `w-[436px]  rounded-b shadow border absolute z-30 bg-white border-slate-200` +
           `${searchedProducts ? "" : "h-30"}`
         }
       >
@@ -56,7 +47,7 @@ const ProductSearch = () => {
             <li
               key={product?.productId}
               onClick={() => navigateToDetail(product?.productName, product)}
-              className="list-none p-2 cursor-pointer"
+              className="list-none p-2 cursor-pointer hover:bg-blue-100"
             >
               {product?.productName}
             </li>

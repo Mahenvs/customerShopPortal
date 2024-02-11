@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import Shimmer from "./Shimmer";
 import { NavLink } from "react-router-dom";
 import {useDispatch} from 'react-redux';
-import { setActiveCategory } from "../store/productSlice";
+import { listOfProducts, setActiveCategory } from "../store/productSlice";
 
 const Categories = () => {
   useGetCategories();
@@ -13,6 +13,7 @@ const Categories = () => {
   const activeCategory = useSelector((store) => store.product.activeCategory);
   
   const handleActiveCategory = (id) =>{
+    dispatch(listOfProducts(null));
     dispatch(setActiveCategory(id)) 
   }
   return (

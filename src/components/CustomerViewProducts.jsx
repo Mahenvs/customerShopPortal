@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { addToCart1 } from "../Utilities/addToCart";
 import { ToastBottomInfoMessage, ToastInfoMessage } from "../Utilities/ToastMessage";
 import { toast } from "react-toastify";
+import ShimmerProdList from "../UI_Elements/ShimmerProdList";
 
 const CustomerViewProducts = () => {
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ const CustomerViewProducts = () => {
   return (
     <>
       {!productsList ? (
-        <Shimmer />
+        <ShimmerProdList />
       ) : (
         productsList.map((item, index) => {
           return (
