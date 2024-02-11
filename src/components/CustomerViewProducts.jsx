@@ -3,9 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Shimmer from "./Shimmer";
 import { addSingleItemToCart } from "../store/storeSlice";
 import { useNavigate } from "react-router-dom";
-
 import { addToCart1 } from "../Utilities/addToCart";
-import { setBottomMessage, setMessage } from "../store/appConfigSlice";
 import { ToastBottomInfoMessage, ToastInfoMessage } from "../Utilities/ToastMessage";
 import { toast } from "react-toastify";
 
@@ -14,7 +12,6 @@ const CustomerViewProducts = () => {
   const navigate = useNavigate();
 
   let productsList = useSelector((store) => store.product.products);
-
   const cartListData = useSelector((store) => store.store.cartList);
   const customer = useSelector((store) => store.store.customerId);
 
@@ -26,31 +23,14 @@ const CustomerViewProducts = () => {
     const response = await addToCart1(item, cartListData, "add", -1);
     if (response?.message == "Request failed with status code 404") {
       toast.warn('Out of Stock!', ToastInfoMessage);
-      dispatch(
-        setMessage({ message: "Out of Stock", status: true, type: "warning" })
-      );
     } else{
         dispatch(
           addSingleItemToCart({ ...response, productName: item.productName })
         );
         toast('Item added successfully!', ToastBottomInfoMessage);
-        dispatch(
-          setBottomMessage({ message: "Item added successfully!", status: true, type: "info" })
-        );
       }
   };
-  const navigateProductDetail = (product, item) => {
-    navigate(product, {
-      state: {
-        productId: item?.productId,
-        productData: {
-          productName: item?.productName,
-          productCartPrice: item?.productCartPrice,
-          productCartQuantity: item?.productCartQuantity,
-        },
-      },
-    });
-  };
+
   return (
     <>
       {!productsList ? (
@@ -61,13 +41,13 @@ const CustomerViewProducts = () => {
             <div key={index} className="shadow-lg p-1 py-2 flex gap-4 my-4">
               <section
                 className="w-1/4 p-1 border rounded"
-                onClick={() => navigateProductDetail(item?.productName, item)}
+                onClick={() => navigate(item?.productName)}
               >
                 <img src={item?.productImageUrl} alt="" width="100px" />
               </section>
               <section
                 className="w-2/4"
-                onClick={() => navigateProductDetail(item?.productName, item)}
+                onClick={() => navigate(item?.productName)}
               >
                 <h1 className="text-lg text-gray-700 font-medium">
                   {item?.productName}

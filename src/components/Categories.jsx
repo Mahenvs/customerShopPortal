@@ -21,7 +21,7 @@ const Categories = () => {
       {!categories ? (
         <Shimmer />
       ) : (
-        categories.map((item, index) => {
+        categories?.map((item, index) => {
           return (
             <div
               key={index}

@@ -1,13 +1,10 @@
 import { Outlet } from "react-router-dom";
 import Footer from "./Footer";
-import Message from "../UI_Elements/Message";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 
 const Layout = () => {
   return (
     <div className="flex flex-col h-screen shadow overflow-auto">
-      {/* <Message/> */}
       
       <ToastContainer style={{ fontSize: "20px" }}  />
       <div className="h -screen flex flex-col flex-1">

@@ -12,7 +12,7 @@ const BottomPopUp = () => {
   const dispatch = useDispatch();
 
   let classes = " px-3 w-64  ";
-  console.log("message ",message1);
+
   if (message1?.type == 'warning') {
     classes += "bg-red-700 p-2 flex text-white text-xl font-medium justify-center rounded";
   }

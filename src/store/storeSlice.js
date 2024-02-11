@@ -43,13 +43,6 @@ const storeSlice = createSlice({
             ? { ...product, quantity: product.quantity + 1 }
             : product
         );
-
-        // await axios.post(cartUrl, getHeaders(), {
-        //   customerId: customer,
-        //   storeId: storeId,
-        //   productId: action.payload.productId,
-        //   quantity: 1,
-        // });
       }
     },
 

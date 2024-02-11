@@ -16,13 +16,8 @@ export const checkOutCart = async (paymentMethod) => {
       {
         paymentMethod: paymentMethod,
       },
-      getPostHeaders()
+      getPostHeaders({})
     );
-    // console.log(data.message,data.status);
-    
-    // if (!response.ok) {
-    //   throw new Error("Network response was not ok.");
-    // }
     const result = await response.data;
     
     return response;

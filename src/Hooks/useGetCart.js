@@ -6,12 +6,10 @@ import { cartList } from "../store/storeSlice";
 
 const useGetCart = () => {
   const dispatch = useDispatch();
-  // storeDomain  = JSON.parse(localStorage.setItem('store')).storeId
 
   let storeId = useSelector((store) => store.store.storeId);
   let customerId = useSelector((store) => store.store.customerId);
    
-
   if (!customerId) customerId = localStorage.getItem("customerId");
   if (!storeId) storeId = JSON.parse(localStorage.getItem("store"))?.storeId;
 
@@ -22,7 +20,6 @@ const useGetCart = () => {
       storeId +
       `&customerId=` +
       customerId;
-    
     try {
       const response = await axios.get(url, getHeaders());
       dispatch(cartList(response.data));

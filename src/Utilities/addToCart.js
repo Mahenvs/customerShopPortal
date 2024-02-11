@@ -19,54 +19,49 @@ export async function addToCart1(item, cartList, flag, addQuantity) {
   let quantity = 1;
   if (flag == "add") {
     if (cnt.length != 0) {
-      if(addQuantity > -1){
-        quantity = addQuantity
-      }
-      else{
+      if (addQuantity > -1) {
+        quantity = addQuantity;
+      } else {
         quantity = cnt[0].productCartQuantity + 1;
       }
     }
   }
   if (flag == "remove") {
     if (cnt.length >= 1) {
-      if(addQuantity > -1){
-        quantity = addQuantity
-      }
-      else{
+      if (addQuantity > -1) {
+        quantity = addQuantity;
+      } else {
         quantity = cnt[0].productCartQuantity - 1;
       }
     }
   }
   if (quantity == 0) {
     const resp = await axios.delete(cartDeleteUrl, headers());
-    
+
     if (resp.status != 200) {
       return;
     } else {
       return resp.data;
     }
   } else {
-    try{
-    const resp = await axios.post(
-      cartUrl,
-      {
-        customerId: customer,
-        storeId: storeId,
-        productId: item?.productId,
-        quantity: quantity,
-      },
-      headers()
-    );
-    if (resp.status != 200) {
-      return;
-    } else {
-      return resp.data;
+    try {
+      const resp = await axios.post(
+        cartUrl,
+        {
+          customerId: customer,
+          storeId: storeId,
+          productId: item?.productId,
+          quantity: quantity,
+        },
+        headers()
+      );
+      if (resp.status != 200) {
+        return;
+      } else {
+        return resp.data;
+      }
+    } catch (error) {
+      return error;
     }
   }
-  catch(error){
-    return error;
-  }    
-  }
-
-
 }

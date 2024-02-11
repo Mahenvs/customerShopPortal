@@ -1,24 +1,24 @@
 import { useEffect } from "react";
 import { getHeaders } from "../Utilities/getHeaders";
-import { listOfCategories,  setActiveCategory } from "../store/productSlice";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setOrdersData } from "../store/cartSlice";
 
 const useGetOrders = () => {
   const dispatch = useDispatch();
-  
-//   # http://192.168.1.254:8200/orders?storeId=2&customerId=1
-let storeId = useSelector((store) => store.store.storeId);
-let customerId = useSelector((store) => store.store.customerId);
- 
 
-if (!customerId) customerId = localStorage.getItem("customerId");
-if (!storeId) storeId = JSON.parse(localStorage.getItem("store"))?.storeId;
+  let storeId = useSelector((store) => store.store.storeId);
+  let customerId = useSelector((store) => store.store.customerId);
+  console.log("1111");
+  if (!customerId) customerId = localStorage.getItem("customerId");
+  if (!storeId) storeId = JSON.parse(localStorage.getItem("store"))?.storeId;
 
-    // const storeId = storeData?.storeId
-  
   const fetchOrdersData = async () => {
-    const url = import.meta.env.VITE_API_GET_ORDERS+"?storeId="+storeId +"&customerId="+customerId;
+    const url =
+      import.meta.env.VITE_API_GET_ORDERS +
+      "?storeId=" +
+      storeId +
+      "&customerId=" +
+      customerId;
     console.log(url);
     try {
       const response = await fetch(url, getHeaders());
@@ -26,7 +26,7 @@ if (!storeId) storeId = JSON.parse(localStorage.getItem("store"))?.storeId;
         throw new Error("Network response was not ok.");
       }
       const result = await response.json();
-      
+
       dispatch(setOrdersData(result));
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -34,7 +34,7 @@ if (!storeId) storeId = JSON.parse(localStorage.getItem("store"))?.storeId;
   };
 
   useEffect(() => {
-    storeId && fetchOrdersData();     
+    storeId && fetchOrdersData();
   }, [storeId]);
 };
 

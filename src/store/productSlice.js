@@ -24,9 +24,6 @@ const productSlice = createSlice({
             state.categories = null,
             state.activeCategory = null
         }
-        // listOfProductsSorted:(state,action) =>{
-        //     state.sortedProducts = action.payload
-        // },
     }
 });
 

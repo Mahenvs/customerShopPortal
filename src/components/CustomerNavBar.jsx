@@ -12,7 +12,6 @@ import { resetCart } from "../store/cartSlice";
 import { resetProduct } from "../store/productSlice";
 const CustomerNavBar = () => {
   const [isLoading, setIsLoading] = useState(true);
-
   const location = useLocation();
 
   const pathArr = location.pathname.split("/");
@@ -64,13 +63,13 @@ const CustomerNavBar = () => {
       {!isLoading ? (
         <div>Loading...</div>
       ) : (
-        <div className="flex h-20 border- b border-b-2  bg-white items-center sticky top-0 z-40 shadow">
+        <div className="flex h-20  border-b-2  bg-white items-center sticky top-0 z-40 shadow">
           <Link
             to={"/" + storeDomainResource}
-            className="w-1/5 ml-40 mr-10 flex items-center"
+            className="w-1/5 ml-40 mr-10 flex items-center text-ellipsis"
           >
-            <img src={shop} width="50px" />
-            <span className="px-3 font-medium text-lg">{storeName}</span>
+            <img src={shop} width="45px" />
+            <span className="px-3 font-medium text-lg truncate">{storeName}</span>
           </Link>
           <section className="w-2/5  mx-14">
             <ProductSearch />
@@ -116,12 +115,13 @@ const CustomerNavBar = () => {
                   </>
                 ) : (
                   <div className="right-2">
-                  <button
-                    className="left-5 cursor-pointer"
-                    onClick={() => navigateTo("auth")}
-                  >
-                    Sign In
-                  </button></div>
+                    <button
+                      className="left-5 cursor-pointer"
+                      onClick={() => navigateTo("auth")}
+                    >
+                      Sign In
+                    </button>
+                  </div>
                 )}
               </div>
             )}

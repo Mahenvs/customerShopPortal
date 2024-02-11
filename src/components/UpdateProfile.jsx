@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { setCustomerId } from "../store/storeSlice";
 import { useDispatch } from "react-redux";
 import { validatingInputs } from "../Utilities/validatingFields";
+import { getPostHeaders } from "../Utilities/getHeaders";
 
 const initialState = {
   firstName: "",
@@ -15,8 +16,7 @@ const initialState = {
   password:""
 }
 const UpdateProfile = () => {
-  // const storeId = useSelector((store) => store.store.storeId);
-
+  
   const [formData, setFormData] = useState(initialState);
   const navigate = useNavigate();
   const location = useLocation();
@@ -42,20 +42,13 @@ const UpdateProfile = () => {
     if (errorIs.length > 0) {
       return;
     }
-    const basicAuthToken = btoa(
-      `${import.meta.env.VITE_USER}:${import.meta.env.VITE_PASSWORD}`
-    );
+    // const basicAuthToken = btoa(
+    //   `${import.meta.env.VITE_USER}:${import.meta.env.VITE_PASSWORD}`
+    // );
     const storeId = JSON.parse(localStorage.getItem("store")).storeId;
     const signUpUrl = import.meta.env.VITE_SIGNUP + "?storeId=" + storeId;
 
-    const data = await fetch(signUpUrl, {
-      method: "POST",
-      headers: {
-        Authorization: `Basic ${basicAuthToken}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
+    const data = await fetch(signUpUrl, getPostHeaders(formData));
     const response = await data.json();
 
     if (data.status === 201) {
@@ -80,7 +73,7 @@ const UpdateProfile = () => {
         <div className="mx-auto">
           <CustomFormLabel label="First Name" />
           <CustomFormControl
-            // class={mailError ? "error" : ""}
+
             type="text"
             name="name"
             value={formData.firstName}
@@ -88,7 +81,7 @@ const UpdateProfile = () => {
           />
           <CustomFormLabel label="Last Name" />
           <CustomFormControl
-            // class={mailError ? "error" : ""}
+
             type="text"
             name="name"
             value={formData.lastName}
@@ -96,7 +89,7 @@ const UpdateProfile = () => {
           />
           <CustomFormLabel label="Address" />
           <CustomFormControl
-            // class={mailError ? "error" : ""}
+
             type="text"
             name="address"
             value={formData.address}
@@ -105,7 +98,7 @@ const UpdateProfile = () => {
 
           <CustomFormLabel label="Phone Number" />
           <CustomFormControl
-            // class={mailError ? "error" : ""}
+
             type="tel"
             name="phone"
             value={formData.phoneNumber}

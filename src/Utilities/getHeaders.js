@@ -12,13 +12,15 @@ export function getHeaders() {
       }};
 }
 
-export function getPostHeaders() {
+export function getPostHeaders(body) {
   return {
       method: "POST",
       headers:{
       Authorization: `Basic ${basicAuthToken}`,
       'Content-Type': 'application/json'
-    }};
+      },
+      body: JSON.stringify(body)
+  };
 }
 
 export const header = () =>{

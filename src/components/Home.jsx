@@ -3,10 +3,9 @@ import Categories from "./Categories";
 import CustomerViewProducts from "./CustomerViewProducts";
 import useGetProducts from "../Hooks/useGetProducts";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
 import useGetStore from "../Hooks/useGetStore";
 import { Outlet } from "react-router-dom";
-import CustomerNavBar from "./CustomerNavBar";
+
 export default function Home() {
   useGetStore();
   useGetProducts();

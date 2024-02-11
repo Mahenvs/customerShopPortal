@@ -3,6 +3,7 @@ import CustomFormControl from "../UI_Elements/CustomFormControl"
 import {  useLocation, useNavigate } from "react-router-dom"
 import { setStoreId } from '../store/storeSlice';
 import {useDispatch} from 'react-redux';
+import { getPostHeaders } from '../Utilities/getHeaders';
 
 const storeState = {
   "name":'',
@@ -29,26 +30,18 @@ const NewShop = () => {
     }));
 }
 
-
   async function createShop() {
 
     const username = 'user';
     const password = 'market';
     const basicAuthToken = btoa(`${username}:${password}`);
     
-    const data = await fetch(createStoreUrl, {
-      method: "POST",
-      body: JSON.stringify({
-        "name": formData.name,
-        "address": formData.address,
-        "adminId" : receivedData
+    const data = await fetch(createStoreUrl, getPostHeaders({
+      "name": formData.name,
+      "address": formData.address,
+      "adminId" : receivedData
 
-      }),
-      headers: {
-        'Authorization': `Basic ${basicAuthToken}`,
-        'Content-Type': 'application/json'
-      },
-    })
+    }))
     const response = await data.json();
 
     if(data.status === 200 ){

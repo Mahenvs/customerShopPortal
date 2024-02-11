@@ -1,21 +1,21 @@
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
+import { Suspense, lazy } from 'react';
 
 import Home from "./components/Home";
 import { Provider } from "react-redux";
 import appStore from "./store/appStore";
 import CustomerLayOut from "./components/CustomerLayOut";
-import ProductDetail from "./components/ProductDetail";
+// import ProductDetail from "./components/ProductDetail";
 import getData from "./Loaders/getData";
 import UpdateProfile from "./components/UpdateProfile";
 
 import { RedirectHome } from "./components/RedirectHome";
-import SignUp from "./components/SignUp";
 import CategoriesView from "./components/CategoriesView";
 import CartView from "./components/CartView";
 import OrderConfirmation from "./components/OrderConfirmation";
-import ViewOrders from "./components/ViewOrders";
 import Orders from "./components/Orders";
 import BodyRoute from "./components/BodyRoute";
+import ProductDetail from "./components/ProductDetail";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -37,12 +37,23 @@ const router = createBrowserRouter([
           {
             path: "",
             element: <Home />,
-          },
-          {
+          },  {
             path: ":product",
-            element: <ProductDetail />,
+            element: (
+              <Suspense fallback={<div>Loading...</div>}>
+                <ProductDetail />
+              </Suspense>
+            ),
             loader: getData,
+            lazy: () => import("./components/ProductDetail"),
           },
+          // {
+          //   path: ":product",
+
+          //   loader: getData,
+          //   lazy: () => import("./components/ProductDetail"),
+          //   element: index,
+          // },
           {
             path: "auth",
             element: <RedirectHome />,

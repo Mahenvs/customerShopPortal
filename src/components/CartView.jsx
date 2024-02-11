@@ -6,7 +6,6 @@ import Button from "../UI_Elements/Button";
 import OutlineButton from "../UI_Elements/OutlineButton";
 import { useDispatch } from "react-redux";
 import { addToCart1 } from "../Utilities/addToCart";
-import { setMessage } from "../store/appConfigSlice";
 import {
   addSingleItemToCart,
   removeSingleItemFromCart,
@@ -34,9 +33,6 @@ const CartView = () => {
     const response = await addToCart1(item, shoppingList, "add", parsedValue);
     if (response?.message == "Request failed with status code 404") {
       toast.warn('Out of Stock!', ToastInfoMessage);
-      dispatch(
-        setMessage({ message: "Out of Stock", status: true, type: "warning" })
-      );
     } else {
       dispatch(
         addSingleItemToCart({ ...response, productName: item.productName })
@@ -49,7 +45,7 @@ const CartView = () => {
     );
   };
 
-  const removeItemFromCart = async (item, value) => {
+  const removeItemFromCart = async (item) => {
     const response = await addToCart1(item, shoppingList, "remove", 0);
     dispatch(
       removeSingleItemFromCart({ ...response, productName: item.productName })
@@ -118,8 +114,8 @@ const CartView = () => {
                   </section>
                   <section className="justify-start">
                     <OutlineButton
-                      onClickButton={(e) =>
-                        removeItemFromCart(item, e.target.value)
+                      onClickButton={() =>
+                        removeItemFromCart(item)
                       }
                       class="text-slate-500 bg-white text-lg border py-[1px] px-2 h-fit "
                       title="Remove"

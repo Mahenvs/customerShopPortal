@@ -7,8 +7,8 @@ import { Heading } from "../UI_Elements/Heading";
 
 const CategoriesView = () => {
   useGetCategories();
+  
   const dispatch = useDispatch();
-
   const categoriesList = useSelector((store) => store.product.categories);
   
   const handleActiveCategory = (id) => {

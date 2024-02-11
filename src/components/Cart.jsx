@@ -23,7 +23,8 @@ const Cart = () => {
   const cartTotal = useSelector((store) => store.store.cartTotalPric);
   const isLoggedIn = useSelector((store) => store.appConfig.isLoggedIn);
   const dispatch = useDispatch();
-const navigate = useNavigate();
+  const navigate = useNavigate();
+  
   const handleItemsFromCart = async (item, flag) => {
     
     if (flag == "increase") {
@@ -31,9 +32,6 @@ const navigate = useNavigate();
       
       if (response?.message == "Request failed with status code 404") {  
         toast.warn('Out of Stock!', ToastInfoMessage);
-        dispatch(
-          setMessage({ message: "Out of Stock", status: true, type: "warning" })
-        );
       } else {
         dispatch(
           addSingleItemToCart({ ...response, productName: item.productName })
@@ -49,7 +47,7 @@ const navigate = useNavigate();
 
   const clearCartHandler = async () => {
     if (list.length != 0) {
-      const data = await clearCart(list);
+      await clearCart(list);
       dispatch(clearCartStore());
       toast.warn('Cleared Cart!', ToastInfoMessage);
       dispatch(

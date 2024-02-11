@@ -3,14 +3,13 @@ import _debounce from "lodash/debounce";
 import axios from "axios";
 import { getHeaders } from "../Utilities/getHeaders";
 import { useState } from "react";
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const ProductSearch = () => {
   const storeId = useSelector((store) => store.store.storeId);
-  
+
   const [searchedProducts, setSearched] = useState();
   const navigate = useNavigate();
-
 
   const onSearchHandler = _debounce(async (value) => {
     setSearched(null);
@@ -24,19 +23,10 @@ const ProductSearch = () => {
     setSearched(data.data);
   }, 1500);
 
-
-
   const navigateToDetail = (productName, product) => {
-    setSearched(null)
-    navigate('venu_groceries426119/'+productName, {
-      state: {
-        productData: {
-          productName: product.productName,
-          productPrice: product.productPrice,
-          quantitiy: 1,
-        },
-      },
-    });
+    setSearched(null);
+    
+    navigate(productName);
   };
   return (
     <div>
@@ -65,7 +55,7 @@ const ProductSearch = () => {
           return (
             <li
               key={product?.productId}
-              onClick={() => navigateToDetail(product?.productName,product)}
+              onClick={() => navigateToDetail(product?.productName, product)}
               className="list-none p-2 cursor-pointer"
             >
               {product?.productName}

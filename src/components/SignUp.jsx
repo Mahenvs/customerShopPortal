@@ -8,6 +8,7 @@ import { setCustomerId } from "../store/storeSlice";
 import { setLoggedIn } from "../store/appConfigSlice";
 import { validatingInputs } from "../Utilities/validatingFields";
 import { compareInputs } from "../Utilities/compareInputs";
+import { getPostHeaders } from "../Utilities/getHeaders";
 
 const InitialState = {
   email: "",
@@ -91,20 +92,13 @@ const SignUp = ({onLogin}) => {
     if(errorIs.length >0){
       return;
     }
-    const basicAuthToken = btoa(
-      `${import.meta.env.VITE_USER}:${import.meta.env.VITE_PASSWORD}`
-    );
-    const data = await fetch(signInUrl, {
-      method: "POST",
-      headers: {
-        Authorization: `Basic ${basicAuthToken}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: formData.email,
-        password: formData.password,
-      }),
-    });
+    // const basicAuthToken = btoa(
+    //   `${import.meta.env.VITE_USER}:${import.meta.env.VITE_PASSWORD}`
+    // );
+    const data = await fetch(signInUrl, getPostHeaders({
+      email: formData.email,
+      password: formData.password,
+    }));
     const response = await data.json();
     
     if (data.status === 200) {

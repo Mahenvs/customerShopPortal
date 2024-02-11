@@ -1,26 +1,30 @@
-const Shimmer = () => {
-  return (
-    <div className="shadow-lg p-1 flex gap-4 bg-gray-100">
-            
-            <section className="w-1/4 p-4 ">
-              {/* <img src={shop} alt="" width="100px" /> */}
-            </section>
-            <section className="w-2/4">
-              <h1 className="text-lg text-gray-700 font-medium">
-                {/* {"item?.productName"} */}
-              </h1>
-              <p>
-                {/* {"item.unit"} */}
-              </p>
-              <p>
-                {/* ${"item.productPrice"} */}
-              </p>
-            </section>
-            <section className="justify-end items-end self-end">
-              {/* <Button title="Add" class="px-2 h-fit "></Button> */}
-            </section>
-          </div>
-  )
-}
+import Button from "../UI_Elements/Button";
 
-export default Shimmer
+const Shimmer = () => {
+  const data = [
+    { name: "1" },
+    { name: "1" },
+    { name: "1" },
+    { name: "1" },
+    { name: "1" },
+    { name: "1" },
+    { name: "1" },
+  ];
+  return data?.map((item,index) => {
+    return (
+      // <>
+        <div key={index} className="shadow-lg p-1 flex gap-4 bg-gray-100 mb-1">
+          <section className="w-1/4 p-4 "></section>
+          <section className="w-2/4">
+            <h1 className="text-lg text-gray-700 font-medium"></h1>
+          </section>
+          <section className="justify-end items-end self-end">
+            <Button title="" class="px-2 h-fit "></Button>
+          </section>
+        </div>
+      // </>
+    );
+  });
+};
+
+export default Shimmer;

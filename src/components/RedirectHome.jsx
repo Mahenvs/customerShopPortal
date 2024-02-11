@@ -1,5 +1,5 @@
 import SignUp from "./SignUp";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export function RedirectHome() {
@@ -10,7 +10,6 @@ export function RedirectHome() {
     
     const handleLogin = () => {
       if (localStorage.getItem("customerId") != undefined) {
-        
         setLoggedIn(true);
       }
       navigate(`/${storeDomainResource}/auth?signIn`);
