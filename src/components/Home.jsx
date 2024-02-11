@@ -16,10 +16,10 @@ export default function Home() {
   return (
     <>
       <div className="flex w-full flex-1">
-        <span className="border-r-[2px] w-1/4  border-gray-300  ml-40">
+        <span className="border-r-2 w-1/4 border-gray-100  ml-40 h-s creen">
           <Categories />
         </span>
-        <span className="w-2/4 border-r-2 mx-5 mb-16">
+        <span className="w-2/4 border-r-2 border-gray-100 mx-5 mb-16">
           {productsList && <CustomerViewProducts />}
         </span>
         <span className="w-1/4  mx-2 mr-40">

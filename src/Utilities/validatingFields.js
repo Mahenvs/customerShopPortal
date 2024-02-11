@@ -1,7 +1,6 @@
 import { checkFieldEmpty } from "./checkFieldEmpty";
 
 export const validatingInputs = (formData) => {
-  console.log(formData);
   if (!checkFieldEmpty(formData?.email)) {
     return "Email cannot be empty";
   } else if (!checkFieldEmpty(formData?.password)) {

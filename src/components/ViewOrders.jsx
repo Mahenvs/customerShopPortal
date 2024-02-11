@@ -2,7 +2,6 @@ import { parseDate } from "../Utilities/parseDate";
 import MiniHeading from "../UI_Elements/MiniHeading"
 
 const ViewOrders = ({ item }) => {
-  console.log(item);
 
   return (
     <div className="mx-10 p-1">

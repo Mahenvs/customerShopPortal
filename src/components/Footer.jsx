@@ -11,7 +11,7 @@ const Footer = () => {
         <span className=' text-white text-xl font-medium m-auto '>
          &copy;{storeName} Store @{address}
         </span>
-        <BottomPopUp/>
+        {/* <BottomPopUp/> */}
     </div>
   )
 }

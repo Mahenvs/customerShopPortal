@@ -24,11 +24,10 @@ export const checkOutCart = async (paymentMethod) => {
     //   throw new Error("Network response was not ok.");
     // }
     const result = await response.data;
-    console.log(result);
+    
     return response;
 
   } catch (error) {
-    console.log(error.response.data,error.response.status);
     return error.response;
   }
 };

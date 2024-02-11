@@ -13,7 +13,7 @@ export function RedirectHome() {
         
         setLoggedIn(true);
       }
-      navigate("?signIn");
+      navigate(`/${storeDomainResource}/auth?signIn`);
     };
     if (isLoggedIn == true) {
       navigate(`/${storeDomainResource}`);

@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 
 import { addToCart1 } from "../Utilities/addToCart";
 import { setBottomMessage, setMessage } from "../store/appConfigSlice";
+import { ToastBottomInfoMessage, ToastInfoMessage } from "../Utilities/ToastMessage";
+import { toast } from "react-toastify";
 
 const CustomerViewProducts = () => {
   const dispatch = useDispatch();
@@ -23,6 +25,7 @@ const CustomerViewProducts = () => {
     }
     const response = await addToCart1(item, cartListData, "add", -1);
     if (response?.message == "Request failed with status code 404") {
+      toast.warn('Out of Stock!', ToastInfoMessage);
       dispatch(
         setMessage({ message: "Out of Stock", status: true, type: "warning" })
       );
@@ -30,22 +33,23 @@ const CustomerViewProducts = () => {
         dispatch(
           addSingleItemToCart({ ...response, productName: item.productName })
         );
+        toast('Item added successfully!', ToastBottomInfoMessage);
         dispatch(
           setBottomMessage({ message: "Item added successfully!", status: true, type: "info" })
         );
       }
   };
   const navigateProductDetail = (product, item) => {
-    // navigate(product, {
-    //   state: {
-    //     productId: item?.productId,
-    //     productData: {
-    //       productName: item?.productName,
-    //       productCartPrice: item?.productCartPrice,
-    //       productCartQuantity: item?.productCartQuantity,
-    //     },
-    //   },
-    // });
+    navigate(product, {
+      state: {
+        productId: item?.productId,
+        productData: {
+          productName: item?.productName,
+          productCartPrice: item?.productCartPrice,
+          productCartQuantity: item?.productCartQuantity,
+        },
+      },
+    });
   };
   return (
     <>

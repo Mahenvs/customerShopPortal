@@ -3,7 +3,7 @@ import { getHeaders } from "../Utilities/getHeaders";
 const getData = ({params}) => {
 
   const url = import.meta.env.VITE_API_GET_STORE_CUST + params.storeDomain;
-
+  
   const fetchProduct = async (storeId) => {
     const searchProdUrl  = import.meta.env.VITE_PRODUCT_SEARCH +storeId+'/products/search/'+params.product;
     try {
@@ -12,7 +12,7 @@ const getData = ({params}) => {
         throw new Error("Network response was not ok.");
       }
       const result = await response.json();
-
+      
       document.title = result.name;
       
       return result;
@@ -31,7 +31,6 @@ const getData = ({params}) => {
       
       const productResponse = await fetchProduct(result.id)
       document.title = result.name;
-      
       return {
         ...productResponse[0],
         ...result

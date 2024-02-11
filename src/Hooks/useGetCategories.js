@@ -6,9 +6,6 @@ import { useDispatch,useSelector } from "react-redux";
 const useGetCategories = () => {
   const dispatch = useDispatch();
   
-  // let storeId = useSelector((store) => store.store.storeId);
-  // console.log(storeId);
-  // if(!storeId){
     let storeData  = JSON.parse(localStorage.getItem('store'));
     
     const storeId = storeData?.storeId
@@ -21,7 +18,7 @@ const useGetCategories = () => {
         throw new Error("Network response was not ok.");
       }
       const result = await response.json();
-      console.log("categories ",result);
+      
       dispatch(listOfCategories(result));
       if(result)
         dispatch(setActiveCategory(result[0]["categoryId"]))

@@ -11,13 +11,17 @@ import { setMessage } from "../store/appConfigSlice";
 import Button from "../UI_Elements/Button";
 import {useNavigate} from "react-router-dom";
 import SubHeading from "../UI_Elements/SubHeading"
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastInfoMessage } from "../Utilities/ToastMessage";
+
 
 const Cart = () => {
   useGetCart();
 
   const list = useSelector((store) => store.store.cartList);
   const cartTotal = useSelector((store) => store.store.cartTotalPric);
-  
+  const isLoggedIn = useSelector((store) => store.appConfig.isLoggedIn);
   const dispatch = useDispatch();
 const navigate = useNavigate();
   const handleItemsFromCart = async (item, flag) => {
@@ -26,6 +30,7 @@ const navigate = useNavigate();
       const response = await addToCart1(item, list, "add",-1);
       
       if (response?.message == "Request failed with status code 404") {  
+        toast.warn('Out of Stock!', ToastInfoMessage);
         dispatch(
           setMessage({ message: "Out of Stock", status: true, type: "warning" })
         );
@@ -46,6 +51,7 @@ const navigate = useNavigate();
     if (list.length != 0) {
       const data = await clearCart(list);
       dispatch(clearCartStore());
+      toast.warn('Cleared Cart!', ToastInfoMessage);
       dispatch(
         setMessage({ message: "Cleared Cart", status: true, type: "info" })
       );
@@ -111,7 +117,7 @@ const navigate = useNavigate();
           </div>
         </>
       ) : <SubHeading class="p-3.5 ">
-      No Products in the Cart..</SubHeading>}
+      {isLoggedIn ? "No Products in the Cart.." : "Login to your account to view the cart!"}</SubHeading>}
     </div>
   );
 };

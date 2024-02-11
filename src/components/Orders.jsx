@@ -10,7 +10,6 @@ const Orders = () => {
 
   const ordersList = useSelector((store) => store.cart.ordersData);
 
-  console.log(ordersList);
   useEffect(() => {}, [ordersList]);
   return (
     <div className={`flex flex-col mx-56 gap-10 `}>

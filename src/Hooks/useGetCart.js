@@ -25,7 +25,6 @@ const useGetCart = () => {
     
     try {
       const response = await axios.get(url, getHeaders());
-      console.log(response);
       dispatch(cartList(response.data));
     } catch (error) {
       console.error("Error fetching data:", error);

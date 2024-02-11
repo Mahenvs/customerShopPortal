@@ -33,11 +33,13 @@ const UpdateProfile = () => {
   };
 
   const signUp = async () => {
-    const errorIs = validatingInputs(formData);
-    console.log(errorIs);
+    const errorIs = validatingInputs({
+      ...formData,
+      ...formData.email= prevFormData.email,
+      ...formData.password= prevFormData.password,
+    });
     setErrorMsg(errorIs);
     if (errorIs.length > 0) {
-      console.log();
       return;
     }
     const basicAuthToken = btoa(
@@ -52,14 +54,7 @@ const UpdateProfile = () => {
         Authorization: `Basic ${basicAuthToken}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        phoneNumber: formData.phoneNumber,
-        address: formData.address,
-        email: prevFormData.email,
-        password: prevFormData.password,
-      }),
+      body: JSON.stringify(formData),
     });
     const response = await data.json();
 
@@ -111,7 +106,7 @@ const UpdateProfile = () => {
           <CustomFormLabel label="Phone Number" />
           <CustomFormControl
             // class={mailError ? "error" : ""}
-            type="text"
+            type="tel"
             name="phone"
             value={formData.phoneNumber}
             inputChange={(event) =>

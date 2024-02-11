@@ -37,6 +37,7 @@ const SignUp = ({onLogin}) => {
   const toggleAuth = () => {
     setLogin((isLogin) => !isLogin);
     setFormData(InitialState);
+    setErrorMsg(null)
     setEdited({
       email: false,
       password: false,
@@ -85,7 +86,6 @@ const SignUp = ({onLogin}) => {
   }
 
   const Login = async () => {
-    console.log("inside login");
     const errorIs = validatingInputs(formData);
     setErrorMsg(errorIs);
     if(errorIs.length >0){
@@ -106,9 +106,9 @@ const SignUp = ({onLogin}) => {
       }),
     });
     const response = await data.json();
-    const resp = JSON.parse(response.details)
     
     if (data.status === 200) {
+      const resp = JSON.parse(response.details)
       setErrorMsg(null);
       dispatch(setCustomerId(resp.CustomerId));
       localStorage.setItem('customerId',resp.CustomerId)

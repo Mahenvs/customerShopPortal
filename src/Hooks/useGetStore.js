@@ -24,7 +24,7 @@ const useGetStore = (storeDomain) => {
         throw new Error("Network response was not ok.");
       }
       const result = await response.json();
-      console.log("result ",result)
+      
       localStorage.setItem('store',JSON.stringify({
         storeDomain: storeDomain,
         storeId: result.id, 
@@ -43,7 +43,6 @@ const useGetStore = (storeDomain) => {
 
   useEffect(() => {
     fetchData();
-    // console.log(resp);
   }, [storeDomain]);
 };
 

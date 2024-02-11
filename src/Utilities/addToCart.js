@@ -64,7 +64,6 @@ export async function addToCart1(item, cartList, flag, addQuantity) {
     }
   }
   catch(error){
-    console.log("data ",error);
     return error;
   }    
   }

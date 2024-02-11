@@ -13,12 +13,15 @@ import {
 } from "../store/storeSlice";
 import PaymentSelect from "./PaymentSelect";
 import { Modal } from "../UI_Elements/Modal";
+import { ToastInfoMessage } from "../Utilities/ToastMessage";
+import { toast } from "react-toastify";
 const CartView = () => {
   useGetCart();
 
   const shoppingList = useSelector((store) => store.store.cartList);
   const cartTotal = useSelector((store) => store.store.cartTotalPric);
-  console.log(shoppingList);
+  const isLoggedIn = useSelector((store) => store.appConfig.isLoggedIn);
+  
   const dispatch = useDispatch();
 
   const [options, setOptions1] = useState(
@@ -30,6 +33,7 @@ const CartView = () => {
 
     const response = await addToCart1(item, shoppingList, "add", parsedValue);
     if (response?.message == "Request failed with status code 404") {
+      toast.warn('Out of Stock!', ToastInfoMessage);
       dispatch(
         setMessage({ message: "Out of Stock", status: true, type: "warning" })
       );
@@ -52,7 +56,6 @@ const CartView = () => {
     );
   };
   const paymentConfirmHandler = () => {
-    console.log("insd");
     openModal();
   };
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -127,7 +130,7 @@ const CartView = () => {
                   </section>
                 </div>
               );
-            }) : <Heading class="p-5  flex justify-center ">No products in the Cart!!</Heading>}
+            }) : <Heading class="p-5  flex justify-center ">{isLoggedIn ? 'No products in the Cart!!' : 'Login to your Account'}</Heading>}
           </div>
         </div>
         {cartTotal > 0 ? 

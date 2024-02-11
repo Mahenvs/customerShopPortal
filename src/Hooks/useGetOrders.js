@@ -26,7 +26,7 @@ if (!storeId) storeId = JSON.parse(localStorage.getItem("store"))?.storeId;
         throw new Error("Network response was not ok.");
       }
       const result = await response.json();
-      console.log(" orders are ",result);
+      
       dispatch(setOrdersData(result));
     } catch (error) {
       console.error("Error fetching data:", error);

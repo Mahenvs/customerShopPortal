@@ -15,12 +15,12 @@ const PaymentSelect = () => {
 
 
   const paymentHandler = (item) => {
-    console.log(item);
+    
     setPaymentMode(item);
   };
   const orderConfirmHandler = async () =>{
     const data = await checkOutCart(paymentMode)
-    console.log(data,data.status);
+    
     if(data.status == 200){
       navigate("../orderConfirmed",{
         state:data.data
@@ -31,9 +31,6 @@ const PaymentSelect = () => {
     }
     // navigate("/orderConfirmed");
   }
-  const handlerInput = (flag, value) => {
-    console.log(value);
-  };
   useEffect(() => {}, [paymentModes]);
   return (
     <div>
