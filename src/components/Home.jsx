@@ -13,8 +13,8 @@ export default function Home() {
   let productsList = useSelector((store) => store.product.products);
 
   return (
-    <div className="dark:bg-darkGray">
-      <div className="flex w-full flex-1 dark:bg-darkGray h-screen dark:text-darkWhite">
+    <div className="dark:bg-darkGray mb-10">
+      <div className="flex w-full flex-1 dark:bg-darkGray h -screen dark:text-darkWhite">
         <span className="border-r-2 w-1/4 border-zinc-200  ml-40 h-s creen dark:border-darkBorder">
           <Categories />
         </span>

@@ -13,7 +13,7 @@ const Layout = () => {
 
   // dispatch(setTheme(currentTheme));
   return (
-    <div className="flex flex-col h-screen shadow overflow-auto">
+    <div className="flex flex-col h-screen shadow overflow-auto dark:bg-darkGray">
       
       <ToastContainer style={{ fontSize: "20px" }}  />
       <div className="h -screen flex flex-col flex-1">

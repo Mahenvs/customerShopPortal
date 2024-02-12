@@ -26,7 +26,7 @@ const Categories = () => {
           return (
             <div
               key={index}
-              className="list-none py-1 text-base font-medium w-full pl-1 dark:text-darkLightBlack v"
+              className="list-none py-1 text-base font-medium w-full pl-1 dark:text-darkLightBlack "
             >
               <li className={activeCategory === item?.categoryId  ? "p-1 bg-gradient-to-r from-white to-blue-200 dark:to-darkLightBlack  w-full" : "bg-white p-1"} 
               onClick={() => handleActiveCategory(item?.categoryId)}>

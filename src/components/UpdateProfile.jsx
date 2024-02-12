@@ -64,7 +64,8 @@ const UpdateProfile = () => {
     <div className="mx-auto  w-1/3 py-10 flex justify-center ">
       <form
         id="loginModal"
-        className="border-zinc-100 rounded bg-gray-700  px-12 py-4 justify-center flex flex-col text-white "
+        className="border-zinc-100 rounded bg-gray-700  px-12 py-4 justify-center flex flex-col text-white 
+        dark:bg-gray-950 dark:border-darkBorder dark:shadow-zinc-600 dark:border dark:rounded  "
       >
         <h3 className="text-white text-2xl  justify-start  mt-1 font-bold mb-2">
           {"One More Step..."}

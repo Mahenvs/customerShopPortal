@@ -17,8 +17,8 @@ const Orders = () => {
       <Heading>Your Orders</Heading>
       {ordersList?.length > 0 ? (ordersList?.map((item,index) => {
         return <ViewOrders item={item} key={item?.orderId}/>
-      })) : <SubHeading
-       class="flex justify-center p-3">No Orders Found</SubHeading> }
+      })) : <Heading
+       class="flex justify-center p-3">No Orders Found</Heading> }
     </div>
   );
 };

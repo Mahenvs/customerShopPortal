@@ -68,7 +68,7 @@ const CartView = () => {
   useEffect(() => {}, [shoppingList]);
   return (
     <>
-      <div className={`flex flex-row mx-56 gap-10 overflow-auto ${isModalOpen ? 'backdrop-open' : 'backdrop'}`}>
+      <div className={`flex flex-row mx-56 gap-10 overflow-auto dark:bg-darkGray ${isModalOpen ? 'backdrop-open' : 'backdrop'}`}>
         
         <div className="f w-2/3 ">
           <div className="flex justify-between">
