@@ -31,7 +31,7 @@ const PaymentSelect = () => {
   useEffect(() => {}, [paymentModes]);
   return (
     <div>
-      <h3 className="text-slate-700 text-xl  justify-start  mt-1 font-semibold mb-2">
+      <h3 className="text-slate-700 text-xl justify-start  mt-1 font-semibold mb-2 dark:text-darkWhite">
         Select Payment Type{" "}
       </h3>
 
@@ -41,7 +41,7 @@ const PaymentSelect = () => {
         itemId={"methodId"}
         itemName={"methodName"}
       ></CustomDropDown>
-      <Button title="Order" onClickButton={orderConfirmHandler}></Button>
+      <Button title="Order" class="dark:border-darkWhite dark:border" onClickButton={orderConfirmHandler}></Button>
     </div>
   );
 };
