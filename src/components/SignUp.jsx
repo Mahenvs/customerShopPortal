@@ -19,8 +19,8 @@ const InitialState = {
 const SignUp = ({onLogin}) => {    
   const storeData = JSON.parse(localStorage.getItem("store"));
     const dispatch =useDispatch();
-  const storeDomain = storeData.storeDomain;
-  const storeId = storeData.storeId;
+  const storeDomain = storeData?.storeDomain;
+  const storeId = storeData?.storeId;
 
   const signInUrl = import.meta.env.VITE_LOGIN + "?storeId=" + storeId;
 
