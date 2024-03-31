@@ -53,10 +53,10 @@ const router = createBrowserRouter([
           //   lazy: () => import("./components/ProductDetail"),
           //   element: index,
           // },
-          {
-            path: "auth",
-            element: <RedirectHome />,
-          },
+          // {
+          //   path: "auth",
+          //   element: <RedirectHome />,
+          // },
           {
             path: "categories",
             element: <CategoriesView />,
@@ -97,6 +97,11 @@ const router = createBrowserRouter([
       //   element: <Orders />,
       // },
     ],
+    
+  },
+  {
+    path: "auth",
+    element: <RedirectHome />,
   },
 ]);
 

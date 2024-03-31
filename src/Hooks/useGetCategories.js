@@ -11,7 +11,7 @@ const useGetCategories = () => {
     const storeId = storeData?.storeId
   
   const fetchCategoriesData = async () => {
-    const url = import.meta.env.VITE_PRODUCT_CATEGORIES+`${storeId}/categories`;
+    const url = import.meta.env.VITE_PRODUCT_SEARCH+`${storeId}/categories`;
     try {
       const response = await fetch(url, getHeaders());
       if (!response.ok) {

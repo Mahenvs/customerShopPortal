@@ -12,7 +12,8 @@ export function RedirectHome() {
       if (localStorage.getItem("customerId") != undefined) {
         setLoggedIn(true);
       }
-      navigate(`/${storeDomainResource}/auth?signIn`);
+      // navigate(`/${storeDomainResource}/auth?signIn`);
+      navigate(`/auth?signIn`);
     };
     if (isLoggedIn == true) {
       navigate(`/${storeDomainResource}`);
