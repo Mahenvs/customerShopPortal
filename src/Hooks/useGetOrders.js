@@ -19,7 +19,6 @@ const useGetOrders = () => {
       storeId +
       "&customerId=" +
       customerId;
-    console.log(url);
     try {
       const response = await fetch(url, getHeaders());
       if (!response.ok) {
