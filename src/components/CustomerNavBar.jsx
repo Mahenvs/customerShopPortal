@@ -47,7 +47,7 @@ const CustomerNavBar = () => {
       dispatch(resetAppConfig());
       dispatch(resetCart());
       dispatch(resetProduct());
-      navigate("../auth");
+      navigate("auth");
       setLogOut((val) => !val);
       dispatch(setLoggedIn(false));
     } else if (flag == "myOrders") {
