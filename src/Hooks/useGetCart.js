@@ -15,7 +15,7 @@ const useGetCart = () => {
 
   const fetchCartData = async () => {
     const url =
-      import.meta.env.VITE_API_GET_CART +
+      import.meta.env.VITE_API_ADD_CART +
       `?storeId=+` +
       storeId +
       `&customerId=` +

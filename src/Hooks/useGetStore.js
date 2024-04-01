@@ -14,8 +14,8 @@ const useGetStore = (storeDomain) => {
 
 //  storeDomain = pathArr[pathArr.length - 1];
   storeDomain = pathArr[1];
-  
-  const url = import.meta.env.VITE_API_GET_STORE_CUST + storeDomain;
+  const url = "http://192.168.4.21:8764/product-service/units"
+  // const url = import.meta.env.VITE_API_GET_STORE_CUST + storeDomain;
   
   const fetchData = async () => {
     try {

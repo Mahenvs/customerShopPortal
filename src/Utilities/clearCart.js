@@ -6,7 +6,7 @@ export async function clearCart(cartList) {
   const storeId = JSON.parse(localStorage.getItem("store")).storeId;
 
   const cartDeleteUrl =
-    import.meta.env.VITE_API_DELETE_CART +
+    import.meta.env.VITE_API_ADD_CART +
     '0' +
     `?storeId=` +
     storeId +
