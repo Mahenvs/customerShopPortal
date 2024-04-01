@@ -27,7 +27,7 @@ export const header = () =>{
     return  `{
         Authorization: "Basic ${basicAuthToken}",
         "Content-Type": "application/x-www-form-urlencoded",
-        "Access-Control-Allow-Origin": "http://192.168.1.82/",
+        "Access-Control-Allow-Origin": "*",
       }`
 
 }
