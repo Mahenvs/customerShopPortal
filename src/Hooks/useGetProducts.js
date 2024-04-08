@@ -11,7 +11,7 @@ const useGetProducts = () => {
 
   const fetchData = async () => {
     
-    const url = import.meta.env.VITE_API_STORE+`${storeId}/categories/${categoryId}/products`;
+    const url = import.meta.env.VITE_API_URL_PRODUCT+`/stores/${storeId}/categories/${categoryId}/products`;
     try {
       const response = await fetch(url, getHeaders());
       if (!response.ok) {

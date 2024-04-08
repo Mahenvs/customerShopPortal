@@ -42,9 +42,7 @@ const UpdateProfile = () => {
     if (errorIs.length > 0) {
       return;
     }
-    // const basicAuthToken = btoa(
-    //   `${import.meta.env.VITE_USER}:${import.meta.env.VITE_PASSWORD}`
-    // );
+
     const storeId = JSON.parse(localStorage.getItem("store")).storeId;
     const signUpUrl = import.meta.env.VITE_SIGNUP + "?storeId=" + storeId;
 

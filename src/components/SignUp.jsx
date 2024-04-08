@@ -92,9 +92,7 @@ const SignUp = ({onLogin}) => {
     if(errorIs.length >0){
       return;
     }
-    // const basicAuthToken = btoa(
-    //   `${import.meta.env.VITE_USER}:${import.meta.env.VITE_PASSWORD}`
-    // );
+
     const data = await fetch(signInUrl, getPostHeaders({
       email: formData.email,
       password: formData.password,

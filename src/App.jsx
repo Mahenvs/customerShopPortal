@@ -46,13 +46,6 @@ const router = createBrowserRouter([
             loader: getData,
             lazy: () => import("./components/ProductDetail"),
           },
-          // {
-          //   path: ":product",
-
-          //   loader: getData,
-          //   lazy: () => import("./components/ProductDetail"),
-          //   element: index,
-          // },
           {
             path: "auth",
             element: <RedirectHome />,
