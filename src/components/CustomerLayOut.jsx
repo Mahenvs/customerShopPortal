@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Footer from "./Footer";
 import { ToastContainer } from "react-toastify";
 import { useEffect, useRef, useState } from "react";
@@ -8,9 +8,10 @@ import { getHeaders } from "../Utilities/getHeaders";
 const Layout = () => {
   
   const [verifiedUser, setVerifiedUser] = useState(false);
-
+  const location = useLocation();
   let storeId = JSON.parse(localStorage.getItem("store"))?.storeId;
 
+  console.log(location.pathname.includes("auth"));
   let customerId = localStorage.getItem("customerId");
 
   const url =
@@ -37,7 +38,7 @@ const Layout = () => {
   // dispatch(setTheme(currentTheme));
   return (
     <div className="flex flex-col h-screen shadow overflow-auto dark:bg-darkGray">
-      {!verifiedUser && <div className=" bg-maroon-300 border-b-2 text-slate-700 text-md text-pretty text-center p-2 ">{"Hey there, Verify user before ordering:)"}</div>}
+      {!location.pathname.includes("auth") && !verifiedUser && <div className=" bg-maroon-300 border-b-2 text-slate-700 text-md text-pretty text-center p-2 ">{"Hey there, Verify user before ordering:)"}</div>}
       <ToastContainer style={{ fontSize: "20px" }}  />
       <div className="h -screen flex flex-col flex-1">
         <Outlet />

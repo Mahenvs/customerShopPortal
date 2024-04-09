@@ -96,25 +96,25 @@ const CustomerNavBar = () => {
             {isLoggedIn && <ProductSearch />}
           </section>
           <section className="font-medium text-lg w-2/5 flex mx-14 gap-10 text-white-500 items-center">
-            <Link
+          {isLoggedIn &&  <Link
               to={"categories"}
               className="cursor-pointer"
               onClick={() => navigateTo("categories")}
             >
               Categories
-            </Link>
+            </Link>}
 
             {isLoggedIn && <Link to="cart" className="flex  cursor-pointer items-center ">
               {cartCnt != 0 ? <Badge value={cartCnt} /> : ""}
               <img src={currentTheme == 'light' ? cartImg : darkShop} width={30} />
               <span className="z-10">Cart</span>
             </Link>}
-            <span
+            {isLoggedIn && <span
               className="cursor-pointer"
               onClick={() => setLogOut((val) => !val)}
             >
               Account
-            </span>
+            </span>}
             <div  className="font-medium">
               <img onClick={() => changeTheme()} src={currentTheme=='light' ? nightMode : lightMode} width={25}/>
             </div>
