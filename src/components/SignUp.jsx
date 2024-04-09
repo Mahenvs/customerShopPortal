@@ -96,6 +96,7 @@ const SignUp = ({onLogin}) => {
     const data = await fetch(signInUrl, getPostHeaders({
       email: formData.email,
       password: formData.password,
+      storeId:storeId
     }));
     const response = await data.json();
     

@@ -90,7 +90,7 @@ const CustomerNavBar = () => {
             className="w-1/5 ml-40 mr-10 flex items-center text-ellipsis"
           >
             <img src={shop} width="45px" />
-            <span className="px-3 font-medium text-lg truncate">{storeName}</span>
+            <span className="px-3 font-medium text-lg truncate">{storeName?.toUpperCase()}</span>
           </Link>
           <section className="w-2/5  mx-14">
             {isLoggedIn && <ProductSearch />}

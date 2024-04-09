@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import Button from "../UI_Elements/Button";
 import { checkOutCart } from "../Utilities/checkOut";
 import {useNavigate} from 'react-router-dom';
+import OutlineButton from "../UI_Elements/OutlineButton";
 
 const PaymentSelect = () => {
   useGetPaymentMethods();
@@ -41,7 +42,12 @@ const PaymentSelect = () => {
         itemId={"methodId"}
         itemName={"methodName"}
       ></CustomDropDown>
-      <Button title="Order" class="dark:border-darkWhite dark:border" onClickButton={orderConfirmHandler}></Button>
+      <OutlineButton
+            class="border border-slate-400 text-slate-600 dark:text-darkWhite"
+            title="Order"
+            onClickButton={orderConfirmHandler}
+          ></OutlineButton>
+      {/* <Button title="Order" class="dark:border-darkWhite dark:border" onClickButton={orderConfirmHandler}></Button> */}
     </div>
   );
 };
