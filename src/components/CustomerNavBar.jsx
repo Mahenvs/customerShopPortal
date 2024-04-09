@@ -10,10 +10,9 @@ import Badge from "../UI_Elements/Badge";
 import ProductSearch from "./ProductSearch";
 import { resetStore, setCustomerId } from "../store/storeSlice";
 import cartImg from "../../src/assets/cartShop.png";
-import { resetAppConfig, setLoggedIn, setTheme } from "../store/appConfigSlice";
+import { resetAppConfig, setLoggedIn, setTheme, setVerifiedUser } from "../store/appConfigSlice";
 import { resetCart } from "../store/cartSlice";
 import { resetProduct } from "../store/productSlice";
-import Button  from "../UI_Elements/Button";
 
 const CustomerNavBar = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -43,6 +42,9 @@ const CustomerNavBar = () => {
   const navigateTo = (flag) => {
     if (flag == "logOut") {
       localStorage.removeItem("customerId");
+      localStorage.removeItem("userVerified");
+      localStorage.removeItem("verifiedUser");
+      dispatch(setVerifiedUser(false));
       dispatch(resetStore());
       dispatch(resetAppConfig());
       dispatch(resetCart());
