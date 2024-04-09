@@ -80,7 +80,7 @@ const CartView = () => {
             <Heading>Total ${cartTotal}</Heading>
           </div>
 
-          <div className="list-none py-1 text-base font-medium pl-1">
+          <div className="mb-8 list-none py-1 text-base font-medium pl-1">
             {cartTotal > 0 ? (
               shoppingList?.map((item, index) => {
                 return (

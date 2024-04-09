@@ -7,7 +7,7 @@ export async function clearCart(cartList) {
 
   const cartDeleteUrl =
     import.meta.env.VITE_API_ADD_CART +
-    '0' +
+    '/0' +
     `?storeId=` +
     storeId +
     `&customerId=` +

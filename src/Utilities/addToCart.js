@@ -6,7 +6,7 @@ export async function addToCart1(item, cartList, flag, addQuantity) {
   const storeId = JSON.parse(localStorage.getItem("store")).storeId;
   const cartUrl = import.meta.env.VITE_API_ADD_CART;
   const cartDeleteUrl =
-    import.meta.env.VITE_API_ADD_CART +
+    import.meta.env.VITE_API_ADD_CART +"/" +
     item?.productId +
     `?storeId=` +
     storeId +
