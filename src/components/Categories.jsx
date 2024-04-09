@@ -17,7 +17,7 @@ const Categories = () => {
     dispatch(setActiveCategory(id)) 
   }
   return (
-    <div className="sticky top-100 h-s creen">
+    <div className="sticky top-100 h-s creen borde r-r-2">
 
       {!categories ? (
         <Shimmer />

@@ -40,7 +40,7 @@ const Layout = () => {
     <div className="flex flex-col h-screen shadow overflow-auto dark:bg-darkGray">
       {!location.pathname.includes("auth") && !verifiedUser && <div className=" bg-maroon-300 border-b-2 text-slate-700 text-md text-pretty text-center p-2 ">{"Hey there, Verify user before ordering:)"}</div>}
       <ToastContainer style={{ fontSize: "20px" }}  />
-      <div className="h -screen flex flex-col flex-1">
+      <div className="h-screen flex flex-col flex-1">
         <Outlet />
       </div>
       <Footer />

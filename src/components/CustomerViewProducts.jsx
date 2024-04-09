@@ -38,7 +38,7 @@ const CustomerViewProducts = () => {
       ) : (
         productsList.map((item, index) => {
           return (
-            <div key={index} className="shadow-lg py-2 flex gap-4 my-4 mb-12 dark:border-darkBorder dark:shadow-zinc-600 dark:bg-gray-950 mx-4">
+            <div key={index} className="shadow-lg py-2 flex gap-4 my-4 mb-12 dark:border-darkBorder dark:shadow-zinc-600 dark:bg-gray-950 mx-4 max-h-screen">
               <section
                 className="w-1/4 p-1 border rounded dark:border-none"
                 onClick={() => navigate(item?.productName)}

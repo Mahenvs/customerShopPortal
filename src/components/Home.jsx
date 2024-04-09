@@ -14,13 +14,13 @@ export default function Home() {
 
   return (
     <div className="dark:bg-darkGray mb-10">
-      <div className="flex w-full flex-1 dark:bg-darkGray h -screen dark:text-darkWhite">
-        <span className="border-r-2 w-1/4 border-zinc-200  ml-40 h-s creen dark:border-darkBorder">
+      <div className="flex w-full flex-1 dark:bg-darkGray h -screen dark:text-darkWhite ">
+        <span className="borde r-r-2 w-1/4 border-zinc-200  ml-40 h-s creen dark:border-darkBorder h-screen">
           <Categories />
         </span>
-        <span className="w-1/2 border-r-2 border-zinc-200 mx-auto mb-16 dark:border-darkBorder">
+        <span className="w-1/2 borde r-r-2 border-zinc-200 mx-auto ml-2 mb-16 dark:border-darkBorder ">
           {/* productsList &&  */}
-          {<CustomerViewProducts />}
+          <CustomerViewProducts />
         </span>
         <span className="w-1/4  mx-4 mr-40">
           <Cart />
