@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import CustomDropDown from "../UI_Elements/CustomDropDown";
 import { useGetPaymentMethods } from "../Hooks/useGetPaymentMethods";
-import { useSelector } from "react-redux";
-import Button from "../UI_Elements/Button";
+import { useDispatch, useSelector } from "react-redux";
 import { checkOutCart } from "../Utilities/checkOut";
 import {useNavigate} from 'react-router-dom';
 import OutlineButton from "../UI_Elements/OutlineButton";
+import { clearCartStore } from "../store/storeSlice";
 
 const PaymentSelect = () => {
   useGetPaymentMethods();
@@ -17,16 +17,20 @@ const PaymentSelect = () => {
   const paymentHandler = (item) => {
     setPaymentMode(item);
   };
+  
+  const dispatch = useDispatch();
+
   const orderConfirmHandler = async () =>{
     const data = await checkOutCart(paymentMode)
     
     if(data.status == 200){
+      dispatch(clearCartStore())
       navigate("../orderConfirmed",{
         state:data.data
       });
     }
     else{
-      alert("No products found ")
+      // alert("No products found ")
     }
   }
   useEffect(() => {}, [paymentModes]);

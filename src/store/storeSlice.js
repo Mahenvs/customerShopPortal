@@ -63,6 +63,7 @@ const storeSlice = createSlice({
     clearCartStore: (state) => {
       state.cartList = [];
       state.noOfProducts = 0
+      state.cartTotalPric = 0;
     },
 
     cartList: (state, action) => {

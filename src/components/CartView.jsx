@@ -27,8 +27,8 @@ const CartView = () => {
     [...Array(100).keys()].map((i) => ({ value: i + 1 }))
   );
 
-  let verifiedUser = localStorage.getItem("userVerified") != null;
 
+  const verifiedUser = useSelector((store)=>store.appConfig.isVerifiedUser);
   const handleQuantityChange = async (item, value) => {
     const parsedValue = parseInt(value, 10); // Parse the value as an integer
 
@@ -65,6 +65,7 @@ const CartView = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+  const formattedTotal = (cartTotal < 500 ? cartTotal + 50 : cartTotal).toFixed(2);
 
   useEffect(() => {}, [shoppingList]);
   return (
@@ -164,7 +165,7 @@ const CartView = () => {
               <span className="flex justify-between">
                 <h5 className="font-base font-mono text-lg">Grand total </h5>
                 <p className="font-medium">
-                  $ {cartTotal < 500 ? cartTotal + 50 : cartTotal.toFixed(2)}
+                  $ {formattedTotal}
                 </p>
               </span>
               <p className="text-sm font-mono text-slate-400">
@@ -181,8 +182,8 @@ const CartView = () => {
               </span>
               <div className="flex justify-center my-4">
                 {!verifiedUser ?   <Button
-                  class="px-14 py-2 rounded w-full te xt-slate-50 bg-slate -500 underline cursor-default"
-                  title={ "Verify your mail..."}
+                  class="px-14 py-2 rounded w-full font-semibold  u nderline cursor-default"
+                  title={ "Verify your mail to continue"}
                 /> :
                 <Button
                   onClickButton={paymentConfirmHandler}
