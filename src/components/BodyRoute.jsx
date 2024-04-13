@@ -5,6 +5,7 @@ import { getHeaders } from "../Utilities/getHeaders";
 import axios from "axios";
 import { setVerifiedUser } from "../store/appConfigSlice";
 import { useEffect } from "react";
+import StoreNotExist from "./storeNotExist";
 
 const BodyRoute = () => {
   
@@ -31,14 +32,14 @@ const BodyRoute = () => {
     checkUserVerifiedOrNot();
   }, [customerId,verify]);
 
-  return (
+  return <>
     <div className="dark:bg-darkGray min-h-screen dark:text-darkWhite  mb-5">
       {!location.pathname.includes("auth") && customerId && !verifiedUser && <div className=" bg-red-300 border-b-2 text-black  text-md text-pretty text-center p-2 dark:text-white font-semibold">{"We have sent an verification email, please verify..."}</div>}
       
         <CustomerNavBar />
         <Outlet/>
     </div>
-  )
+  </>
 }
 
 export default BodyRoute

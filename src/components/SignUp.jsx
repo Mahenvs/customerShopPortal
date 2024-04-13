@@ -16,9 +16,9 @@ const InitialState = {
   cnfpassword: "",
 };
 
-const SignUp = ({onLogin}) => {    
+const SignUp = ({ onLogin }) => {
   const storeData = JSON.parse(localStorage.getItem("store"));
-    const dispatch =useDispatch();
+  const dispatch = useDispatch();
   const storeDomain = storeData?.storeDomain;
   const storeId = storeData?.storeId;
 
@@ -38,16 +38,14 @@ const SignUp = ({onLogin}) => {
   const toggleAuth = () => {
     setLogin((isLogin) => !isLogin);
     setFormData(InitialState);
-    setErrorMsg(null)
+    setErrorMsg(null);
     setEdited({
       email: false,
       password: false,
       cnfpassword: false,
     });
-    if(!isLogin)
-      navigate("?signUp")
-    else
-    navigate("?signIn")
+    if (!isLogin) navigate("?signUp");
+    else navigate("?signIn");
   };
 
   const handlerInput = (flag, value) => {
@@ -69,17 +67,17 @@ const SignUp = ({onLogin}) => {
   const navigate = useNavigate();
 
   async function Register() {
-    if(mailError || pswdError){
+    if (mailError || pswdError) {
       return;
     }
     const errorIs = validatingInputs(formData);
     setErrorMsg(errorIs);
-    if(errorIs.length >0){
+    if (errorIs.length > 0) {
       return;
     }
     if (!compareInputs(formData.password, formData.cnfpassword)) {
       setErrorMsg("Passwords not matching");
-      return ;
+      return;
     }
     navigate("/updateProfile", {
       state: formData,
@@ -89,33 +87,36 @@ const SignUp = ({onLogin}) => {
   const Login = async () => {
     const errorIs = validatingInputs(formData);
     setErrorMsg(errorIs);
-    if(errorIs.length >0){
+    if (errorIs.length > 0) {
       return;
     }
 
-    const data = await fetch(signInUrl, getPostHeaders({
-      email: formData.email,
-      password: formData.password,
-      storeId:storeId
-    }));
+    const data = await fetch(
+      signInUrl,
+      getPostHeaders({
+        email: formData.email,
+        password: formData.password,
+        storeId:storeId,
+      })
+    );
     const response = await data.json();
-    
+
     if (data.status === 200) {
-      const resp = JSON.parse(response.details)
+      const resp = JSON.parse(response.details);
       setErrorMsg(null);
       dispatch(setCustomerId(resp.CustomerId));
-      localStorage.setItem('customerId',resp.CustomerId)
+      localStorage.setItem("customerId", resp.CustomerId);
       navigate(`/${storeDomain}`);
-      dispatch(setLoggedIn(true))
+      dispatch(setLoggedIn(true));
     } else {
       setErrorMsg(response.message);
       throw new Error("Status is not 200");
     }
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     onLogin();
-  },[])
+  }, []);
   return (
     <>
       <div className="mx-auto  w-1/3 py-10 flex justify-center  ">

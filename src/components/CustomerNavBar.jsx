@@ -92,7 +92,7 @@ const CustomerNavBar = () => {
             className="w-1/5 ml-40 mr-10 flex items-center text-ellipsis"
           >
             <img src={shop} width="45px" />
-            <span className="px-3 font-medium text-lg truncate">{storeName?.toUpperCase()}</span>
+            <span title={storeName?.toUpperCase()} className="px-3 font-medium text-lg truncate">{storeName?.toUpperCase()}</span>
           </Link>
           <section className="w-2/5  mx-14">
             {isLoggedIn && <ProductSearch />}
@@ -105,6 +105,8 @@ const CustomerNavBar = () => {
             >
               Categories
             </Link>}
+
+            {!isLoggedIn && (<Link to="auth?signin">Sign In</Link>)}
 
             {isLoggedIn && <Link to="cart" className="flex  cursor-pointer items-center ">
               {cartCnt != 0 ? <Badge value={cartCnt} /> : ""}

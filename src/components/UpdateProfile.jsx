@@ -13,7 +13,8 @@ const initialState = {
   phoneNumber: "",
   address: "",
   email:"",
-  password:""
+  password:"",
+  storeId:""
 }
 const UpdateProfile = () => {
   
@@ -31,20 +32,20 @@ const UpdateProfile = () => {
       [flag]: value,
     }));
   };
-
+  const storeId = JSON.parse(localStorage.getItem("store")).storeId;
   const signUp = async () => {
     const errorIs = validatingInputs({
       ...formData,
       ...formData.email= prevFormData.email,
       ...formData.password= prevFormData.password,
+      ...formData.storeId = storeId
     });
     setErrorMsg(errorIs);
     if (errorIs.length > 0) {
       return;
     }
 
-    const storeId = JSON.parse(localStorage.getItem("store")).storeId;
-    const signUpUrl = import.meta.env.VITE_SIGNUP + "?storeId=" + storeId;
+    const signUpUrl = import.meta.env.VITE_SIGNUP;// + "?storeId=" + storeId;
 
     const data = await fetch(signUpUrl, getPostHeaders(formData));
     const response = await data.json();
