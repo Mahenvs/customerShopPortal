@@ -16,6 +16,7 @@ import { resetProduct } from "../store/productSlice";
 const CustomerNavBar = () => {
   const [isLoading, setIsLoading] = useState(true);
   let currentTheme = useSelector(store => store.appConfig.theme);
+  const userName = useSelector(store => store.appConfig.userName);
   const location = useLocation();
 
   const pathArr = location.pathname.split("/");
@@ -128,6 +129,9 @@ const CustomerNavBar = () => {
               <div className="absolute top-12 right-[11rem] p-3 border border-gray-300 z-20 bg-white rounded mt-2 dark:border-darkBorder dark:bg-darkGray dark:text-darkWhite" >
                 {isLoggedIn ? (
                   <>
+                  <div className="flex border-b py-3">
+                    User - {userName} 
+                  </div>
                     <div className="flex border-b py-3">
                       <span
                         className="cursor-pointer"

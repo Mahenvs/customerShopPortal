@@ -3,7 +3,7 @@ import CustomerNavBar from './CustomerNavBar';
 import { useDispatch, useSelector } from "react-redux";
 import { getHeaders } from "../Utilities/getHeaders";
 import axios from "axios";
-import { setVerifiedUser } from "../store/appConfigSlice";
+import { setUserName, setVerifiedUser } from "../store/appConfigSlice";
 import { useEffect } from "react";
 import StoreNotExist from "./storeNotExist";
 
@@ -22,9 +22,12 @@ const BodyRoute = () => {
     
   const checkUserVerifiedOrNot = async () => {
     const resp = await axios.get(url, getHeaders());
-    const result = await resp.data?.[0]?.emailIsVerified;
+    const res = await resp.data?.[0];
+    const result = res?.emailIsVerified;
+    const finalName = res?.firstName +" "+ res?.lastName;
     localStorage.setItem("verifiedUser",result);
     dispatch(setVerifiedUser(result));
+    dispatch(setUserName(finalName));
     verify = localStorage.getItem("verifiedUser");
   };
   useEffect(() => {

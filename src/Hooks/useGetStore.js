@@ -34,6 +34,7 @@ const useGetStore = (storeDomain) => {
       dispatch(setStoreId(result.id));
       dispatch(setName(result.name));
       dispatch(setImage(result.storeImageUrl))
+      dispatch(setAddress(result.address))
       dispatch(setName(result.name));
       document.title = result.name;
 
