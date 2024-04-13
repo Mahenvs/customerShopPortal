@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { getHeaders } from "../Utilities/getHeaders";
 import { useDispatch } from "react-redux";
-import { setAddress, setName, setStoreDomain, setStoreId } from "../store/storeSlice";
+import { setAddress, setImage, setName, setStoreDomain, setStoreId } from "../store/storeSlice";
 import {useLocation} from 'react-router-dom';
 
 const useGetStore = (storeDomain) => {
@@ -27,12 +27,14 @@ const useGetStore = (storeDomain) => {
       localStorage.setItem('store',JSON.stringify({
         storeDomain: storeDomain,
         storeId: result.id, 
-        storeName:result.name
+        storeName:result.name,
+        storeImgUrl:result.storeImageUrl
       }))
       dispatch(setStoreDomain(storeDomain))
       dispatch(setStoreId(result.id));
       dispatch(setName(result.name));
-      dispatch(setAddress(result.address))
+      dispatch(setImage(result.storeImageUrl))
+      dispatch(setName(result.name));
       document.title = result.name;
 
     } catch (error) {

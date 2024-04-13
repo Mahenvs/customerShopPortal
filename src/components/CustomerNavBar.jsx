@@ -1,6 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useGetStore from "../Hooks/useGetStore";
-import shop from "../assets/shop.jpg";
 import nightMode from "../assets/nightMode.png";
 import lightMode from "../assets/light-mode.png";
 import darkShop from "../assets/cartDark.png";
@@ -27,6 +26,7 @@ const CustomerNavBar = () => {
   useGetStore(storeDomain, () => setIsLoading(false));
 
   const storeName = useSelector((store) => store.store.name);
+  const storeImg = useSelector((store) => store.store.image);
   const cartCnt = useSelector((store) => store.store.noOfProducts);
 
   let storeDomainResource = useSelector((store) => store.store.storeDomain);
@@ -91,7 +91,9 @@ const CustomerNavBar = () => {
             to={"/" + storeDomainResource}
             className="w-1/5 ml-40 mr-10 flex items-center text-ellipsis"
           >
-            <img src={shop} width="45px" />
+            <section className="w-1/4 p-1 rounded dark:border-none"> 
+            <img src={storeImg}  className="rounded" />
+            </section>
             <span title={storeName?.toUpperCase()} className="px-3 font-medium text-lg truncate">{storeName?.toUpperCase()}</span>
           </Link>
           <section className="w-2/5  mx-14">

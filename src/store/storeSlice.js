@@ -4,6 +4,7 @@ const storeSlice = createSlice({
   name: "store",
   initialState: {
     name: null,
+    image:null,
     customerId: null,
     storeId: null,
     address: null,
@@ -17,6 +18,9 @@ const storeSlice = createSlice({
   reducers: {
     setName: (state, action) => {
       state.name = action.payload;
+    },
+    setImage: (state, action) => {
+      state.image = action.payload;
     },
     setStoreId: (state, action) => {
       state.storeId = action.payload;
@@ -156,6 +160,7 @@ export const {
   addSingleItemToCart,
   removeSingleItemFromCart,
   availablePaymentMethods,
+  setImage,
   resetStore
 } = storeSlice.actions;
 export default storeSlice.reducer;
