@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CustomFormLabel from "../UI_Elements/CustomFormLabel";
 import CustomFormControl from "../UI_Elements/CustomFormControl";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -12,9 +12,7 @@ const initialState = {
   lastName: "",
   phoneNumber: "",
   address: "",
-  email:"",
-  password:"",
-  storeId:""
+  
 }
 const UpdateProfile = () => {
   
@@ -23,8 +21,9 @@ const UpdateProfile = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const [errorMsg, setErrorMsg] = useState(null);
-  const prevFormData = location.state;
+  
   const storeDomain = JSON.parse(localStorage.getItem("store")).storeDomain;
+  const storeId = JSON.parse(localStorage.getItem("store")).storeId;
 
   const handlerInput = (flag, value) => {
     setFormData((prevValues) => ({
@@ -32,14 +31,18 @@ const UpdateProfile = () => {
       [flag]: value,
     }));
   };
-  const storeId = JSON.parse(localStorage.getItem("store")).storeId;
+  useEffect(()=>{
+    const prevFormData = location.state;
+    console.log(prevFormData," inside after ");
+    setFormData((prevValues) => ({
+      ...prevValues,
+      email: prevFormData.email,
+      password:prevFormData.password,
+      storeId : storeId 
+    }));
+  },[])
   const signUp = async () => {
-    const errorIs = validatingInputs({
-      ...formData,
-      ...formData.email= prevFormData.email,
-      ...formData.password= prevFormData.password,
-      ...formData.storeId = storeId
-    });
+    const errorIs = validatingInputs(formData);
     setErrorMsg(errorIs);
     if (errorIs.length > 0) {
       return;

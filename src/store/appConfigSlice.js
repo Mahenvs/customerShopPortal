@@ -15,7 +15,7 @@ const appConfigSlice = createSlice({
             bottommessage:null
         },
         isLoggedIn: false,
-        isVerifiedUser: false
+        isVerifiedUser: true
     },
     reducers:{
         setTheme: (state,action) => {
