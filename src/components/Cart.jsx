@@ -60,7 +60,7 @@ const Cart = () => {
     navigate("cart")
   }
   return (
-    <div className="f lex p-2 ">
+    <div className=" p-2 ">
       <section className="flex justify-between">
         <h1 className="text-xl font-semibold">Cart</h1>
         {list.length != 0 && (<button className="underline" onClick={clearCartHandler}>
@@ -68,11 +68,11 @@ const Cart = () => {
         </button>) }
       </section>
       <div
-        className={` ${list.length != 0 ? `border-b border-b-slate-400 dark:border-darkBorder` : ``}`}
+        className={` ${list.length != 0 ? ` flex flex-col overflow-x-auto max-h-[360px] border-b border-b-slate-400 dark:border-darkBorder` : ``}`}
       >
         {list?.map((item, index) => {
           return (
-            <div key={index} className="flex mt-5 justify-between mb-5 ">
+            <div key={index} className="flex mt-5 justify-between mb-5 pr-3 ">
               <section className="font-mono">
                 <p>{item?.productName}</p>
                 <p>${item?.productCartPrice?.toFixed(2)}</p>
