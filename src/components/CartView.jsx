@@ -32,7 +32,7 @@ const CartView = () => {
   const handleQuantityChange = async (item, value) => {
     const parsedValue = parseInt(value, 10); // Parse the value as an integer
 
-    const response = await addToCart1(item, shoppingList, "add", parsedValue);
+    const response = await addToCart1(item, shoppingList, "addQ", parsedValue);
     if (response?.message == "Request failed with status code 404") {
       toast.warn("Out of Stock!", ToastInfoMessage);
     } else {

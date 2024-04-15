@@ -14,7 +14,7 @@ import SubHeading from "../UI_Elements/SubHeading"
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastInfoMessage } from "../Utilities/ToastMessage";
-
+import _debounce from "lodash/debounce";
 
 const Cart = () => {
   useGetCart();
@@ -24,11 +24,11 @@ const Cart = () => {
   const isLoggedIn = useSelector((store) => store.appConfig.isLoggedIn);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
-  const handleItemsFromCart = async (item, flag) => {
-    
+  let cnt =1;
+  const handleItemsFromCart = async (item, flag,cnt) => {
+    console.log("flag ",flag,cnt);
     if (flag == "increase") {
-      const response = await addToCart1(item, list, "add",-1);
+      const response = await addToCart1(item, list, "add",cnt);
       
       if (response?.message == "Request failed with status code 404") {  
         toast.warn('Out of Stock!', ToastInfoMessage);
@@ -38,12 +38,16 @@ const Cart = () => {
         );
       }
     } else {
-      const response = await addToCart1(item, list, "remove",-1);
+      const response = await addToCart1(item, list, "remove",cnt);
       dispatch(
         removeSingleItemFromCart({ ...response, productName: item.productName })
       );
     }
   };
+
+  const updateCart = _debounce(async (item,flag,cnt) => {
+    handleItemsFromCart(item,flag,cnt);
+  },500);
 
   const clearCartHandler = async () => {
     if (list.length != 0) {
@@ -80,7 +84,7 @@ const Cart = () => {
               <section className="self-end border border-gray-400 rounded justify-end flex px -2 ">
                 <button
                   className="h-fit   px-2 border-r-2 "
-                  onClick={() => handleItemsFromCart(item, "decrease")}
+                  onClick={() => updateCart(item, "decrease",cnt++)}
                 >
                   -
                 </button>
@@ -90,7 +94,7 @@ const Cart = () => {
                 </button>
                 <button
                   className=" h-fit  px-2"
-                  onClick={() => handleItemsFromCart(item, "increase")}
+                  onClick={() => updateCart(item, "increase",cnt++)}
                 >
                   +
                 </button>

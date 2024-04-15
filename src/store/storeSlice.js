@@ -123,7 +123,7 @@ const storeSlice = createSlice({
             return {
               ...item,
               productCartPrice: product1.productCartPrice,
-              productCartQuantity: item.productCartQuantity - 1,
+              productCartQuantity: product1.productCartQuantity,
             };
           } else return null;
         } else {

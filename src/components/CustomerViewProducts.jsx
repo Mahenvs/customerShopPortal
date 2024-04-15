@@ -6,21 +6,22 @@ import { addToCart1 } from "../Utilities/addToCart";
 import { ToastBottomInfoMessage, ToastInfoMessage } from "../Utilities/ToastMessage";
 import { toast } from "react-toastify";
 import ShimmerProdList from "../UI_Elements/ShimmerProdList";
+import _debounce from "lodash/debounce";
 
 const CustomerViewProducts = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  let cnt = 1;
   let productsList = useSelector((store) => store.product.products);
   const cartListData = useSelector((store) => store.store.cartList);
   const customer = useSelector((store) => store.store.customerId);
 
-  const addToCartHandler = async (item) => {
+  const addToCartHandler = async (item,qnty) => {
     if (customer == null) {
       navigate("/");
       return;
     }
-    const response = await addToCart1(item, cartListData, "add", -1);
+    const response = await addToCart1(item, cartListData, "add", qnty);
     if (response?.message == "Request failed with status code 404") {
       toast.warn('Out of Stock!', ToastInfoMessage);
     } else{
@@ -30,7 +31,11 @@ const CustomerViewProducts = () => {
         toast('Item added successfully!', ToastBottomInfoMessage);
       }
   };
-
+  
+  const updateCart = _debounce(async (item,cnt) => {
+    addToCartHandler(item,cnt);
+  },500);
+  
   return (
     <>
       {!productsList ? (
@@ -60,7 +65,8 @@ const CustomerViewProducts = () => {
               </section>
               <section className=" min-w-fit self-end">
                 <Button
-                  onClickButton={() => addToCartHandler(item)}
+
+                  onClickButton={() => updateCart(item,cnt++)}
                   title={
                     item?.productStockQuantity > 0 ? "Add" : "Out of stock"
                   }
