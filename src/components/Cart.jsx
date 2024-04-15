@@ -88,7 +88,7 @@ const Cart = () => {
                 >
                   -
                 </button>
-                <button className=" h-fit bg-blue-100  px-2 border-r-2 dark:text-darkLightBlack dark:bg-darkWhite">
+                <button className=" h-fit bg-buttonBg text-otherColor  px-2 border-r-2 dark:text-darkLightBlack dark:bg-darkWhite">
                   {" "}
                   {item?.productCartQuantity}
                 </button>
@@ -113,7 +113,7 @@ const Cart = () => {
           <div className="flex justify-center ">
             <Button
             onClickButton={goToCartHandler}
-              class="px-14 py-3 rounded text-slate-50 bg-slate-500 "
+              class="px-14 py-3 rounded   "
               title={"Go to Cart"}
             />
           </div>

@@ -27,8 +27,7 @@ const CartView = () => {
     [...Array(100).keys()].map((i) => ({ value: i + 1 }))
   );
 
-
-  const verifiedUser = useSelector((store)=>store.appConfig.isVerifiedUser);
+  const verifiedUser = useSelector((store) => store.appConfig.isVerifiedUser);
   const handleQuantityChange = async (item, value) => {
     const parsedValue = parseInt(value, 10); // Parse the value as an integer
 
@@ -65,7 +64,9 @@ const CartView = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-  const formattedTotal = (cartTotal < 500 ? cartTotal + 50 : cartTotal).toFixed(2);
+  const formattedTotal = (cartTotal < 500 ? cartTotal + 50 : cartTotal).toFixed(
+    2
+  );
 
   useEffect(() => {}, [shoppingList]);
   return (
@@ -111,21 +112,33 @@ const CartView = () => {
                             handleQuantityChange(item, e.target.value)
                           }
                         >
-                          {options.map((value, optionIndex) => (
-                            <option
+                          {options.map((value, optionIndex) => {
+  if (value.value <= item?.productStockQuantity) {
+    return (
+      <option key={value.value + optionIndex} value={value.value}>
+        {value.value}
+      </option>
+    );
+  }
+  return null;
+})}
+
+
+                          {/* {options.map((value, optionIndex) => (
+                            value <= 10 && (<option
                               key={item.productName + value + optionIndex}
                               value={value.value}
                             >
                               {value.value}
-                            </option>
-                          ))}
+                            </option>)
+                          ))} */}
                         </select>
                       </p>
                     </section>
                     <section className="justify-start">
                       <OutlineButton
                         onClickButton={() => removeItemFromCart(item)}
-                        class="text-slate-500 bg-white text-lg border py-[1px] px-2 h-fit "
+                        class="text-gray-700 bg-secondaryBg text-lg border py-[1px] px-2 h-fit "
                         title="Remove"
                       ></OutlineButton>
                       <p className="text-sm font-light self-end mx-4">
@@ -164,9 +177,7 @@ const CartView = () => {
               <p className="border-b my-1 dark:border-darkBorder"></p>
               <span className="flex justify-between">
                 <h5 className="font-base font-mono text-lg">Grand total </h5>
-                <p className="font-medium">
-                  $ {formattedTotal}
-                </p>
+                <p className="font-medium">$ {formattedTotal}</p>
               </span>
               <p className="text-sm font-mono text-slate-400">
                 {" "}
@@ -181,15 +192,18 @@ const CartView = () => {
                 <p className="font-medium text-green-300">3-5 days</p>
               </span>
               <div className="flex justify-center my-4">
-                {!verifiedUser ?   <Button
-                  class="px-14 py-2 rounded w-full font-semibold  u nderline cursor-default"
-                  title={ "Verify your mail to continue"}
-                /> :
-                <Button
-                  onClickButton={paymentConfirmHandler}
-                  class="px-14 py-2 rounded w-full text-slate-50 bg-slate-500"
-                  title={"Continue"}
-                />}
+                {!verifiedUser ? (
+                  <Button
+                    class="px-14 py-2 rounded w-full font-semibold cursor-default"
+                    title={"Verify your mail to continue"}
+                  />
+                ) : (
+                  <Button
+                    onClickButton={paymentConfirmHandler}
+                    class="px-14 py-2 rounded w-full "
+                    title={"Continue"}
+                  />
+                )}
               </div>
             </section>
           </div>

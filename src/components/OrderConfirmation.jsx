@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useLocation, useNavigate } from "react-router-dom";
 import { clearCartStore } from "../store/storeSlice";
 import { useDispatch } from "react-redux";
-import successImg from "../../src/assets/tickSuccess2.jpg";
+import successImg from "../../src/assets/success1.png";
 import darkSuccess from "../../src/assets/darkSuccess1.png";
 import {useSelector} from 'react-redux';
 

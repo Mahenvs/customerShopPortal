@@ -13,7 +13,7 @@ export const useGetPaymentMethods = () => {
     
     await axios.get(getInfoUrl, getHeaders())
     .then((response) => {
-        const data1  = [{methodId:'null',methodName:'Open dropdown'},...response.data]
+        const data1  = [{methodId:'null',methodName:'Choose'},...response.data]
         dispatch(availablePaymentMethods(data1));
       })
       .catch((error) => {

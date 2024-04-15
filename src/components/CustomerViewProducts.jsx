@@ -45,7 +45,7 @@ const CustomerViewProducts = () => {
           return (
             <div key={index} className="shadow-lg py-2 flex gap-4 my-4 mb-12 dark:border-darkBorder dark:shadow-zinc-600 dark:bg-gray-950 mx-4 max-h-screen">
               <section
-                className="w-1/4 p-1 border rounded dark:border-none"
+                className="w-1/4 px-2 py-1 dark:border-none"
                 onClick={() => navigate(item?.productName)}
               >
                 <img src={item?.productImageUrl} alt="" width="100px" className="rounded"/>
@@ -72,7 +72,7 @@ const CustomerViewProducts = () => {
                   }
                   class={`px-2 h-fit  ${
                     item?.productStockQuantity > 0
-                      ? "text-slate-50 bg-slate-500  "
+                      ? "text-buttonText bg-buttonBg  "
                       : "text-red-400 bg-white border border-red-200"
                   }`}
                 ></Button>

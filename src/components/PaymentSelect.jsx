@@ -19,8 +19,13 @@ const PaymentSelect = () => {
   };
   
   const dispatch = useDispatch();
+  const [errorIs, setError] = useState();
 
   const orderConfirmHandler = async () =>{
+    if(!paymentMode) {
+      setError("Please choose any payment method");
+      return;
+    }
     const data = await checkOutCart(paymentMode)
     
     if(data.status == 200){
@@ -35,22 +40,22 @@ const PaymentSelect = () => {
   }
   useEffect(() => {}, [paymentModes]);
   return (
-    <div>
-      <h3 className="text-slate-700 text-xl justify-start  mt-1 font-semibold mb-2 dark:text-darkWhite">
-        Select Payment Type{" "}
-      </h3>
-
+    <div className="">
+      
       <CustomDropDown
         options={paymentModes}
         inputChange={paymentHandler}
         itemId={"methodId"}
         itemName={"methodName"}
       ></CustomDropDown>
+    <div>
+      {!paymentMode && <div className="text-red-500 mt-[-10px] mb-4">{errorIs}</div>}
       <OutlineButton
-            class="border border-slate-400 text-slate-600 dark:text-darkWhite"
+            class="border bg-buttonBg border-slate-400 text-buttonText dark:text-darkWhite"
             title="Order"
             onClickButton={orderConfirmHandler}
           ></OutlineButton>
+          </div>
       {/* <Button title="Order" class="dark:border-darkWhite dark:border" onClickButton={orderConfirmHandler}></Button> */}
     </div>
   );

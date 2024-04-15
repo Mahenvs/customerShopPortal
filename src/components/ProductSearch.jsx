@@ -31,7 +31,7 @@ const ProductSearch = () => {
     <div>
       <input
         type="text"
-        className="w-full border px-3 py-2 bg-gray-100 rounded placeholder:font-normal text-lg focus:outline-none focus:shadow focus:shadow-blue-400 dark:text-darkLightBlack"
+        className="w-full border px-3 py-2 rounded placeholder:font-normal text-lg focus:outline-none focus:shadow focus:shadow-secondaryBg dark:text-darkLightBlack"
         placeholder="Search for products"
         onChange={(e) => onSearchHandler(e.target.value)}
       />
@@ -47,7 +47,7 @@ const ProductSearch = () => {
               <li
                 key={product?.productId}
                 onClick={() => navigateToDetail(product?.productName)}
-                className="list-none p-3 font-sans  cursor-pointer hover:bg-blue-100 dark:text-darkWhite dar dark:bg-darkLightBlack"
+                className="list-none p-3 font-sans  cursor-pointer hover:bg-secondaryBg text-black dark:text-darkWhite dar dark:bg-darkLightBlack"
               >
                 {product?.productName}
               </li>

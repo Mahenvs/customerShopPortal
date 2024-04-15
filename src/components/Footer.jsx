@@ -5,12 +5,12 @@ const Footer = () => {
   const address = useSelector((store) => store.store.address);
 
   return (
-    <div className="h-[4rem] w-full bg-slate-700 dark:bg-darkLightBlack items-center flex bottom-0 fixed justify-center">
-      <span className="text-white text-xl font-medium mx-2 ">
+    <div className="h-[4rem] w-full text-primaryText bg-primaryBg dark:bg-darkLightBlack items-center flex bottom-0 fixed justify-center">
+      <span className=" text-xl font-medium mx-2 ">
         Store @{address}
       </span>
       <div className=" ">
-        <span className="text-white text-xl font-medium mx-2 flex flex-row gap-2 truncate">
+        <span className=" text-xl font-medium mx-2 flex flex-row gap-2 truncate">
           &copy;{storeName}
         </span>
       </div>

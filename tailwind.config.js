@@ -9,6 +9,14 @@ export default {
     extend: {
       colors: {
         // transparent: 'transparent',
+        primaryBg: '#12372A',
+        primaryText:'#FBFADA',
+        secondaryBg:'#ADBC9F',
+        secondaryText:'#333333',
+        buttonBg:'#436850',
+        buttonText:'#FBFADA',
+        otherColor:'#FBFADA',
+
         darkBlack: '#020917',
         darkLightBlack: '#2f192a',
         darkGray: '#000111',
@@ -18,6 +26,7 @@ export default {
         darkModal: '#2F182F'
         // darkBorder: '#C5C3C6'
         // white: '#fff',
+        
       },
     },
   },
