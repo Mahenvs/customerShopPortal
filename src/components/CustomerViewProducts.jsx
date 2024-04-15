@@ -34,7 +34,7 @@ const CustomerViewProducts = () => {
   
   const updateCart = _debounce(async (item,cnt) => {
     addToCartHandler(item,cnt);
-  },500);
+  },100);
   
   return (
     <>
