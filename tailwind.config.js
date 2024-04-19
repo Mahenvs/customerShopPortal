@@ -17,15 +17,15 @@ export default {
         buttonText:'#FBFADA',
         otherColor:'#FBFADA',
 
-        darkBlack: '#020917',
-        darkLightBlack: '#2f192a',
-        darkGray: '#000111',
+        darkBlack: '#09090B',
+        darkBg: '#030712',
         darkWhite: '#f8f9f9',
-        darkBorder: '#F5C3C6',
+        darkBorder: '#2f3a4d',
         darkBadge: '#4F192a',
-        darkModal: '#2F182F'
-        // darkBorder: '#C5C3C6'
-        // white: '#fff',
+        darkModal: '#1f1e2b',
+        darkText:'#262d3b',
+        darkButtonBg:'#f9fafb',
+        
         
       },
     },

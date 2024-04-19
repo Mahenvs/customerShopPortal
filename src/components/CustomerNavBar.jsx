@@ -126,7 +126,8 @@ const CustomerNavBar = () => {
               <img onClick={() => changeTheme()} src={currentTheme=='light' ? nightMode : lightMode} width={25}/>
             </div>
             {showLogOut && (
-              <div className="absolute top-12 right-[11rem] p-3 border border-gray-300 z-20 bg-white rounded mt-2 dark:border-darkBorder dark:bg-darkGray dark:text-darkWhite" >
+              <div className="absolute top-12 right-[11rem] p-3 border border-gray-300 z-20 bg-white rounded mt-2 dark:border-darkBorder dark:bg-darkBg dark:text-darkWhite"
+              onClick={()=>setLogOut((val) => !val)} >
                 {isLoggedIn ? (
                   <>
                   <div className="flex border-b py-3">

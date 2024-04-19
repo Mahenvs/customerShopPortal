@@ -36,7 +36,7 @@ const BodyRoute = () => {
   }, [customerId,verify]);
 
   return <>
-    <div className="dark:bg-darkGray min-h-screen dark:text-darkWhite  mb-5">
+    <div className="dark:bg-darkBg min-h-screen dark:text-darkWhite  mb-5">
       {!location.pathname.includes("auth") && customerId && !verifiedUser && <div className=" bg-red-300 border-b-2 text-black  text-md text-pretty text-center p-2 dark:text-white font-semibold">{"We have sent an verification email, please verify..."}</div>}
       
         <CustomerNavBar />

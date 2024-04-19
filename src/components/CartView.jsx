@@ -72,7 +72,7 @@ const CartView = () => {
   return (
     <>
       <div
-        className={`flex flex-row mx-56 gap-10 overflow-auto dark:bg-darkGray ${
+        className={`flex flex-row mx-56 gap-10 overflow-auto dark:bg-darkBg ${
           isModalOpen ? "backdrop-open" : "backdrop"
         }`}
       >
@@ -106,7 +106,7 @@ const CartView = () => {
                       <p className="my-1">
                         Qty:
                         <select
-                          className="ml-2 p-1 w-14 outline-none border border-slate-300 dark:border-darkBorder  focus:border-slate-400 rounded dark:text-darkGray"
+                          className="ml-2 p-1 w-14 outline-none border border-slate-300 dark:border-darkBorder  focus:border-slate-400 rounded dark:text-darkText"
                           value={item.productCartQuantity}
                           onChange={(e) =>
                             handleQuantityChange(item, e.target.value)
@@ -191,7 +191,7 @@ const CartView = () => {
                 </h5>
                 <p className="font-medium text-green-300">3-5 days</p>
               </span>
-              <div className="flex justify-center my-4">
+              <div className="flex justify-center my-4 dark:bg-[#f9fafb] dark:text-darkText">
                 {!verifiedUser ? (
                   <Button
                     class="px-14 py-2 rounded w-full font-semibold cursor-default"
@@ -200,7 +200,7 @@ const CartView = () => {
                 ) : (
                   <Button
                     onClickButton={paymentConfirmHandler}
-                    class="px-14 py-2 rounded w-full "
+                    class="px-14 py-2 rounded w-full dark:bg-darkButtonBg dark:text-darkText"
                     title={"Continue"}
                   />
                 )}

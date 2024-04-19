@@ -43,7 +43,7 @@ const CustomerViewProducts = () => {
       ) : (
         productsList.map((item, index) => {
           return (
-            <div key={index} className="shadow-lg py-2 flex gap-4 my-4 mb-12 dark:border-darkBorder dark:shadow-zinc-600 dark:bg-gray-950 mx-4 max-h-screen">
+            <div key={index} className="shadow-lg dark:shadow-lg py-2 flex gap-4 my-4 mb-12 dark:border-darkBorder dark:rounded dark:border dark:border-1 dark:bg-darkBg  mx-4 max-h-screen">
               <section
                 className="w-1/4 px-2 py-1 dark:border-none"
                 onClick={() => navigate(item?.productName)}
@@ -72,7 +72,7 @@ const CustomerViewProducts = () => {
                   }
                   class={`px-2 h-fit  ${
                     item?.productStockQuantity > 0
-                      ? "text-buttonText bg-buttonBg  "
+                      ? "text-buttonText bg-buttonBg  dark:bg-[#f9fafb] dark:text-darkText"
                       : "text-red-400 bg-white border border-red-200"
                   }`}
                 ></Button>

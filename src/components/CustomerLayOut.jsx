@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 
 const Layout = () => {
   return (
-    <div className="flex flex-col h-screen shadow overflow-auto dark:bg-darkGray">
+    <div className="flex flex-col h-screen shadow overflow-auto dark:bg-darkBg">
       <ToastContainer style={{ fontSize: "20px" }} />
       <div className="h-screen flex flex-col flex-1">
         <Outlet />

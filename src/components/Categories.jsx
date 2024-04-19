@@ -26,9 +26,9 @@ const Categories = () => {
           return (
             <div
               key={index}
-              className="list-none py-1 text-base font-medium w-full pl-1 dark:text-darkLightBlack "
+              className="list-none py-1 text-base font-medium w-full pl-1 dark:text-darkText "
             >
-              <li className={activeCategory === item?.categoryId  ? "p-1 bg-gradient-to-r from-white to-primaryBg dark:to-darkLightBlack  w-full" : "bg-white p-1"} 
+              <li className={activeCategory === item?.categoryId  ? "p-1 bg-gradient-to-r from-white to-primaryBg dark:to-darkModal dark:to-darkLightBlack  w-full" : "bg-white p-1"} 
               onClick={() => handleActiveCategory(item?.categoryId)}>
                 <NavLink to={"?categoryId="+item?.categoryId}>
                   {item?.categoryName}({item?.productCount}) 

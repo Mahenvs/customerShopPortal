@@ -9,8 +9,8 @@ export default function Home() {
   useGetStore();
   useGetProducts();
   return (
-    <div className="dark:bg-darkGray mb-10">      
-      <div className="flex w-full flex-1 dark:bg-darkGray h -screen dark:text-darkWhite ">
+    <div className="dark:bg-darkBg mb-10">      
+      <div className="flex w-full flex-1 dark:bg-darkBg h -screen dark:text-darkWhite ">
         <span className="borde r-r-2 w-1/4 border-zinc-200  ml-40 h-s creen dark:border-darkBorder h-screen">
           <Categories />
         </span>
