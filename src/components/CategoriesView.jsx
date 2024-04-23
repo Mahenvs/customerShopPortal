@@ -17,7 +17,7 @@ const CategoriesView = () => {
   return (
     <div className="flex flex-col mx-60 ">
       <Heading>Categories</Heading>
-      <div className="list-none py-1 text-base font-medium w-full pl-1 flex flex-row flex-wrap ">
+      <div className="list-none py-1 text-base  font-medium w-full pl-1 flex flex-row flex-wrap ">
         {categoriesList?.map((item, index) => {
           return (
             <Card
@@ -25,7 +25,7 @@ const CategoriesView = () => {
               class="p-14 flex"
               onClick={() => handleActiveCategory(item?.categoryId)}
             >
-              <NavLink to={"?categoryId=" + item?.categoryId} className="text-lg">
+              <NavLink to={"?categoryId=" + item?.categoryId} className="text-lg ">
                 {item?.categoryName}({item?.productCount})
               </NavLink>
             </Card>

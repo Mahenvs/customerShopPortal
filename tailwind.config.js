@@ -29,7 +29,8 @@ export default {
       textColor:{
         skin:{
           base:"var(--text-color)",
-          light:"var(--text-light-color)"
+          light:"var(--text-light-color)",
+          color:"var(--second-color)",
         },
       },
       backgroundColor:{
@@ -42,8 +43,8 @@ export default {
       },
       gradientColorStops:{
         skin:{
-          hueE:"var(--fill-color)",
-          hueF:"var(--white-color)"
+          hueF:"var(--fill-color-indicator)",
+          hueE:"var(--white-color)"
         }
       }
     },

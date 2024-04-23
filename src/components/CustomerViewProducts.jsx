@@ -43,12 +43,12 @@ const CustomerViewProducts = () => {
       ) : (
         productsList.map((item, index) => {
           return (
-            <div key={index} className="shadow-lg dark:shadow-lg py-2 flex gap-4 my-4 mb-12 dark:border-darkBorder dark:rounded dark:border dark:border-1 dark:bg-darkBg  mx-4 max-h-screen">
+            <div key={index} className="border-2 border-gray-200  rounded-xl dark:shadow-lg py-2 flex gap-4 my-4 mb-3 dark:border-darkBorder dark:rounded dark:border dark:border-1 dark:bg-darkBg  mx-4 max-h-screen">
               <section
                 className="w-1/4 px-2 py-1 dark:border-none"
                 onClick={() => navigate(item?.productName)}
               >
-                <img src={item?.productImageUrl} alt="" width="100px" className="rounded"/>
+                <img src={item?.productImageUrl} alt="" width="100px" height={50} className="h-100 rounded object-contain "/>
               </section>
               <section
                 className="w-2/4"

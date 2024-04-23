@@ -86,7 +86,7 @@ const CartView = () => {
                 return (
                   <div
                     key={index}
-                    className="drop-shadow rounded shadow-slate-400 p-2 py-2 flex gap-4 my-4 border -b dark:border-darkBorder "
+                    className="drop-sha dow border-2 border-gray-200  rounded-xl p-2 py-2 flex gap-4 my-4 -b dark:border-darkBorder "
                   >
                     <section className="w-1/4 p-1 bo rder rounded dark:border-none">
                       <img src={item?.productImageUrl} alt="" width="100px" />
