@@ -122,9 +122,9 @@ const SignUp = ({ onLogin }) => {
       <div className="mx-auto  w-1/3 py-10 flex justify-center  ">
         <form
           id="loginModal"
-          className="border-zinc-100 rounded bg-primaryBg  px-12 py-4 justify-center flex flex-col text-otherColor  dark:bg-gray-950 dark:border-darkBorder dark:shadow-zinc-600 dark:border dark:rounded "
+          className="border-zinc-100 rounded   px-12 py-4 justify-center flex flex-col text-skin-base bg-skin-fill  dark:bg-gray-950 dark:border-darkBorder dark:shadow-zinc-600 dark:border dark:rounded "
         >
-          <h3 className="text-otherColor text-2xl  justify-start  mt-1 font-bold mb-2">
+          <h3 className="text-skin-base text-2xl  justify-start  mt-1 font-bold mb-2">
             {!isLogin ? "Sign In" : "Sign Up"}
           </h3>
 
@@ -180,14 +180,14 @@ const SignUp = ({ onLogin }) => {
             <span>
               {!isLogin ? "Not a member" : "Member already"}?&nbsp;&nbsp;
               <Link
-                className="no-underline text-otherColor"
+                className="no-underline text-skin-base"
                 onClick={toggleAuth}
               >
                 <strong> {!isLogin ? "Sign Up" : "Sign In"}</strong>{" "}
               </Link>
             </span>
             <button
-              className="border px-8 font-mono text-lg rounded-md text-otherColor"
+              className="border px-8 font-mono text-lg rounded-md text-skin-base"
               onClick={isLogin ? Register : Login}
               type="button"
             >

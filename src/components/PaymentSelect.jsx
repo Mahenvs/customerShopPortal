@@ -51,7 +51,7 @@ const PaymentSelect = () => {
     <div>
       {!paymentMode && <div className="text-red-500 mt-[-10px] mb-4">{errorIs}</div>}
       <OutlineButton
-            class="border bg-buttonBg border-slate-400 text-buttonText dark:text-darkWhite"
+            class=" bg-skin-fill  text-skin-base dark:text-darkWhite"
             title="Order"
             onClickButton={orderConfirmHandler}
           ></OutlineButton>

@@ -9,14 +9,19 @@ import Badge from "../UI_Elements/Badge";
 import ProductSearch from "./ProductSearch";
 import { resetStore, setCustomerId } from "../store/storeSlice";
 import cartImg from "../../src/assets/cartShop.png";
-import { resetAppConfig, setLoggedIn, setTheme, setVerifiedUser } from "../store/appConfigSlice";
+import {
+  resetAppConfig,
+  setLoggedIn,
+  setTheme,
+  setVerifiedUser,
+} from "../store/appConfigSlice";
 import { resetCart } from "../store/cartSlice";
 import { resetProduct } from "../store/productSlice";
 
 const CustomerNavBar = () => {
   const [isLoading, setIsLoading] = useState(true);
-  let currentTheme = useSelector(store => store.appConfig.theme);
-  const userName = useSelector(store => store.appConfig.userName);
+  let currentTheme = useSelector((store) => store.appConfig.theme);
+  const userName = useSelector((store) => store.appConfig.userName);
   const location = useLocation();
 
   const pathArr = location.pathname.split("/");
@@ -57,6 +62,8 @@ const CustomerNavBar = () => {
       navigate("orders");
     } else if (flag == "auth") {
       navigate("auth");
+    }else if (flag == "my-profile") {
+      navigate("my-profile");
     }
   };
 
@@ -65,23 +72,22 @@ const CustomerNavBar = () => {
     dispatch(setCustomerId(customer));
 
     if (customer != null) dispatch(setLoggedIn(true));
-    
-
-  }, [cartCnt, isLoggedIn,currentTheme]);
+  }, [cartCnt, isLoggedIn, currentTheme]);
   console.log(currentTheme);
 
-  const changeTheme = () =>{
-    if(currentTheme == 'light'){
-      dispatch(setTheme("dark"));
-      localStorage.setItem("theme","dark");
-      document.documentElement.classList.add('dark');
-    }
-    else{
+  const changeTheme = () => {
+    if(currentTheme == "dark"){
       dispatch(setTheme("light"));
       localStorage.setItem("theme","light");
       document.documentElement.classList.remove('dark')
     }
-  }
+    else  {
+      dispatch(setTheme("dark"));
+      localStorage.setItem("theme","dark");
+      document.documentElement.classList.add('dark');
+    }
+    
+  };
   return (
     <div className="">
       {!isLoading ? (
@@ -92,61 +98,89 @@ const CustomerNavBar = () => {
             to={"/" + storeDomainResource}
             className="w-1/5 ml-40 mr-10 flex items-center text-ellipsis"
           >
-            <section className="w-1/4 p-1 rounded dark:border-none"> 
-            <img src={storeImg}  className="rounded" />
+            <section className="w-1/4 p-1 rounded dark:border-none">
+              <img src={storeImg} className="rounded" />
             </section>
-            <span title={storeName?.toUpperCase()} className="px-3 font-medium text-lg truncate">{storeName?.toUpperCase()}</span>
+            <span
+              title={storeName?.toUpperCase()}
+              className="px-3 font-medium text-lg truncate"
+            >
+              {storeName?.toUpperCase()}
+            </span>
           </Link>
           <section className="w-2/5  mx-14">
             {isLoggedIn && <ProductSearch />}
           </section>
           <section className="font-medium text-lg w-2/5 flex mx-14 gap-10 text-white-500 items-center">
-          {isLoggedIn &&  <Link
-              to={"categories"}
-              className="cursor-pointer"
-              onClick={() => navigateTo("categories")}
-            >
-              Categories
-            </Link>}
+            {isLoggedIn && (
+              <Link
+                to={"categories"}
+                className="cursor-pointer"
+                onClick={() => navigateTo("categories")}
+              >
+                Categories
+              </Link>
+            )}
 
-            {!isLoggedIn && (<Link to="auth?signin">Sign In</Link>)}
+            {!isLoggedIn && <Link to="auth?signin">Sign In</Link>}
 
-            {isLoggedIn && <Link to="cart" className="flex  cursor-pointer items-center ">
-              {cartCnt != 0 ? <Badge value={cartCnt} /> : ""}
-              <img src={currentTheme == 'light' ? cartImg : darkShop} width={30} />
-              <span className="z-10">Cart</span>
-            </Link>}
-            {isLoggedIn && <span
-              className="cursor-pointer"
-              onClick={() => setLogOut((val) => !val)}
-            >
-              Account
-            </span>}
-            <div  className="font-medium">
-              <img onClick={() => changeTheme()} src={currentTheme=='light' ? nightMode : lightMode} width={25}/>
+            {isLoggedIn && (
+              <Link to="cart" className="flex  cursor-pointer items-center ">
+                {cartCnt != 0 ? <Badge value={cartCnt} /> : ""}
+                <img
+                  src={currentTheme !== "dark" ? cartImg : darkShop}
+                  width={30}
+                />
+                <span className="z-10">Cart</span>
+              </Link>
+            )}
+            {isLoggedIn && (
+              <span
+                className="cursor-pointer"
+                onClick={() => setLogOut((val) => !val)}
+              >
+                Account
+              </span>
+            )}
+            <div className="font-medium">
+              <img
+                onClick={() => changeTheme()}
+                src={currentTheme != "dark" ? nightMode : lightMode}
+                width={25}
+              />
             </div>
             {showLogOut && (
-              <div className="absolute top-12 right-[11rem] p-3 border border-gray-300 z-20 bg-white rounded mt-2 dark:border-darkBorder dark:bg-darkBg dark:text-darkWhite"
-              onClick={()=>setLogOut((val) => !val)} >
+              <div
+                className="absolute text-start top-12 text-base right-[11rem] p-3 border border-gray-300 z-20 bg-white rounded mt-2 dark:border-darkBorder dark:bg-darkBg dark:text-darkWhite"
+                onClick={() => setLogOut((val) => !val)}
+              >
                 {isLoggedIn ? (
                   <>
-                  <div className="flex border-b py-3">
-                    User - {userName} 
-                  </div>
-                    <div className="flex border-b py-3">
+                    <div className="flex border-b py-1">User - {userName}</div>
+                    <li className="list-none  border-b py-1">
                       <span
                         className="cursor-pointer"
                         onClick={() => navigateTo("myOrders")}
                       >
                         My Orders
                       </span>
-                    </div>
-                    <button
-                      className="pt-2 cursor-pointer"
-                      onClick={() => navigateTo("logOut")}
-                    >
-                      Logout
-                    </button>
+                    </li>
+                    <li className="list-none border-b py-1">
+                      <span
+                        className="cursor-pointer"
+                        onClick={() => navigateTo("my-profile")}
+                      >
+                        Switch Theme
+                      </span>
+                    </li>
+                    <li className="list-none ">
+                      <button
+                        className=" cursor-pointer"
+                        onClick={() => navigateTo("logOut")}
+                      >
+                        Logout
+                      </button>
+                    </li>
                   </>
                 ) : (
                   <div className="right-2">

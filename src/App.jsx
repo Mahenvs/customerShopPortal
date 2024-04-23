@@ -5,7 +5,6 @@ import Home from "./components/Home";
 import { Provider } from "react-redux";
 import appStore from "./store/appStore";
 import CustomerLayOut from "./components/CustomerLayOut";
-// import ProductDetail from "./components/ProductDetail";
 import getData from "./Loaders/getData";
 import UpdateProfile from "./components/UpdateProfile";
 
@@ -16,6 +15,8 @@ import OrderConfirmation from "./components/OrderConfirmation";
 import Orders from "./components/Orders";
 import BodyRoute from "./components/BodyRoute";
 import ProductDetail from "./components/ProductDetail";
+import Account from "./components/Account";
+import ThemeSwitcher from "./UI_Elements/ThemeSwitcher";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -66,29 +67,12 @@ const router = createBrowserRouter([
             path: "orders",
             element: <Orders />,
           },
+          {
+            path:"my-profile",
+            element:<Account/>
+          }
         ],
-      },
-      // {
-      //   path: "/:storeDomain/:product",
-      //   element: <ProductDetail />,
-      //   loader: getData,
-      // },
-      // {
-      //   path: "categories",
-      //   element: <CategoriesView />,
-      // },
-      // {
-      //   path: "/cart",
-      //   element: <CartView />,
-      // },
-      // {
-      //   path: "/orderConfirmed",
-      //   element: <OrderConfirmation />,
-      // },
-      // {
-      //   path: "/orders",
-      //   element: <Orders />,
-      // },
+      }
     ],
   },
 ]);

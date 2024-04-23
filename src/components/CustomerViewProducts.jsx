@@ -72,7 +72,7 @@ const CustomerViewProducts = () => {
                   }
                   class={`px-2 h-fit  ${
                     item?.productStockQuantity > 0
-                      ? "text-buttonText bg-buttonBg  dark:bg-[#f9fafb] dark:text-darkText"
+                      ? "text-skin-base bg-skin-fillBtn  dark:bg-[#f9fafb] dark:text-darkText"
                       : "text-red-400 bg-white border border-red-200"
                   }`}
                 ></Button>

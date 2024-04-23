@@ -17,7 +17,7 @@ const Categories = () => {
     dispatch(setActiveCategory(id)) 
   }
   return (
-    <div className="sticky top-100 h-s creen borde r-r-2">
+    <div className="sticky top-100  h-s creen borde r-r-2">
 
       {!categories ? (
         <Shimmer />
@@ -28,7 +28,7 @@ const Categories = () => {
               key={index}
               className="list-none py-1 text-base font-medium w-full pl-1 dark:text-darkText "
             >
-              <li className={activeCategory === item?.categoryId  ? "p-1 bg-gradient-to-r from-white to-primaryBg dark:to-darkModal dark:to-darkLightBlack  w-full" : "bg-white p-1"} 
+              <li className={activeCategory === item?.categoryId  ? "p-1 bg-gradient-to-r from-skin-hueF to-skin-hueE dark:to-darkModal dark:to-darkLightBlack  w-full" : "bg-white p-1"} 
               onClick={() => handleActiveCategory(item?.categoryId)}>
                 <NavLink to={"?categoryId="+item?.categoryId}>
                   {item?.categoryName}({item?.productCount}) 

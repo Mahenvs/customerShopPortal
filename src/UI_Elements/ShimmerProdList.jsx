@@ -20,7 +20,6 @@ const ShimmerProdList = () => {
             <h1 className="text-lg text-gray-700 font-medium"></h1>
           </section>
           <section className="justify-end items-end self-end">
-            <Button title="" class="px-2 h-fit "></Button>
           </section>
         </div>
       // </>

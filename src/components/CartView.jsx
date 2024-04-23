@@ -72,9 +72,7 @@ const CartView = () => {
   return (
     <>
       <div
-        className={`flex flex-row mx-56 gap-10 overflow-auto dark:bg-darkBg ${
-          isModalOpen ? "backdrop-open" : "backdrop"
-        }`}
+        className={`flex flex-row mx-56 gap-10 overflow-auto dark:bg-darkBg`}
       >
         <div className="f w-2/3 ">
           <div className="flex justify-between">
@@ -113,16 +111,18 @@ const CartView = () => {
                           }
                         >
                           {options.map((value, optionIndex) => {
-  if (value.value <= item?.productStockQuantity) {
-    return (
-      <option key={value.value + optionIndex} value={value.value}>
-        {value.value}
-      </option>
-    );
-  }
-  return null;
-})}
-
+                            if (value.value <= item?.productStockQuantity) {
+                              return (
+                                <option
+                                  key={value.value + optionIndex}
+                                  value={value.value}
+                                >
+                                  {value.value}
+                                </option>
+                              );
+                            }
+                            return null;
+                          })}
 
                           {/* {options.map((value, optionIndex) => (
                             value <= 10 && (<option
@@ -138,7 +138,7 @@ const CartView = () => {
                     <section className="justify-start">
                       <OutlineButton
                         onClickButton={() => removeItemFromCart(item)}
-                        class="text-gray-700 bg-secondaryBg text-lg border py-[1px] px-2 h-fit "
+                        class="text-skin-light bg-skin-light text-lg border py-[1px] px-2 h-fit "
                         title="Remove"
                       ></OutlineButton>
                       <p className="text-sm font-light self-end mx-4">
@@ -200,7 +200,7 @@ const CartView = () => {
                 ) : (
                   <Button
                     onClickButton={paymentConfirmHandler}
-                    class="px-14 py-2 rounded w-full dark:bg-darkButtonBg dark:text-darkText"
+                    class="px-14 py-2 rounded w-full dark:bg-darkButtonBg dark:text-darkText text-skin-base bg-skin-fill"
                     title={"Continue"}
                   />
                 )}

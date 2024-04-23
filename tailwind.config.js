@@ -8,7 +8,7 @@ export default {
     
     extend: {
       colors: {
-        // transparent: 'transparent',
+        current: "var(--text-color)",
         primaryBg: '#12372A',
         primaryText:'#FBFADA',
         secondaryBg:'#ADBC9F',
@@ -24,10 +24,28 @@ export default {
         darkBadge: '#4F192a',
         darkModal: '#1f1e2b',
         darkText:'#262d3b',
-        darkButtonBg:'#f9fafb',
-        
-        
+        darkButtonBg:'#f9fafb',       
       },
+      textColor:{
+        skin:{
+          base:"var(--text-color)",
+          light:"var(--text-light-color)"
+        },
+      },
+      backgroundColor:{
+        skin:{
+          fill:"var(--fill-color)",
+          fillBtn:"var(--fill-color-btn)",
+          indicator:"var(--fill-color-indicator)",
+          light:"var(--second-color)",
+        },
+      },
+      gradientColorStops:{
+        skin:{
+          hueE:"var(--fill-color)",
+          hueF:"var(--white-color)"
+        }
+      }
     },
   },
   plugins: [],

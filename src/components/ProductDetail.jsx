@@ -14,16 +14,12 @@ const ProductDetail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const theme = useSelector((store) => store.appConfig.theme);
 
   useEffect(() => {
     dispatch(setStoreId(item?.id));
     dispatch(setName(item?.name));    
   }, []);
 
-  const onThemeSelect = (e) => {
-    dispatch(setTheme(e.target.value));
-  };
   return (
     <>
       <div className="flex w-1/2 p-5 mt-10 mx-auto shadow-2xl gap-10 items-center dark:shadow-darkLightBlack dark:shadow-2xl">
