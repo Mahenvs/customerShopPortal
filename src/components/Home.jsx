@@ -32,16 +32,18 @@ export default function Home() {
       className={
         thme === "green"
           ? "theme-green"
-          : thme === "blue"
-          ? "theme-blue"
+          : thme === "violet"
+          ? "theme-violet"
           : thme === "cyan"
           ? "theme-cyan"
           : thme === "slate"
           ? "theme-slate"
           : thme === "purple"
           ? "theme-purple"
-          : thme === "skyblue"
-          ? "theme-skyblue"
+          : thme === "blue"
+          ? "theme-blue"
+          : thme === "navyblue"
+          ? "theme-navyblue"
           : ""
       }
     >

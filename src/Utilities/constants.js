@@ -20,7 +20,15 @@ export const colors = [
       value: "Blue",
     },
     {
+      key: "navyblue",
+      value: "Navy",
+    },
+    {
       key: "purple",
       value: "Purple",
+    },
+    {
+      key: "violet",
+      value: "Violet",
     },
   ];
