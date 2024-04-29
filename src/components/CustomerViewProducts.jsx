@@ -7,6 +7,7 @@ import { ToastBottomInfoMessage, ToastInfoMessage } from "../Utilities/ToastMess
 import { toast } from "react-toastify";
 import ShimmerProdList from "../UI_Elements/ShimmerProdList";
 import _debounce from "lodash/debounce";
+import { useState } from "react";
 
 const CustomerViewProducts = () => {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const CustomerViewProducts = () => {
   let productsList = useSelector((store) => store.product.products);
   const cartListData = useSelector((store) => store.store.cartList);
   const customer = useSelector((store) => store.store.customerId);
-
+  const [readOnly, setLoading] = useState(false);
   const addToCartHandler = async (item,qnty) => {
     if (customer == null) {
       navigate("/");
@@ -32,10 +33,20 @@ const CustomerViewProducts = () => {
       }
   };
   
-  const updateCart = _debounce(async (item,cnt) => {
-    addToCartHandler(item,cnt);
-  },100);
+  // const updateCart = _debounce(async (item,cnt) => {
+  //   addToCartHandler(item,cnt);
+  // },100);
   
+  const updateCart = async (item, cnt) => {
+    setLoading(true);
+    try {
+      await addToCartHandler(item, cnt);
+    } catch (error) {
+      // Handle any errors
+      console.error("Error updating cart:", error);
+    }
+    setLoading(false);
+  };  
   return (
     <>
       {!productsList ? (
@@ -63,16 +74,15 @@ const CustomerViewProducts = () => {
                 <p className="dark:text-zinc-500">{item.unit}</p>
                 <p className="dark:text-zinc-300">${item?.productPrice.toFixed(2)} </p>
               </section>
-              <section className=" min-w-fit self-end">
+              <section className={` min-w-fit self-end`}>
                 <Button
-
-                  onClickButton={() => updateCart(item,cnt++)}
-                  title={
+              onClickButton={() =>  `${readOnly}` === "false" && updateCart(item, cnt++)}
+              title={
                     item?.productStockQuantity > 0 ? "Add" : "Out of stock" 
                   }
-                  class={`px-2 h-fit  ${
+                  class={`px-2 ${readOnly == true ? ' disabled cursor-auto ':''} h-fit   ${
                     item?.productStockQuantity > 0
-                      ? "text-skin-base bg-skin-fillBtn  dark:bg-[#f9fafb] dark:text-darkText"
+                      ? "text-skin-base bg-skin-fillBtn  dark:bg-[#f9fafb] dark:text-darkText "
                       : "text-red-400 bg-white border border-red-200"
                   }`}
                 ></Button>
