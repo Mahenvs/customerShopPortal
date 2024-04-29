@@ -10,7 +10,6 @@ import Button from "../UI_Elements/Button"
 const ProductDetail = () => {
   const item = useLoaderData();
   useGetProducts();
-  console.log("133");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -22,13 +21,22 @@ const ProductDetail = () => {
 
   return (
     <>
-      <div className="flex w-1/2 p-5 mt-10 mx-auto shadow-2xl gap-10 items-center dark:shadow-darkLightBlack dark:shadow-2xl">
+    <div className="flex w-1/2 border-2 border-gray-200 mt-10 mx-auto shadow-xl gap-10 p-10 items-center dark:shadow-2xl rounded-xl">
         <span className="w-2/5  h-50 ">
           <img src={item?.productImageUrl} className=" object-cover" />
         </span>
         <div className=" items-start gap-4 flex flex-col">
-          <p className="font-medium text-lg">{item?.productName}</p>
-          <p className="font-small">{"per piece"}</p>
+          <p className="font-medium text-lg">{item?.productName}
+          <span className="font-sans text-gray-600 text-lg">    ({item?.categoryName})</span>  
+          </p>
+          <p className="font-normal text-base italic">{item?.productDescription}</p>
+          
+          <p className="font-small">{"per "}{item?.unit}</p>
+
+          <p className="text-sm font-light self-start ">
+                        Avail. Stock: {item?.productStockQuantity}
+          </p>
+
           <p className="font-medium">${item?.productPrice}</p>
           <Button
             className={`px-8  rounded h-10 text-lg `}
