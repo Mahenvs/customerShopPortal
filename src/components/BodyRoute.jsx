@@ -6,6 +6,7 @@ import axios from "axios";
 import { setUserName, setVerifiedUser } from "../store/appConfigSlice";
 import { useEffect } from "react";
 import StoreNotExist from "./storeNotExist";
+import Footer from "./Footer";
 
 const BodyRoute = () => {
   
@@ -36,11 +37,17 @@ const BodyRoute = () => {
   }, [customerId,verify]);
 
   return <>
-    <div className="dark:bg-darkBg min-h-screen dark:text-darkWhite  mb-5">
-      {!location.pathname.includes("auth") && customerId && !verifiedUser && <div className=" bg-red-300 border-b-2 text-black  text-md text-pretty text-center p-2 dark:text-white font-semibold">{"We have sent an verification email, please verify..."}</div>}
-      
+    <div className="dark:bg-darkBg  dark:text-darkWhite m b-5 
+    flex flex-col flex-grow overflow-auto">
+      {!location.pathname.includes("auth") && customerId && !verifiedUser && 
+      <div className=" bg-red-300 border-b-2 text-black  text-md text-pretty text-center p-2 dark:text-white font-semibold">
+        {"We have sent an verification email, please verify..."}</div>}
+      <div className="fle x fl ex-grow mt-20">
+
         <CustomerNavBar />
         <Outlet/>
+        </div>
+        <Footer />
     </div>
   </>
 }

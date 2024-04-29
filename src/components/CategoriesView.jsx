@@ -25,7 +25,7 @@ const CategoriesView = () => {
               class="p-14 flex"
               onClick={() => handleActiveCategory(item?.categoryId)}
             >
-              <NavLink to={"?categoryId=" + item?.categoryId} className="text-lg ">
+              <NavLink to={"../?categoryId=" + item?.categoryId} className="text-lg ">
                 {item?.categoryName}({item?.productCount})
               </NavLink>
             </Card>

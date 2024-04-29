@@ -48,11 +48,11 @@ export default function Home() {
       }
     >
       <div className="dark:bg-darkBg mb-10">
-        <div className="flex w-full flex-1 dark:bg-darkBg h -screen dark:text-darkWhite ">
-          <span className="borde r-r-2 w-1/4 border-zinc-200  ml-40 h-s creen dark:border-darkBorder h-screen">
+        <div className="flex w-full  dark:bg-darkBg dark:text-darkWhite overflow-auto ">
+          <span className="w-1/4 border-zinc-200  ml-40  dark:border-darkBorder h-s creen">
             <Categories />
           </span>
-          <span className="w-1/2 borde r-r-2 border-zinc-200 mx-auto ml-2 mb-16 dark:border-darkBorder ">
+          <span className="w-1/2  border-zinc-200 mx-auto ml-2 mb-16 dark:border-darkBorder overflow-auto">
             {/* productsList &&  */}
             <CustomerViewProducts />
           </span>

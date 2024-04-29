@@ -19,13 +19,12 @@ const Layout = () => {
   return (
     <div className={`theme-${them}`}>
       <div
-        className={` flex flex-col h-screen shadow overflow-auto dark:bg-darkBg`}
+        className={` flex flex-col h-screen shadow  dark:bg-darkBg`}
       >
         <ToastContainer style={{ fontSize: "20px" }} />
-        <div className="h-screen flex flex-col flex-1">
+        <div className="flex flex-col flex-grow  overflow-auto">
           <Outlet />
         </div>
-        <Footer />
       </div>
     </div>
   );

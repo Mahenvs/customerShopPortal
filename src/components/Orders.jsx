@@ -12,7 +12,7 @@ const Orders = () => {
 
   useEffect(() => {}, [ordersList]);
   return (
-    <div className={`flex flex-col mx-56 gap-10 py-2`}>
+    <div className={`flex flex-col mx-56 gap-10 mb-20`}>
 
       <Heading>Your Orders</Heading>
       {ordersList?.length > 0 ? (ordersList?.map((item,index) => {

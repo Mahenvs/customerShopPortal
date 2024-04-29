@@ -43,7 +43,7 @@ const CustomerViewProducts = () => {
       ) : (
         productsList.map((item, index) => {
           return (
-            <div key={index} className="border-2 border-gray-200  rounded-xl dark:shadow-lg py-2 flex gap-4 my-4 mb-3 dark:border-darkBorder dark:rounded dark:border dark:border-1 dark:bg-darkBg  mx-4 max-h-screen">
+            <div key={index} className="border-2 border-gray-200  rounded-xl dark:shadow-lg py-2 flex gap-4 my-4 mb-3 dark:border-darkBorder dark:rounded dark:border dark:border-1 dark:bg-darkBg  mx-4 max-h-s creen">
               <section
                 className="w-1/4 px-2 py-1 dark:border-none"
                 onClick={() => navigate(item?.productName)}
@@ -68,7 +68,7 @@ const CustomerViewProducts = () => {
 
                   onClickButton={() => updateCart(item,cnt++)}
                   title={
-                    item?.productStockQuantity > 0 ? "Add" : "Out of stock"
+                    item?.productStockQuantity > 0 ? "Add" : "Out of stock" 
                   }
                   class={`px-2 h-fit  ${
                     item?.productStockQuantity > 0
@@ -76,6 +76,28 @@ const CustomerViewProducts = () => {
                       : "text-red-400 bg-white border border-red-200"
                   }`}
                 ></Button>
+                
+        {/* Start --> Update add button with + and - from cart if the product exists in the cart */}
+        {/* <section className="self-end border border-gray-400 rounded justify-end flex px -2 ">
+                        <button
+                          className="h-fit   px-2 border-r-2 "
+                          onClick={() => updateCart(item, "decrease", cnt++)}
+                        >
+                          -
+                        </button>
+                        <button className=" h-fit text-skin-base bg-skin-fill  px-2 border-r-2 dark:text-darkText dark:bg-darkWhite">
+                          {" "}
+                          {item?.productCartQuantity}
+                        </button>
+                        <button
+                          className=" h-fit  px-2"
+                          onClick={() => updateCart(item, "increase", cnt++)}
+                        >
+                          +
+                        </button>
+                      </section> */}
+        {/* End */}
+                
               </section>
             </div>
           );

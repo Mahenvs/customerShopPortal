@@ -93,7 +93,7 @@ const CustomerNavBar = () => {
       {!isLoading ? (
         <div>Loading...</div>
       ) : (
-        <div className="flex h-20 dark:bg-darkBlack dark:text-darkWhite border-b-2 dark:border-b-[1px] dark:border-darkBorder bg-white items-center sticky top-0 z-40 shadow">
+        <div className="flex h-20 dark:bg-darkBlack dark:text-darkWhite border-b-2 dark:border-b-[1px] dark:border-darkBorder bg-white items-center sti cky w-full top-0 fixed z-40 shadow">
           <Link
             to={"/" + storeDomainResource}
             className="w-1/5 ml-40 mr-10 flex items-center text-ellipsis"

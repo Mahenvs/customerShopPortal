@@ -16,7 +16,7 @@ import Orders from "./components/Orders";
 import BodyRoute from "./components/BodyRoute";
 import ProductDetail from "./components/ProductDetail";
 import Account from "./components/Account";
-import ThemeSwitcher from "./UI_Elements/ThemeSwitcher";
+import Categories from "./components/Categories";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -54,6 +54,13 @@ const router = createBrowserRouter([
           {
             path: "categories",
             element: <CategoriesView />,
+            children:[
+              {
+                path:"/:storeDomain/categories/?categoryId",
+                element:<Categories/>
+
+              }
+            ]
           },
           {
             path: "cart",
