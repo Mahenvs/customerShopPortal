@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { getHeaders } from "../Utilities/getHeaders";
 import { listOfCategories,  setActiveCategory } from "../store/productSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const useGetCategories = () => {
   const dispatch = useDispatch();
   
     let storeData  = JSON.parse(localStorage.getItem('store'));
-    
+    const activeCategory = useSelector((store) => store.product?.activeCategory);
     const storeId = storeData?.storeId
   
   const fetchCategoriesData = async () => {
@@ -28,7 +28,7 @@ const useGetCategories = () => {
   };
 
   useEffect(() => {
-    storeId && fetchCategoriesData();     
+    storeId && !activeCategory && fetchCategoriesData();     
   }, [storeId]);
 };
 

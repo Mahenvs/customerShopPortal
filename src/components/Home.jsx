@@ -6,22 +6,22 @@ import useGetStore from "../Hooks/useGetStore";
 import { Outlet } from "react-router-dom";
 import { useState } from "react";
 
-const ThemeCircle = (props) => {
-  return (
-    <div
-      className={"h-8 w-8 mr-4 cursor-pointer " + props.bg}
-      onClick={() => props.setThme(props.value)}
-    ></div>
-  );
-};
-const ThemeButtons = () => {
-  return (
-    <div className="absolute flex right-8 top-4 ">
-      <ThemeCircle setThme={setThme} value="" bg="bg-red-600"></ThemeCircle>
-      <ThemeCircle setThme={setThme} value="" bg="bg-blue-600"></ThemeCircle>
-    </div>
-  );
-};
+// const ThemeCircle = (props) => {
+//   return (
+//     <div
+//       className={"h-8 w-8 mr-4 cursor-pointer " + props.bg}
+//       onClick={() => props.setThme(props.value)}
+//     ></div>
+//   );
+// };
+// const ThemeButtons = () => {
+//   return (
+//     <div className="absolute flex right-8 top-4 ">
+//       <ThemeCircle setThme={setThme} value="" bg="bg-red-600"></ThemeCircle>
+//       <ThemeCircle setThme={setThme} value="" bg="bg-blue-600"></ThemeCircle>
+//     </div>
+//   );
+// };
 export default function Home() {
   useGetStore();
   useGetProducts();
