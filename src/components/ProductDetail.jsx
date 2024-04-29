@@ -46,7 +46,8 @@ const ProductDetail = () => {
           <p className="font-medium">${item?.productPrice}</p>
           <Button
             className={`px-8  rounded h-10 text-lg `}
-            onClickButton={() => navigateToProd(item?.categoryId)}
+            // onClickButton={() => navigateTo(item?.categoryId)}
+            onClickButton={() => navigate("../")}
             title="Go to Products"
           >
             Go to Products
