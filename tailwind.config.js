@@ -17,8 +17,8 @@ export default {
         buttonText:'#FBFADA',
         otherColor:'#FBFADA',
 
-        darkBlack: '#09090B',
-        darkBg: '#030712',
+        darkBg: '#1b1b2c',
+        darkBlack: '#0e1528',
         darkWhite: '#f8f9f9',
         darkBorder: '#2f3a4d',
         darkBadge: '#4F192a',

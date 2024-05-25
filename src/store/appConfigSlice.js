@@ -16,7 +16,9 @@ const appConfigSlice = createSlice({
         },
         isLoggedIn: false,
         isVerifiedUser: true,
-        userName:"NA"
+        user:{
+
+        }
     },
     reducers:{
         setTheme: (state,action) => {
@@ -27,8 +29,8 @@ const appConfigSlice = createSlice({
             state.popUp.status= action.payload.status
             state.popUp.type = action.payload.type
         },
-        setUserName: (state,aciton) =>{
-            state.userName = aciton.payload;
+        setUserName: (state,action) =>{
+            state.user = action.payload;
         },
         setBottomMessage: (state,action) => {
             state.bottomPopUp.bottommessage = action.payload.message,

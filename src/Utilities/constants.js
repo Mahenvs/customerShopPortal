@@ -8,16 +8,20 @@ export const colors = [
       value: "Slate",
     },
     {
-      key: "red",
-      value: "Red",
+      key: "blue",
+      value: "lightblue",
     },
+    // {
+    //   key: "red",
+    //   value: "Red",
+    // },
     {
       key: "cyan",
       value: "Cyan",
     },
     {
-      key: "blue",
-      value: "Blue",
+      key: "lightblue",
+      value: "blue",
     },
     {
       key: "navyblue",

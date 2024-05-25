@@ -16,6 +16,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastInfoMessage } from "../Utilities/ToastMessage";
 import _debounce from "lodash/debounce";
 import EmptyCartBg from "../UI_Elements/EmptyCartBg";
+import { useEffect, useState } from "react";
+import { updateCartDb } from "../Utilities/updateCart";
 
 const Cart = () => {
   useGetCart();
@@ -25,29 +27,51 @@ const Cart = () => {
   const isLoggedIn = useSelector((store) => store.appConfig.isLoggedIn);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  let cnt = 1;
-  const handleItemsFromCart = async (item, flag, cnt) => {
-    console.log("flag ", flag, cnt);
+  const [counts, setCounts] = useState({});
+  
+  useEffect(() => {
+    const initialCounts = {};
+    list.forEach((item) => {
+      initialCounts[item.productName] = item.productCartQuantity || 1;
+    });
+    setCounts(initialCounts);
+  }, [list]);
+  const handleItemsFromCart = async (item, flag, newCnt) => {
+    const cnt = newCnt[item.productName];
     if (flag == "increase") {
-      const response = await addToCart1(item, list, "add", cnt);
+      const response = await updateCartDb(item, list, "add", cnt);
 
       if (response?.message == "Request failed with status code 404") {
-        toast.warn("Out of Stock!", ToastInfoMessage);
+        toast.warn("Network failed", ToastInfoMessage);
       } else {
         dispatch(
           addSingleItemToCart({ ...response, productName: item.productName })
         );
       }
     } else {
-      const response = await addToCart1(item, list, "remove", cnt);
+      const response = await updateCartDb(item, list, "remove", cnt);
       dispatch(
         removeSingleItemFromCart({ ...response, productName: item.productName })
       );
     }
   };
 
-  const updateCart = _debounce(async (item, flag, cnt) => {
-    handleItemsFromCart(item, flag, cnt);
+  const updateCart = _debounce(async (item, flag) => {
+    new Promise((resolve, reject) => {
+      setCounts((prevCounts) => {
+        const newCounts = { ...prevCounts };
+
+        if (flag === "increase") {
+          newCounts[item.productName] = newCounts[item.productName] + 1;
+        } else {
+          newCounts[item.productName] = newCounts[item.productName] - 1;
+        }
+        resolve(newCounts);
+        return newCounts;
+      });
+    }).then((newCounts) => {
+      handleItemsFromCart(item, flag, newCounts);
+    });
   }, 500);
 
   const clearCartHandler = async () => {
@@ -64,6 +88,7 @@ const Cart = () => {
   const goToCartHandler = () => {
     navigate("cart");
   };
+
   return (
     <div className=" p-2 ">
       <section className="flex justify-between">
@@ -91,7 +116,7 @@ const Cart = () => {
               <section className="self-end border border-gray-400 rounded justify-end flex px -2 ">
                 <button
                   className="h-fit   px-2 border-r-2 "
-                  onClick={() => updateCart(item, "decrease", cnt++)}
+                  onClick={() => updateCart(item, "decrease")}
                 >
                   -
                 </button>
@@ -101,7 +126,7 @@ const Cart = () => {
                 </button>
                 <button
                   className=" h-fit  px-2"
-                  onClick={() => updateCart(item, "increase", cnt++)}
+                  onClick={() => updateCart(item, "increase")}
                 >
                   +
                 </button>
@@ -130,7 +155,9 @@ const Cart = () => {
           {isLoggedIn ? (
             <>
               <EmptyCartBg></EmptyCartBg>
-              <span className="flex justify-center text-center">No Products in the Cart..</span>
+              <span className="flex justify-center text-center">
+                No Products in the Cart..
+              </span>
             </>
           ) : (
             "Login to your account to view the cart!"

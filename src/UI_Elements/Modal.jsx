@@ -12,7 +12,7 @@ export const Modal = ({ isOpen, onClose, children }) => {
               Select Payment Type
             </h3>
             <button
-              className="font-mono  text-md rounded px-2 bg-skin-fill hover:bg-buttonBg  text-buttonText dark:border-darkWhite dark:bg-darkButtonBg dark:text-darkText"
+              className="font-mono  text-md rounded px-2 bg-skin-fill hover:opacity-70  text-darkWhite dark:border-darkWhite dark:bg-darkButtonBg dark:text-darkText"
               onClick={onClose}
               title="Close"
             >X</button>

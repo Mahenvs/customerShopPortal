@@ -28,7 +28,10 @@ const BodyRoute = () => {
     const finalName = res?.firstName +" "+ res?.lastName;
     localStorage.setItem("verifiedUser",result);
     dispatch(setVerifiedUser(result));
-    dispatch(setUserName(finalName));
+    dispatch(setUserName({
+      Name:finalName,
+      Email:res?.email
+    }));
     verify = localStorage.getItem("verifiedUser");
   };
   useEffect(() => {

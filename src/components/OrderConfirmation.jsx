@@ -63,7 +63,7 @@ const OrderConfirmation = () => {
         </section>
         <footer className="flex gap-4 items-center">
           <OutlineButton
-            class="border border-slate-400 text-s kin-base dark:text-darkWhite"
+            class="border border-slate-400 text-s kin-base  dark:bg-darkBg"
             title="View Order"
             onClickButton={() => navigateTo("orders")}
           ></OutlineButton>

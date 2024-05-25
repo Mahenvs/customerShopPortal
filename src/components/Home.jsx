@@ -23,29 +23,29 @@ import { useState } from "react";
 //   );
 // };
 export default function Home() {
-  useGetStore();
+  // useGetStore();
   useGetProducts();
   // This theme configuration is not setup here, check once and remove the code
-  const [thme, setThme] = useState("");
+  // const [thme, setThme] = useState("");
   return (
     <div
-      className={
-        thme === "green"
-          ? "theme-green"
-          : thme === "violet"
-          ? "theme-violet"
-          : thme === "cyan"
-          ? "theme-cyan"
-          : thme === "slate"
-          ? "theme-slate"
-          : thme === "purple"
-          ? "theme-purple"
-          : thme === "blue"
-          ? "theme-blue"
-          : thme === "navyblue"
-          ? "theme-navyblue"
-          : ""
-      }
+      // className={
+      //   thme === "green"
+      //     ? "theme-green"
+      //     : thme === "violet"
+      //     ? "theme-violet"
+      //     : thme === "cyan"
+      //     ? "theme-cyan"
+      //     : thme === "slate"
+      //     ? "theme-slate"
+      //     : thme === "purple"
+      //     ? "theme-purple"
+      //     : thme === "blue"
+      //     ? "theme-blue"
+      //     : thme === "navyblue"
+      //     ? "theme-navyblue"
+      //     : ""
+      // }
     >
       <div className="dark:bg-darkBg mb-10">
         <div className="flex w-full  dark:bg-darkBg dark:text-darkWhite overflow-auto ">

@@ -22,7 +22,7 @@ const ThemeSwitcher = () => {
     setSelectedValue(theme);
   }, [theme]);
   return (
-    <div className="min-w-fit gap-5 p-2 flex  justify-center items-center">
+    <div className="min-w-fit gap-5 p-2 flex justify-center items-center">
       <SubHeading>Theme Picker</SubHeading>
       <div>
         <select
@@ -30,7 +30,7 @@ const ThemeSwitcher = () => {
           onChange={themePicker}
           id=""
           value={selectedValue}
-          className={`outline-none focus:outline-none p-1 rounded font-semibold`}
+          className={`outline-none focus:outline-none p-1 rounded font-semibold dark:text-darkBg`}
         >
           {colors?.map((item, index) => (
             <option value={item.key} key={index} className={`text-black`}>
