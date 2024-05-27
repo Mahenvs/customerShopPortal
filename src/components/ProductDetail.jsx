@@ -1,25 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { setName, setStoreId } from "../store/storeSlice";
-import { useDispatch, useSelector } from "react-redux";
-import themes from "../Utilities/themes";
-import { setTheme } from "../store/appConfigSlice";
-import { useLoaderData, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useLoaderData } from "react-router-dom";
 import useGetProducts from "../Hooks/useGetProducts";
 import { useNavigate } from "react-router-dom";
 import Button from "../UI_Elements/Button"
-import { setActiveCategory } from "../store/productSlice";
 const ProductDetail = () => {
   const item = useLoaderData();
   useGetProducts();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const naviga = useLocation();
-
-  const navigateToProd = (id) =>{
-    dispatch(setActiveCategory(id));
-    navigate("../?categoryId="+id)
-  }
   useEffect(() => {
     dispatch(setStoreId(item?.id));
     dispatch(setName(item?.name));    
@@ -46,7 +37,6 @@ const ProductDetail = () => {
           <p className="font-medium">${item?.productPrice}</p>
           <Button
             className={`px-8  rounded h-10 text-lg `}
-            // onClickButton={() => navigateTo(item?.categoryId)}
             onClickButton={() => navigate("../")}
             title="Go to Products"
           >

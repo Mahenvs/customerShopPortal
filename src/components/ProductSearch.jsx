@@ -4,6 +4,7 @@ import axios from "axios";
 import { getHeaders } from "../Utilities/getHeaders";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { SearchIcon } from "../Icons/SearchIcon";
 
 const ProductSearch = () => {
   const storeId = useSelector((store) => store.store.storeId);
@@ -32,23 +33,14 @@ const ProductSearch = () => {
       <div className="flex items-center">
         <input
           type="text"
-          className={`w-full border border-gray-300 px-6 mx-auto py-2 placeholder:font-normal text-lg focus:outline-none focus:drop-shadow-2xl focus:shadow-lg focus:shadow-blue-400/50 dark:text-darkText ${searchedProducts ? "rounded-t-[26px]" : "rounded-full"}`}
+          className={`w-full border border-gray-300 px-6 mx-auto py-2 placeholder:font-normal text-lg focus:outline-none focus:drop-shadow-2xl focus:shadow-lg focus:shadow-blue-400/50 dark:text-darkText ${
+            searchedProducts ? "rounded-t-[26px]" : "rounded-full"
+          }`}
           placeholder="Search for products"
           onChange={(e) => onSearchHandler(e.target.value)}
         />
         <span className="absolute ml-[26%] text-sm">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            className="w-5 h-5 text-gray-400"
-          >
-            <path
-              fillRule="evenodd"
-              d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z"
-              clipRule="evenodd"
-            />
-          </svg>
+          <SearchIcon />
         </span>
       </div>
       {searchedProducts ? (

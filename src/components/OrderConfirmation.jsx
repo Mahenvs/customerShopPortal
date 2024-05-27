@@ -6,10 +6,10 @@ import { clearCartStore } from "../store/storeSlice";
 import { useDispatch } from "react-redux";
 import successImg from "../../src/assets/success1.png";
 import darkSuccess from "../../src/assets/darkSuccess1.png";
-import {useSelector} from 'react-redux';
+import { useSelector } from "react-redux";
 
 const OrderConfirmation = () => {
-  let currentTheme = useSelector(store => store.appConfig.theme);
+  let currentTheme = useSelector((store) => store.appConfig.theme);
   const location = useLocation();
   const receivedData = location.state;
   const navigate = useNavigate();
@@ -27,25 +27,8 @@ const OrderConfirmation = () => {
     <div className=" w-1/3 shadow-2xl p-6 mb-6 bg-[#f7f7f7] rounded-md flex justify-center mx-auto align-middle items-center h-fit mt-10 dark:border-darkBorder dark:shadow-zinc-400 dark:bg-gray-950  ">
       <motion.div className="flex flex-col items-center gap-4">
         <AnimatePresence>
-          {/* <motion.p
-            initial={{ x: -100 }}
-            animate={{ x: 10 ,rotate: 120 }}
-            exit={{ y: -200 }}
-            transition={{ ease: "backInOut", duration: 4,repeat: Infinity }}
-            className=" h-20 w-20 rounded-full p-4 bg-green-400 border border-green-700 flex justify-center"
-          >
-            <motion.span
-              initial={{ x: 200 }}
-              animate={{ x: 0, type: "spring" ,rotate: 240 }}
-              exit={{ y: -200 }}
-              transition={{ ease: "backInOut", duration: 4,repeat: Infinity }}
-              className="text-slate-900 text-xl "
-            >
-              Success!!
-            </motion.span>
-          </motion.p> */}
           <motion.img
-            src={currentTheme == 'light' ? successImg : darkSuccess}
+            src={currentTheme == "light" ? successImg : darkSuccess}
             width={250}
             initial={{ x: 0, scale: 0.6 }}
             animate={{ x: 0, scale: [0.2, 0.9, 0.6] }}

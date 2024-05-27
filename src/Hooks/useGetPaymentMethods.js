@@ -5,15 +5,18 @@ import axios from "axios";
 import { availablePaymentMethods } from "../store/storeSlice";
 
 export const useGetPaymentMethods = () => {
-
   const dispatch = useDispatch();
-    
+
   const getData = async () => {
     const getInfoUrl = import.meta.env.VITE_API_PAYMENT_TYPES;
-    
-    await axios.get(getInfoUrl, getHeaders())
-    .then((response) => {
-        const data1  = [{methodId:'null',methodName:'Choose'},...response.data]
+
+    await axios
+      .get(getInfoUrl, getHeaders())
+      .then((response) => {
+        const data1 = [
+          { methodId: "null", methodName: "Choose" },
+          ...response.data,
+        ];
         dispatch(availablePaymentMethods(data1));
       })
       .catch((error) => {
@@ -22,6 +25,5 @@ export const useGetPaymentMethods = () => {
   };
   useEffect(() => {
     getData();
-
-  },[]);
+  }, []);
 };

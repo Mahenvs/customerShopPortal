@@ -9,7 +9,7 @@ const useGetCart = () => {
 
   let storeId = useSelector((store) => store.store.storeId);
   let customerId = useSelector((store) => store.store.customerId);
-   
+
   if (!customerId) customerId = localStorage.getItem("customerId");
   if (!storeId) storeId = JSON.parse(localStorage.getItem("store"))?.storeId;
 
@@ -30,7 +30,7 @@ const useGetCart = () => {
 
   useEffect(() => {
     customerId && storeId && fetchCartData();
-  }, [storeId,customerId]);
+  }, [storeId, customerId]);
 };
 
 export default useGetCart;

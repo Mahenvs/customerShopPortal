@@ -1,17 +1,18 @@
 import { useEffect } from "react";
 import { getHeaders } from "../Utilities/getHeaders";
 import { listOfProducts } from "../store/productSlice";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const useGetProducts = () => {
   const dispatch = useDispatch();
-   
+
   const storeId = useSelector((store) => store.store.storeId);
   const categoryId = useSelector((store) => store.product.activeCategory);
 
   const fetchData = async () => {
-    
-    const url = import.meta.env.VITE_API_URL_PRODUCT+`/stores/${storeId}/categories/${categoryId}/products`;
+    const url =
+      import.meta.env.VITE_API_URL_PRODUCT +
+      `/stores/${storeId}/categories/${categoryId}/products`;
     try {
       const response = await fetch(url, getHeaders());
       if (!response.ok) {
@@ -26,7 +27,7 @@ const useGetProducts = () => {
 
   useEffect(() => {
     storeId && categoryId && fetchData();
-  }, [storeId,categoryId]);
+  }, [storeId, categoryId]);
 };
 
 export default useGetProducts;

@@ -1,13 +1,11 @@
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Suspense } from "react";
-
 import Home from "./components/Home";
 import { Provider } from "react-redux";
 import appStore from "./store/appStore";
 import CustomerLayOut from "./components/CustomerLayOut";
 import getData from "./Loaders/getData";
 import UpdateProfile from "./components/UpdateProfile";
-
 import { RedirectHome } from "./components/RedirectHome";
 import CategoriesView from "./components/CategoriesView";
 import CartView from "./components/CartView";
@@ -18,6 +16,7 @@ import ProductDetail from "./components/ProductDetail";
 import Account from "./components/Account";
 import Categories from "./components/Categories";
 import StoreNotExist from "./components/storeNotExist";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -38,7 +37,8 @@ const router = createBrowserRouter([
           {
             path: "",
             element: <Home />,
-          },  {
+          },
+          {
             path: ":product",
             element: (
               <Suspense fallback={<div>Loading...</div>}>
@@ -55,13 +55,12 @@ const router = createBrowserRouter([
           {
             path: "categories",
             element: <CategoriesView />,
-            children:[
+            children: [
               {
-                path:"/:storeDomain/categories/?categoryId",
-                element:<Categories/>
-
-              }
-            ]
+                path: "/:storeDomain/categories/?categoryId",
+                element: <Categories />,
+              },
+            ],
           },
           {
             path: "cart",
@@ -76,15 +75,15 @@ const router = createBrowserRouter([
             element: <Orders />,
           },
           {
-            path:"my-profile",
-            element:<Account/>
-          }
+            path: "my-profile",
+            element: <Account />,
+          },
         ],
       },
       {
-        path:"/store-not-exist",
-        element:<StoreNotExist/>
-      }
+        path: "/store-not-exist",
+        element: <StoreNotExist />,
+      },
     ],
   },
 ]);

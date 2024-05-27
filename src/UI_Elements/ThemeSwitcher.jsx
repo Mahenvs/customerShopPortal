@@ -4,14 +4,12 @@ import { useDispatch } from "react-redux";
 import { setTheme } from "../store/appConfigSlice";
 import { colors } from "../Utilities/constants";
 
-
 const ThemeSwitcher = () => {
   let theme = localStorage.getItem("theme");
 
   const dispatch = useDispatch();
 
   const themePicker = (event) => {
-
     dispatch(setTheme(event.target.value));
     localStorage.setItem("theme", event.target.value);
     setSelectedValue(event.target.value);

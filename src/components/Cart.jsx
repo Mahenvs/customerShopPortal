@@ -5,19 +5,19 @@ import {
   removeSingleItemFromCart,
 } from "../store/storeSlice";
 import useGetCart from "../Hooks/useGetCart";
-import { addToCart1 } from "../Utilities/addToCart";
 import { clearCart } from "../Utilities/clearCart";
 import { setMessage } from "../store/appConfigSlice";
-import Button from "../UI_Elements/Button";
 import { useNavigate } from "react-router-dom";
-import SubHeading from "../UI_Elements/SubHeading";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastInfoMessage } from "../Utilities/ToastMessage";
 import _debounce from "lodash/debounce";
-import EmptyCartBg from "../UI_Elements/EmptyCartBg";
 import { useEffect, useState } from "react";
 import { updateCartDb } from "../Utilities/updateCart";
+
+import CartItem from "./CartItem";
+import EmptyCart from "./EmptyCart";
+import CartTotal from "./CartTotal";
 
 const Cart = () => {
   useGetCart();
@@ -28,7 +28,7 @@ const Cart = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [counts, setCounts] = useState({});
-  
+
   useEffect(() => {
     const initialCounts = {};
     list.forEach((item) => {
@@ -107,62 +107,13 @@ const Cart = () => {
         }`}
       >
         {list?.map((item, index) => {
-          return (
-            <div key={index} className="flex mt-5 justify-between mb-5 pr-3 ">
-              <section className="font-mono">
-                <p>{item?.productName}</p>
-                <p>${item?.productCartPrice?.toFixed(2)}</p>
-              </section>
-              <section className="self-end border border-gray-400 rounded justify-end flex px -2 ">
-                <button
-                  className="h-fit   px-2 border-r-2 "
-                  onClick={() => updateCart(item, "decrease")}
-                >
-                  -
-                </button>
-                <button className=" h-fit text-skin-base bg-skin-fill  px-2 border-r-2 dark:text-darkText dark:bg-darkWhite">
-                  {" "}
-                  {item?.productCartQuantity}
-                </button>
-                <button
-                  className=" h-fit  px-2"
-                  onClick={() => updateCart(item, "increase")}
-                >
-                  +
-                </button>
-              </section>
-            </div>
-          );
+          return <CartItem key={index} item={item} updateCart={updateCart} />;
         })}
       </div>
       {list.length != 0 ? (
-        <>
-          <div className="flex items-center justify-between p-4 mx-2">
-            <h4 className="font-medium text-lg">SubTotal</h4>
-            <span className="flex font-bold ">${cartTotal}</span>
-          </div>
-
-          <div className="flex justify-center ">
-            <Button
-              onClickButton={goToCartHandler}
-              class="px-14 py-3 rounded text-skin-base bg-skin-fill  dark:bg-[#f9fafb] dark:text-darkText"
-              title={"Go to Cart"}
-            />
-          </div>
-        </>
+        <CartTotal cartTotal={cartTotal} goToCartHandler={goToCartHandler} />
       ) : (
-        <SubHeading class="p-3.5 ">
-          {isLoggedIn ? (
-            <>
-              <EmptyCartBg></EmptyCartBg>
-              <span className="flex justify-center text-center">
-                No Products in the Cart..
-              </span>
-            </>
-          ) : (
-            "Login to your account to view the cart!"
-          )}
-        </SubHeading>
+        <EmptyCart isLoggedIn={isLoggedIn} />
       )}
     </div>
   );

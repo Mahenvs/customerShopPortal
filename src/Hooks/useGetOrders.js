@@ -8,7 +8,7 @@ const useGetOrders = () => {
 
   let storeId = useSelector((store) => store.store.storeId);
   let customerId = useSelector((store) => store.store.customerId);
-  console.log("1111");
+
   if (!customerId) customerId = localStorage.getItem("customerId");
   if (!storeId) storeId = JSON.parse(localStorage.getItem("store"))?.storeId;
 

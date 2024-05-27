@@ -1,5 +1,3 @@
-import Button from "../UI_Elements/Button";
-
 const Shimmer = () => {
   const data = [
     { name: "1" },

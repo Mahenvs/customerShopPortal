@@ -6,7 +6,8 @@ export async function addToCart1(item, cartList, flag, addQuantity) {
   const storeId = JSON.parse(localStorage.getItem("store")).storeId;
   const cartUrl = import.meta.env.VITE_API_ADD_CART;
   const cartDeleteUrl =
-    import.meta.env.VITE_API_ADD_CART +"/" +
+    import.meta.env.VITE_API_ADD_CART +
+    "/" +
     item?.productId +
     `?storeId=` +
     storeId +
@@ -17,7 +18,7 @@ export async function addToCart1(item, cartList, flag, addQuantity) {
   });
 
   let quantity = addQuantity;
-  if(flag =="addQ"){
+  if (flag == "addQ") {
     quantity = addQuantity;
   }
   if (flag == "add") {
@@ -34,7 +35,7 @@ export async function addToCart1(item, cartList, flag, addQuantity) {
       if (addQuantity > 0) {
         quantity = cnt?.[0].productCartQuantity - addQuantity;
       } else {
-          quantity = addQuantity;
+        quantity = addQuantity;
       }
     }
   }

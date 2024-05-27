@@ -33,7 +33,6 @@ const UpdateProfile = () => {
   };
   useEffect(()=>{
     const prevFormData = location.state;
-    console.log(prevFormData," inside after ");
     setFormData((prevValues) => ({
       ...prevValues,
       email: prevFormData.email,

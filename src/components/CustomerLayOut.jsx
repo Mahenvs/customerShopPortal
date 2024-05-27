@@ -1,10 +1,7 @@
-import { Outlet, useLocation } from "react-router-dom";
-import Footer from "./Footer";
+import { Outlet } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { useEffect, useRef, useState } from "react";
-import axios from "axios";
-import { getHeaders } from "../Utilities/getHeaders";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const Layout = () => {
   const theme = localStorage.getItem("theme");

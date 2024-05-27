@@ -7,10 +7,10 @@ import { Heading } from "../UI_Elements/Heading";
 
 const CategoriesView = () => {
   useGetCategories();
-  
+
   const dispatch = useDispatch();
   const categoriesList = useSelector((store) => store.product.categories);
-  
+
   const handleActiveCategory = (id) => {
     dispatch(setActiveCategory(id));
   };
@@ -21,11 +21,14 @@ const CategoriesView = () => {
         {categoriesList?.map((item, index) => {
           return (
             <Card
-            key={index}
+              key={index}
               class="p-14 flex"
               onClick={() => handleActiveCategory(item?.categoryId)}
             >
-              <NavLink to={"../?categoryId=" + item?.categoryId} className="text-lg ">
+              <NavLink
+                to={"../?categoryId=" + item?.categoryId}
+                className="text-lg "
+              >
                 {item?.categoryName}({item?.productCount})
               </NavLink>
             </Card>

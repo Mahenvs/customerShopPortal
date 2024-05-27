@@ -11,7 +11,7 @@ const getSearchData = ({params}) => {
       }
       
       const result = await response.json();
-      console.log("response ",result);
+      
       document.title = result.name;
       
       return result;
