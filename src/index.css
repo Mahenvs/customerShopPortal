@@ -100,3 +100,21 @@
     
 
 }
+@keyframes scaleImage {
+    0% {
+      width: 150px;
+      height: 150px;
+    }
+    50%{
+        width: 125px;
+        height: 125px;  
+    }
+    100% {
+      width: 100px;
+      height: 100px;
+    }
+  }
+  
+  .scale-animation {
+    animation: scaleImage 2s infinite alternate-reverse;
+  }

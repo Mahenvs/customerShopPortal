@@ -3,7 +3,7 @@ const EmptyCartBg = () => {
     <>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlnsXlink="http://www.w3.org/1999/xlink"
         viewBox="0 0 216 126"
         width="216"
         height="126"
@@ -26,7 +26,7 @@ const EmptyCartBg = () => {
         <g clipPath="url(#__lottie_element_169)">
           <g
             style={{
-              display: "block;",
+              display: "block",
               transform: "matrix(1,0,0,1,-0.25,42.75)",
               opacity: "0.9991743619902644",
             }}

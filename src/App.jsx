@@ -17,6 +17,7 @@ import BodyRoute from "./components/BodyRoute";
 import ProductDetail from "./components/ProductDetail";
 import Account from "./components/Account";
 import Categories from "./components/Categories";
+import StoreNotExist from "./components/storeNotExist";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -79,6 +80,10 @@ const router = createBrowserRouter([
             element:<Account/>
           }
         ],
+      },
+      {
+        path:"/store-not-exist",
+        element:<StoreNotExist/>
       }
     ],
   },

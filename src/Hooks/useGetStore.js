@@ -2,12 +2,11 @@ import { useEffect } from "react";
 import { getHeaders } from "../Utilities/getHeaders";
 import { useDispatch } from "react-redux";
 import { setAddress, setImage, setName, setStoreDomain, setStoreId } from "../store/storeSlice";
-import {useLocation} from 'react-router-dom';
+import {useLocation, useNavigate} from 'react-router-dom';
 
 const useGetStore = (storeDomain) => {
   const dispatch = useDispatch();
 
-  
   const location = useLocation();
   
   const pathArr = location.pathname.split("/");
@@ -15,11 +14,13 @@ const useGetStore = (storeDomain) => {
 //  storeDomain = pathArr[pathArr.length - 1];
   storeDomain = pathArr[1];
   const url = import.meta.env.VITE_API_GET_STORE_CUST + storeDomain;
-  
+  const navigate = useNavigate();
+
   const fetchData = async () => {
     try {
       const response = await fetch(url, getHeaders());
       if (!response.ok) {
+        navigate("/store-not-exist")
         throw new Error("Network response was not ok.");
       }
       const result = await response.json();
