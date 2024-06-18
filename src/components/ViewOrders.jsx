@@ -2,6 +2,9 @@ import { parseDate } from "../Utilities/parseDate";
 import MiniHeading from "../UI_Elements/MiniHeading";
 
 const ViewOrders = ({ item }) => {
+  let OrderedProductList = [...(item?.orderedProductList || [])];
+  OrderedProductList = OrderedProductList?.sort((a, b) => a.productName.localeCompare(b.productName));
+
   return (
     <div className="max-h-full mx-10  mb-10">
       <header className="flex gap-5">
@@ -14,10 +17,10 @@ const ViewOrders = ({ item }) => {
         </MiniHeading>
       </header>
       <div className="flex mx-auto my-4 gap-5 overflow-auto ">
-        {item?.orderedProductList?.map((product, index) => {
+        {OrderedProductList?.map((product, index) => {
           return (
             <div
-              key={product?.productId + index}
+              key={product?.productId }
               className="flex p-2 gap-6 min-w-fit justify-around "
             >
               <img

@@ -37,6 +37,7 @@ const ProductSearch = () => {
             searchedProducts ? "rounded-t-[26px]" : "rounded-full"
           }`}
           placeholder="Search for products"
+          id="search"
           onChange={(e) => onSearchHandler(e.target.value)}
         />
         <span className="absolute ml-[26%] text-sm">

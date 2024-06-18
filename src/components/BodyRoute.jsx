@@ -3,9 +3,17 @@ import CustomerNavBar from "./CustomerNavBar";
 import { useDispatch, useSelector } from "react-redux";
 import { getHeaders } from "../Utilities/getHeaders";
 import axios from "axios";
-import { setUserName, setVerifiedUser } from "../store/appConfigSlice";
+import {
+  resetAppConfig,
+  setLoggedIn,
+  setUserName,
+  setVerifiedUser,
+} from "../store/appConfigSlice";
 import { useEffect } from "react";
 import Footer from "./Footer";
+import { resetStore } from "../store/storeSlice";
+import { resetCart } from "../store/cartSlice";
+import { resetProduct } from "../store/productSlice";
 
 const BodyRoute = () => {
   const verifiedUser = useSelector((store) => store.appConfig.isVerifiedUser);
@@ -20,24 +28,43 @@ const BodyRoute = () => {
   let verify = localStorage.getItem("verifiedUser");
 
   const checkUserVerifiedOrNot = async () => {
-    const resp = await axios.get(url, getHeaders());
-    const res = await resp.data?.[0];
-    const result = res?.emailIsVerified;
-    const finalName = res?.firstName + " " + res?.lastName;
-    localStorage.setItem("verifiedUser", result);
-    dispatch(setVerifiedUser(result));
-    dispatch(
-      setUserName({
-        Name: finalName,
-        Email: res?.email,
-      })
-    );
-    verify = localStorage.getItem("verifiedUser");
+    try {
+      const resp = await axios.get(url, getHeaders());
+      
+      const res = await resp.data?.[0];
+      const result = res?.emailIsVerified;
+      const finalName = res?.firstName + " " + res?.lastName;
+      localStorage.setItem("verifiedUser", result);
+      dispatch(setVerifiedUser(result));
+      dispatch(
+        setUserName({
+          Name: finalName,
+          Email: res?.email,
+        })
+      );
+      verify = localStorage.getItem("verifiedUser");
+    } catch (error) {
+      console.log(error.response.status, "error ", error);
+      if (error.response.status == 404) {
+        localStorage.removeItem("customerId");
+        localStorage.removeItem("verifiedUser");
+        dispatch(setVerifiedUser(false));
+        dispatch(resetStore());
+        dispatch(resetAppConfig());
+        dispatch(resetCart());
+        dispatch(resetProduct());
+
+        dispatch(setLoggedIn(false));
+        console.log("yguhj");
+        // throw new Error("Network response was not ok.");
+      }
+      //
+    }
   };
   useEffect(() => {
     localStorage.setItem("verifiedUser", false);
     checkUserVerifiedOrNot();
-  }, [customerId, verify]);
+  }, [customerId]);
 
   return (
     <>
