@@ -13,7 +13,7 @@ import {
 } from "../store/appConfigSlice";
 import { resetCart } from "../store/cartSlice";
 import { resetProduct } from "../store/productSlice";
-import { UserActions } from "./userActions";
+import { UserActions } from "./UserActions.jsx";
 import { StoreInfo } from "./StoreInfo";
 
 const CustomerNavBar = () => {
