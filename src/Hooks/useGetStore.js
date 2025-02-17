@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { getHeaders } from "../Utilities/getHeaders";
+import { header } from "../Utilities/getHeaders";
 import { useDispatch } from "react-redux";
 import {
   setAddress,
@@ -9,6 +9,7 @@ import {
   setStoreId,
 } from "../store/storeSlice";
 import { useLocation, useNavigate } from "react-router-dom";
+import { apiRequest } from "../Utilities/Interceptor";
 
 const useGetStore = (storeDomain) => {
   const dispatch = useDispatch();
@@ -24,12 +25,18 @@ const useGetStore = (storeDomain) => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(url, getHeaders());
-      if (!response.ok) {
+      // const response = await fetch(url, getHeaders());
+      // console.log(header());
+      // const head = header();
+
+      const response = await apiRequest(url, "get", null, {}, header());
+      console.log(response);
+
+      if (response.status != 200) {
         navigate("/store-not-exist");
         throw new Error("Network response was not ok.");
       }
-      const result = await response.json();
+      const result = response.data;
 
       localStorage.setItem(
         "store",

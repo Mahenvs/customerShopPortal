@@ -96,7 +96,7 @@ const SignUp = ({ onLogin }) => {
       getPostHeaders({
         email: formData.email,
         password: formData.password,
-        storeId:storeId,
+        storeId: storeId,
       })
     );
     const response = await data.json();

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../UI_Elements/Button"
 const ProductDetail = () => {
   const item = useLoaderData();
-  useGetProducts();
+  // useGetProducts();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

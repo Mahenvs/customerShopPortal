@@ -22,16 +22,16 @@ export const UserActions = ({
   const { Email } = useSelector((store) => store.appConfig.user);
 
   return (
-    <section className="font-medium text-lg w-2/5 flex mx-14 gap-10 text-white-500 items-center">
+    <section className="font-medium text-lg w-3/5 flex mx-10 gap-10 text-white-500 items-center">
       {isLoggedIn && (
-        <div className="flex items-center gap-1">
-          <CategoriesIcon />
+        <div>
           <Link
+            className="flex items-center gap-1"
             to={"categories"}
-            className="cursor-pointer"
             onClick={() => navigateTo("categories")}
           >
-            Categories
+            <CategoriesIcon />
+            <span className="hidden lg:block">Categories</span>
           </Link>
         </div>
       )}
@@ -39,7 +39,7 @@ export const UserActions = ({
       {!isLoggedIn && <Link to="auth?signin">Sign In</Link>}
 
       {isLoggedIn && (
-        <Link to="cart" className="flex  cursor-pointer items-center ">
+        <Link to="cart" className="flex cursor-pointer items-center ">
           {cartCnt != 0 ? <Badge value={cartCnt} /> : ""}
           {/* <img
         src={currentTheme !== "dark" ? cartImg : darkShop}
@@ -47,18 +47,16 @@ export const UserActions = ({
       /> */}
           <CartIcon />
 
-          <span className="z-10">Cart</span>
+          <span className="z-10 hidden lg:block">Cart</span>
         </Link>
       )}
       {isLoggedIn && (
-        <div className="flex items-center ">
+        <div
+          className="flex items-center "
+          onClick={() => setLogOut((val) => !val)}
+        >
           <ProfileIcon />
-          <span
-            className="cursor-pointer"
-            onClick={() => setLogOut((val) => !val)}
-          >
-            Account
-          </span>
+          <span className="cursor-pointer hidden lg:block">Account</span>
         </div>
       )}
       <div className="font-medium">
