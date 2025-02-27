@@ -96,34 +96,34 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-const onRenderCallback = (
-  id, // The "id" prop of the Profiler tree that just committed
-  phase, // Either "mount" (first render) or "update" (re-render)
-  actualDuration, // Time spent rendering the committed update
-  baseDuration, // Estimated time to render the entire subtree without memoization
-  startTime, // When React began rendering this update
-  commitTime, // When React committed this update
-  interactions // Set of interactions that were tracked
-) => {
-  console.log(`[Profiler: ${id}]`);
-  console.log(`Phase: ${phase}`);
-  console.log(`Actual Duration: ${actualDuration}`);
-  console.log(`Base Duration: ${baseDuration}`);
-  console.log(`Start Time: ${startTime}`);
-  console.log(`Commit Time: ${commitTime}`);
-  console.log(`Interactions:`, interactions);
-};
+// const onRenderCallback = (
+//   id, // The "id" prop of the Profiler tree that just committed
+//   phase, // Either "mount" (first render) or "update" (re-render)
+//   actualDuration, // Time spent rendering the committed update
+//   baseDuration, // Estimated time to render the entire subtree without memoization
+//   startTime, // When React began rendering this update
+//   commitTime, // When React committed this update
+//   interactions // Set of interactions that were tracked
+// ) => {
+//   console.log(`[Profiler: ${id}]`);
+//   console.log(`Phase: ${phase}`);
+//   console.log(`Actual Duration: ${actualDuration}`);
+//   console.log(`Base Duration: ${baseDuration}`);
+//   console.log(`Start Time: ${startTime}`);
+//   console.log(`Commit Time: ${commitTime}`);
+//   console.log(`Interactions:`, interactions);
+// };
 function App() {
   return (
-    <Profiler id="SomeComponentProfiler" onRender={onRenderCallback}>
-      <GoogleOAuthProvider clientId="423823754952-m2033bpa6uit6r44krnlk3hk29ea19r1.apps.googleusercontent.com">
-        <Provider store={appStore}>
-          <RouterProvider router={router}>
-            <Outlet />
-          </RouterProvider>
-        </Provider>
-      </GoogleOAuthProvider>
-    </Profiler>
+    // <Profiler id="SomeComponentProfiler" onRender={onRenderCallback}>
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+      <Provider store={appStore}>
+        <RouterProvider router={router}>
+          <Outlet />
+        </RouterProvider>
+      </Provider>
+    </GoogleOAuthProvider>
+    // </Profiler>
   );
 }
 
