@@ -5,6 +5,7 @@ const OutlineButton = (props) => {
   if (props.class) {
     className = ` dark:bg-darkButtonBg dark:text-darkText  px-5 py-1 font-mono text-lg rounded-md   ${props.class}`;
   }
+
   return (
     <>
       <button type="button" className={className} onClick={props.onClickButton}>
