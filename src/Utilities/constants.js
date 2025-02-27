@@ -36,3 +36,5 @@ export const colors = [
     value: "Violet",
   },
 ];
+
+export const LINKEDIN = "https://www.linkedin.com/in/mahendrau044/";

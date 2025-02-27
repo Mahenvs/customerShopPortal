@@ -90,7 +90,7 @@ const Cart = () => {
   };
 
   return (
-    <div className=" p-2 ">
+    <div className=" p-2 xl:py-1 ">
       <section className="flex justify-between">
         <h1 className="text-xl font-semibold">Cart</h1>
         {list.length != 0 && (

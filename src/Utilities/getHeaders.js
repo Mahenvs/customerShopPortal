@@ -27,11 +27,11 @@ export function getPostHeaders(body) {
 }
 
 export const header = () => {
-  return `{
-        Authorization: "Basic ${basicAuthToken}",
-        "Content-Type": "application/x-www-form-urlencoded",
-        "Access-Control-Allow-Origin": "*",
-      }`;
+  return {
+    Authorization: "Basic " + basicAuthToken,
+    "Content-Type": "application/x-www-form-urlencoded",
+    "Access-Control-Allow-Origin": "*",
+  };
 };
 
 export const headers = () => {

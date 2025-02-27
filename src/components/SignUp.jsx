@@ -9,7 +9,8 @@ import { setLoggedIn } from "../store/appConfigSlice";
 import { validatingInputs } from "../Utilities/validatingFields";
 import { compareInputs } from "../Utilities/compareInputs";
 import { getPostHeaders } from "../Utilities/getHeaders";
-
+import { LINKEDIN } from "../Utilities/constants";
+import MaintenanceBanner from "./MaintenanceBanner";
 const InitialState = {
   email: "",
   password: "",
@@ -96,7 +97,7 @@ const SignUp = ({ onLogin }) => {
       getPostHeaders({
         email: formData.email,
         password: formData.password,
-        storeId:storeId,
+        storeId: storeId,
       })
     );
     const response = await data.json();
@@ -119,6 +120,7 @@ const SignUp = ({ onLogin }) => {
   }, []);
   return (
     <>
+      <MaintenanceBanner />
       <div className="mx-auto  w-1/3 py-10 flex justify-center  ">
         <form
           id="loginModal"

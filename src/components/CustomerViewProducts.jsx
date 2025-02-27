@@ -15,13 +15,18 @@ const CustomerViewProducts = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   let cnt = 1;
+  let storeDomainResource = JSON.parse(
+    localStorage.getItem("store")
+  )?.storeDomain;
+
   let productsList = useSelector((store) => store.product.products);
   const cartListData = useSelector((store) => store.store.cartList);
   const customer = useSelector((store) => store.store.customerId);
   const [readOnly, setLoading] = useState(false);
   const addToCartHandler = async (item, qnty) => {
     if (customer == null) {
-      navigate("/");
+      navigate(`/${storeDomainResource}/auth?signIn`);
+      // navigate("../");
       return;
     }
     const response = await addToCart1(item, cartListData, "add", qnty);
@@ -53,7 +58,7 @@ const CustomerViewProducts = () => {
           return (
             <div
               key={index}
-              className="border-2 border-gray-200  rounded-xl dark:shadow-lg py-2 flex gap-4 my-4 mb-3 dark:border-darkBorder dark:rounded dark:border dark:border-1 dark:bg-darkBg  mx-4 max-h-s creen"
+              className="border-2 border-gray-200  rounded-xl dark:shadow-lg py-2 flex gap-4 m-4 mb-3 dark:border-darkBorder dark:rounded dark:border dark:border-1 dark:bg-darkBg  "
             >
               <section
                 className="w-1/4 px-2 py-1 dark:border-none"
@@ -77,12 +82,14 @@ const CustomerViewProducts = () => {
                 <h2 className="text-base text-gray-600 font-base dark:text-zinc-400">
                   {item?.categoryName}
                 </h2>
-                <p className="dark:text-zinc-500">{item.unit}</p>
+                <p className="dark:text-zinc-500 lg:block md:hidden">
+                  {item.unit}
+                </p>
                 <p className="dark:text-zinc-300">
                   ${item?.productPrice.toFixed(2)}{" "}
                 </p>
               </section>
-              <section className={` min-w-fit self-end`}>
+              <section className={` min-w-fit self-end md:flex md:flex-col`}>
                 <Button
                   onClickButton={() =>
                     `${readOnly}` === "false" && updateCart(item, cnt++)
@@ -98,27 +105,6 @@ const CustomerViewProducts = () => {
                       : "text-red-400 bg-white border border-red-200"
                   }`}
                 ></Button>
-
-                {/* Start --> Update add button with + and - from cart if the product exists in the cart */}
-                {/* <section className="self-end border border-gray-400 rounded justify-end flex px -2 ">
-                        <button
-                          className="h-fit   px-2 border-r-2 "
-                          onClick={() => updateCart(item, "decrease", cnt++)}
-                        >
-                          -
-                        </button>
-                        <button className=" h-fit text-skin-base bg-skin-fill  px-2 border-r-2 dark:text-darkText dark:bg-darkWhite">
-                          {" "}
-                          {item?.productCartQuantity}
-                        </button>
-                        <button
-                          className=" h-fit  px-2"
-                          onClick={() => updateCart(item, "increase", cnt++)}
-                        >
-                          +
-                        </button>
-                      </section> */}
-                {/* End */}
               </section>
             </div>
           );

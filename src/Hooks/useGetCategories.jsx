@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getHeaders } from "../Utilities/getHeaders";
 import { listOfCategories, setActiveCategory } from "../store/productSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,7 +9,7 @@ const useGetCategories = () => {
   let storeData = JSON.parse(localStorage.getItem("store"));
   const activeCategory = useSelector((store) => store.product?.activeCategory);
   const storeId = storeData?.storeId;
-
+  const [error, setError] = useState(null);
   const fetchCategoriesData = async () => {
     const url = import.meta.env.VITE_PRODUCT_SEARCH + `${storeId}/categories`;
     try {
@@ -23,6 +23,7 @@ const useGetCategories = () => {
       if (result) dispatch(setActiveCategory(result[0]["categoryId"]));
     } catch (error) {
       console.error("Error fetching data:", error);
+      setError(error); // Store error in state
     }
   };
 

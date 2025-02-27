@@ -13,7 +13,7 @@ import {
 } from "../store/appConfigSlice";
 import { resetCart } from "../store/cartSlice";
 import { resetProduct } from "../store/productSlice";
-import { UserActions } from "./userActions";
+import { UserActions } from "./UserActions.jsx";
 import { StoreInfo } from "./StoreInfo";
 
 const CustomerNavBar = () => {
@@ -104,14 +104,19 @@ const CustomerNavBar = () => {
       {!isLoading ? (
         <div>Loading...</div>
       ) : (
-        <div className="flex h-20 dark:bg-darkBlack dark:text-darkWhite border-b-2 dark:border-b-[1px] dark:border-darkBorder bg-white items-center sti cky w-full top-0 fixed z-40 shadow">
+        <div
+          className=" flex h-20 w-full lg:w-7/12 justify-between items-center  dark:bg-darkBlack
+          border-b-2 dark:border-b-[1px]
+         dark:text-darkWhite dark:border-darkBorder bg-white 
+            top-0 fixed z-40 shadow "
+        >
           <StoreInfo
             storeDomainResource={storeDomainResource}
             storeImg={storeImg}
             storeName={storeName}
           />
 
-          <section className="w-2/5  mx-14">
+          <section className="hidden md:block md:w-2/5  item  mx-14">
             {isLoggedIn && <ProductSearch />}
           </section>
           <UserActions

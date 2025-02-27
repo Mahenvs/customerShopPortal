@@ -1,16 +1,27 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import path from 'path';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import { analyzer } from "vite-bundle-analyzer";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), analyzer()],
   server: {
     watch: {
-     usePolling: true,
+      usePolling: true,
     },
     host: true, // Here
     strictPort: true,
-    port: 5174, 
-  }
-})
+    port: 5174,
+  },
+  build: {
+    minify: "terser",
+    terserOptions: {
+      compress: {
+        drop_console: true, // Removes console logs
+      },
+      format: {
+        comments: false, // Removes comments
+      },
+    },
+  },
+});

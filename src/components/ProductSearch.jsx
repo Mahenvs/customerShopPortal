@@ -30,24 +30,24 @@ const ProductSearch = () => {
   };
   return (
     <div>
-      <div className="flex items-center">
+      <div className="flex items-center ">
         <input
           type="text"
-          className={`w-full border border-gray-300 px-6 mx-auto py-2 placeholder:font-normal text-lg focus:outline-none focus:drop-shadow-2xl focus:shadow-lg focus:shadow-blue-400/50 dark:text-darkText ${
+          className={`lg:w-[30rem] w-96   border border-gray-300 px-6 mx-auto py-1 lg:py-2 placeholder:font-normal text-lg focus:outline-none focus:drop-shadow-2xl focus:shadow-lg focus:shadow-blue-400/50 dark:text-darkText ${
             searchedProducts ? "rounded-t-[26px]" : "rounded-full"
           }`}
           placeholder="Search for products"
           id="search"
           onChange={(e) => onSearchHandler(e.target.value)}
         />
-        <span className="absolute ml-[26%] text-sm">
+        <span className="absolute ml-[26%] md:ml-[36%] lg:ml-[26%] text-sm">
           <SearchIcon />
         </span>
       </div>
       {searchedProducts ? (
         <div
           className={
-            `w-[436px] shadow border rounded-tl rounded-b-[26px] absolute z-30 bg-white border-slate-200 mb-` +
+            `lg:w-[27rem] w-[22rem] mx-[2px] shadow border rounded-tl rounded-b-[26px] absolute z-30 bg-white border-slate-200 mb-` +
             `${searchedProducts ? "" : "h-30"}`
           }
         >
