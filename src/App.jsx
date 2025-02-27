@@ -10,7 +10,7 @@ import { RedirectHome } from "./components/RedirectHome";
 import CategoriesView from "./components/CategoriesView";
 import CartView from "./components/CartView";
 import OrderConfirmation from "./components/OrderConfirmation";
-import Orders from "./components/Orders";
+
 import BodyRoute from "./components/BodyRoute";
 // import ProductDetail from "./components/ProductDetail";
 import Account from "./components/Account";
@@ -19,6 +19,7 @@ import StoreNotExist from "./components/storeNotExist";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { ErrorPage } from "./components/ErrorPage";
 const ProductDetail = lazy(() => import("./components/ProductDetail"));
+const Orders = lazy(() => import("./components/Orders"));
 
 const router = createBrowserRouter([
   {
@@ -76,7 +77,11 @@ const router = createBrowserRouter([
           },
           {
             path: "orders",
-            element: <Orders />,
+            element: (
+              <Suspense fallback={<div>Loading...</div>}>
+                <Orders />
+              </Suspense>
+            ),
           },
           {
             path: "my-profile",
