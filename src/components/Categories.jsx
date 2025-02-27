@@ -6,7 +6,10 @@ import { useDispatch } from "react-redux";
 import { listOfProducts, setActiveCategory } from "../store/productSlice";
 
 const Categories = () => {
-  useGetCategories();
+  const { error } = useGetCategories();
+  if (error) {
+    throw new Error("Network response was not ok.");
+  }
   const dispatch = useDispatch();
 
   const categories = useSelector((store) => store.product.categories);

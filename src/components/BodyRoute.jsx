@@ -46,8 +46,8 @@ const BodyRoute = () => {
       );
       verify = localStorage.getItem("verifiedUser");
     } catch (error) {
-      console.log(error.response.status, "error ", error);
-      if (error.response.status == 404) {
+      console.log(error.response.status, " is is error ", error);
+      if (error?.response?.status == 404) {
         localStorage.removeItem("customerId");
         localStorage.removeItem("verifiedUser");
         dispatch(setVerifiedUser(false));
@@ -58,8 +58,10 @@ const BodyRoute = () => {
 
         dispatch(setLoggedIn(false));
         console.log("yguhj");
-        // throw new Error("Network response was not ok.");
       }
+      console.log("Out");
+
+      throw new Error("Network response was not ok.");
       //
     }
   };

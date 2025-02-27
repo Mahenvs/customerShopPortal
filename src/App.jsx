@@ -17,13 +17,14 @@ import Account from "./components/Account";
 import Categories from "./components/Categories";
 import StoreNotExist from "./components/storeNotExist";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-
+import { ErrorPage } from "./components/ErrorPage";
 const ProductDetail = lazy(() => import("./components/ProductDetail"));
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <CustomerLayOut />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -36,6 +37,7 @@ const router = createBrowserRouter([
       {
         path: "/:storeDomain",
         element: <BodyRoute />,
+        errorElement: <ErrorPage />,
         children: [
           {
             path: "",
