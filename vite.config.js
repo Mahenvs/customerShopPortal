@@ -4,7 +4,7 @@ import { analyzer } from "vite-bundle-analyzer";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), analyzer()],
+  plugins: [react()],
   server: {
     watch: {
       usePolling: true,

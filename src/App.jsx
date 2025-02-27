@@ -1,5 +1,5 @@
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
-import { lazy, Profiler, Suspense } from "react";
+import { lazy, Suspense } from "react";
 import Home from "./components/Home";
 import { Provider } from "react-redux";
 import appStore from "./store/appStore";
@@ -12,7 +12,7 @@ import CartView from "./components/CartView";
 import OrderConfirmation from "./components/OrderConfirmation";
 
 import BodyRoute from "./components/BodyRoute";
-// import ProductDetail from "./components/ProductDetail";
+
 import Account from "./components/Account";
 import Categories from "./components/Categories";
 import StoreNotExist from "./components/storeNotExist";
