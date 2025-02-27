@@ -22,7 +22,11 @@ jobs:
         run: npm install
 
       - name: Build project
-        run: npm run build
+        # This forces the build to stop after 100sec if it hangs
+        run: timeout 100s npm run build
+
+      - name: Verify Build Output
+        run: ls -la ./dist # Check if the build output exists
 
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
