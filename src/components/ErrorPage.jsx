@@ -12,13 +12,13 @@ export const ErrorPage = () => {
       transition={{ duration: 0.4, ease: "easeInOut" }}
       className="flex flex-col items-center justify-center h-screen bg-red-100 dark:bg-red-900 p-6 text-center"
     >
-      <motion.h 1 
+      <motion.h1 
         className="text-2xl font-bold text-red-700 dark:text-red-300"
         animate={{ scale: [1, 1.05, 1] }}
         transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
       >
         🚨 Oops! Something went wrong.
-      </motion.h>
+      </motion.h1>
       <p className="text-gray-700 dark:text-gray-300 mt-2">
         The application encountered an error. Please try refreshing the page Or
         Contact &nbsp;
