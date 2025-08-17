@@ -37,4 +37,4 @@ export const colors = [
   },
 ];
 
-export const LINKEDIN = "https://www.linkedin.com/in/mahendrau044/";
+export const LINKEDIN = "https://www.linkedin.com/in/mahendrauppari28/";

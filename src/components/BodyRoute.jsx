@@ -31,7 +31,13 @@ const BodyRoute = () => {
 
   const checkUserVerifiedOrNot = async () => {
     try {
-      const resp = await axios.get(url, getHeaders());
+      const resp = await axios.get(url, {
+        method: "GET",
+        headers: {
+          Authorization: `Basic ${basicAuthToken}`,
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      });
 
       const res = await resp.data?.[0];
       const result = res?.emailIsVerified;

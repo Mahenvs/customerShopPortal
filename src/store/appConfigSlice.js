@@ -1,54 +1,67 @@
-import {createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
-const appConfigSlice = createSlice({
-    name:'appConfig',
-    initialState: {
-        theme: null,
-        popUp: {
-            message: null,
-            status: false,
-            type: null
-        },
-        bottomPopUp: {
-            status: true,
-            type: null,
-            bottommessage:null
-        },
-        isLoggedIn: false,
-        isVerifiedUser: true,
-        user:{
-
-        }
+// Define and export initialState separately
+export const initialState = {
+    theme: null,
+    popUp: {
+      message: null,
+      status: false,
+      type: null
     },
-    reducers:{
-        setTheme: (state,action) => {
-            state.theme = action.payload
-        },
-        setMessage: (state,action) => {
-            state.popUp.message = action.payload.message,
-            state.popUp.status= action.payload.status
-            state.popUp.type = action.payload.type
-        },
-        setUserName: (state,action) =>{
-            state.user = action.payload;
-        },
-        setBottomMessage: (state,action) => {
-            state.bottomPopUp.bottommessage = action.payload.message,
-            state.bottomPopUp.status= action.payload.status
-            state.bottomPopUp.type = action.payload.type
-        },
-        setLoggedIn: (state,action) => {
-            state.isLoggedIn = action.payload;
-        },
-        setVerifiedUser:(state,action) => {
-            state.isVerifiedUser = action.payload;
-        },
-        resetAppConfig: (state) =>{
-            state.popUp.message = null,
-            state.popUp.status= false
-            state.popUp.type = null
-        }
+    bottomPopUp: {
+      status: true,
+      type: null,
+      bottommessage: null
+    },
+    isLoggedIn: false,
+    isVerifiedUser: true,
+    user: {}
+  };
+  
+  
+  const appConfigSlice = createSlice({
+    name: 'appConfig',
+    initialState,
+    reducers: {
+      setTheme: (state, action) => {
+        state.theme = action.payload;
+      },
+      setMessage: (state, action) => {
+        state.popUp.message = action.payload.message;
+        state.popUp.status = action.payload.status;
+        state.popUp.type = action.payload.type;
+      },
+      setUserName: (state, action) => {
+        state.user = action.payload;
+      },
+      setBottomMessage: (state, action) => {
+        state.bottomPopUp.bottommessage = action.payload.message;
+        state.bottomPopUp.status = action.payload.status;
+        state.bottomPopUp.type = action.payload.type;
+      },
+      setLoggedIn: (state, action) => {
+        state.isLoggedIn = action.payload;
+      },
+      setVerifiedUser: (state, action) => {
+        state.isVerifiedUser = action.payload;
+      },
+      resetAppConfig: (state) => {
+        state.popUp.message = null;
+        state.popUp.status = false;
+        state.popUp.type = null;
+      }
     }
-})
-export const {setTheme,setUserName,setMessage,resetAppConfig,setLoggedIn,setBottomMessage,setVerifiedUser} = appConfigSlice.actions;
-export default appConfigSlice.reducer;
+  });
+  
+  export const {
+    setTheme,
+    setUserName,
+    setMessage,
+    resetAppConfig,
+    setLoggedIn,
+    setBottomMessage,
+    setVerifiedUser
+  } = appConfigSlice.actions;
+  
+  export default appConfigSlice.reducer;
+  

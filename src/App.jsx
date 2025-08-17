@@ -10,9 +10,7 @@ import { RedirectHome } from "./components/RedirectHome";
 import CategoriesView from "./components/CategoriesView";
 import CartView from "./components/CartView";
 import OrderConfirmation from "./components/OrderConfirmation";
-
 import BodyRoute from "./components/BodyRoute";
-
 import Account from "./components/Account";
 import Categories from "./components/Categories";
 import StoreNotExist from "./components/storeNotExist";
